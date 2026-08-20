@@ -1,1 +1,1 @@
-# Ko Sam Ja Kviz
+# Ko Sam Ja Kvizz
