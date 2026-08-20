@@ -38,6 +38,10 @@ const dom = {
   toast: $('#toast'),
   toastMessage: $('#toast-message')
 };
+  help: $('#btn-help'),
+  rulesOverlay: $('#rules-modal-overlay'),
+  closeRules: $('#btn-rules-close'),
+  rulesOk: $('#btn-rules-ok'),
 
 const state = {
   questions: [],
