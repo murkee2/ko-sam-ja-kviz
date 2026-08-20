@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="bs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ko sam ja? Bosanski kviz pogađanja po tragovima.">
+  <title>Ko sam ja? | Kviz po tragovima</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <header class="topbar glass-panel">
+      <a class="brand" href="." aria-label="Ko sam ja? Početna stranica">
+        <span class="brand-mark">?</span>
+        <span><strong>KO SAM JA?</strong><small>kviz po tragovima</small></span>
+      </a>
+      <div class="topbar-actions">
+        <div class="mode-switch" role="group" aria-label="Odabir moda igre">
+          <button id="btn-mode-daily" class="mode-button active" type="button">📅 Dnevni izazov</button>
+          <button id="btn-mode-free" class="mode-button" type="button">🎮 Slobodna igra</button>
+        </div>
+        <button id="btn-sound-toggle" class="icon-button" type="button" aria-label="Isključi zvuk" title="Zvuk"><span id="sound-icon">🔊</span></button>
+      </div>
+    </header>
+
+    <section class="score-strip" aria-label="Statistika igre">
+      <div><span>MOD</span><strong id="stat-mode-name">Dnevni izazov</strong></div>
+      <div><span>TRENUTNO</span><strong id="stat-current-points" class="gold">5</strong><small>bodova</small></div>
+      <div><span>STREAK</span><strong id="stat-streak">🔥 0</strong></div>
+      <div><span>UKUPNO</span><strong id="stat-total-score">0</strong></div>
+    </section>
+
+    <section class="category-panel glass-panel" aria-label="Filter kategorija">
+      <div class="section-heading"><div><span class="eyebrow">BIRAJ TEMU</span><h2>Kategorija</h2></div><span id="active-category-badge" class="category-badge">Sve</span></div>
+      <div id="category-filter-list" class="category-list">
+        <button class="category-button active" data-category="Sve" type="button">Sve</button>
+        <button class="category-button" data-category="Sport" type="button">⚽ Sport</button>
+        <button class="category-button" data-category="Geografija" type="button">🌍 Geografija</button>
+        <button class="category-button" data-category="Historija" type="button">📜 Historija</button>
+        <button class="category-button" data-category="Nauka" type="button">🔬 Nauka</button>
+        <button class="category-button" data-category="Film i muzika" type="button">🎬 Film i muzika</button>
+        <button class="category-button" data-category="Tehnologija" type="button">💻 Tehnologija</button>
+      </div>
+    </section>
+
+    <main class="game-card glass-panel">
+      <div class="game-heading">
+        <div><span class="eyebrow">PITANJE <span id="question-number">01</span></span><h1>Ko sam ja?</h1></div>
+        <div class="clue-counter"><strong id="clues-revealed-count">1 / 5</strong><span>tragova otključano</span></div>
+      </div>
+      <div id="clues-container" class="clues" aria-live="polite"></div>
+
+      <div class="answer-area">
+        <form id="guess-form" class="guess-form" autocomplete="off">
+          <label for="guess-input">Tvoj odgovor</label>
+          <div id="input-wrapper" class="input-row">
+            <input id="guess-input" type="text" placeholder="Upiši ime ili pojam..." aria-describedby="feedback-msg">
+            <button id="btn-submit" class="button primary" type="submit">Pogodi <span>→</span></button>
+          </div>
+        </form>
+        <div id="feedback-msg" class="feedback hidden" role="status"></div>
+        <div class="secondary-actions">
+          <button id="btn-reveal-clue" class="button secondary" type="button">🔍 Otkrij sljedeći trag <em>(-1 bod)</em></button>
+          <button id="btn-skip" class="button ghost" type="button">Preskoči <span>↗</span></button>
+        </div>
+      </div>
+    </main>
+
+    <footer><span>Svaki trag otvara novu perspektivu.</span><span>© Ko sam ja? • bosanski kviz</span></footer>
+  </div>
+
+  <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal glass-panel">
+      <button id="btn-modal-close" class="modal-close" type="button" aria-label="Zatvori">×</button>
+      <div id="modal-icon" class="result-icon">🎉</div>
+      <span class="eyebrow">REZULTAT</span>
+      <h2 id="modal-title">Svaka čast!</h2>
+      <p id="modal-subtitle">Tačno si pogodio/la.</p>
+      <div class="answer-reveal"><span>TAČAN ODGOVOR</span><strong id="modal-answer">—</strong></div>
+      <div class="result-grid"><div><span>OSVOJENO</span><strong id="modal-points">0 bodova</strong></div><div><span>TRAGOVI</span><strong id="modal-clues-used">1 / 5</strong></div></div>
+      <div id="modal-clue-matrix" class="clue-matrix" aria-label="Rezultat po tragovima"></div>
+      <p id="daily-timer-msg" class="daily-message hidden">Novi dnevni izazov čeka te sutra.</p>
+      <div class="modal-actions"><button id="btn-share" class="button share" type="button">📋 Podijeli rezultat</button><button id="btn-next-question" class="button primary hidden" type="button">Sljedeći pojam →</button></div>
+    </div>
+  </div>
+  <div id="toast" class="toast hidden" role="status"><span id="toast-message"></span></div>
+  <script src="./app.js"></script>
+</body>
+</html>

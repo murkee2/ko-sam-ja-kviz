@@ -1,0 +1,825 @@
+[
+  {
+    "id": 1,
+    "kategorija": "Nauka",
+    "tragovi": [
+      "Imamo mjernu jedinicu magnetne indukcije nazvanu po meni.",
+      "Odbio sam podijeliti Nobelovu nagradu sa Thomasom Edisonom.",
+      "Moji izumi u oblasti naizmjenične struje promijenili su svijet.",
+      "Rođen sam u Smiljanu 1856. godine.",
+      "Slavni sam naučnik po kojem nosi ime poznati brend električnih automobila."
+    ],
+    "odgovorEnc": "Tmlrb2xhIFRlc2xh",
+    "aliasEnc": [
+      "VGVzbGE="
+    ]
+  },
+  {
+    "id": 2,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Projektovao me učenik čuvenog arhitekte Mimar Sinana, Mimar Hajrudin.",
+      "Sagrađen sam 1566. godine po nalogu Sulejmana Veličanstvenog.",
+      "Nalazim se na UNESCO-voj listi zaštićene kulturne baštine.",
+      "Srušen sam u novembru 1993, a svečano obnovljen 2004. godine.",
+      "Najpoznatiji sam simbol grada na Neretvi sa kojeg se izvode tradicionalni skokovi."
+    ],
+    "odgovorEnc": "U3RhcmkgbW9zdA==",
+    "aliasEnc": [
+      "U3RhcmkgbW9zdCB1IE1vc3RhcnU=",
+      "TW9zdGFyc2tpIG1vc3Q="
+    ]
+  },
+  {
+    "id": 3,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Prvi sam fudbaler koji je postigao golove na pet različitih Svjetskih prvenstava.",
+      "Osvojio sam pet Zlatnih lopti u svojoj bogatoj karijeri.",
+      "Igrao sam za Sporting Lisabon, Manchester United, Real Madrid i Juventus.",
+      "Poznat sam po brendu 'CR7' i proslavi gola uz uzvik 'Siuuu'.",
+      "Kapiten sam i najbolji strijelac fudbalske reprezentacije Portugala."
+    ],
+    "odgovorEnc": "Q3Jpc3RpYW5vIFJvbmFsZG8=",
+    "aliasEnc": [
+      "Um9uYWxkbw==",
+      "Q1I3",
+      "Q3Jpc3RpYW5vIFJvbmFsZG8gZG9zIFNhbnRvcyBBdmVpcm8="
+    ]
+  },
+  {
+    "id": 4,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Autor sam prve zvanične nacionalne himne Bosne i Hercegovine 'Jedna si jedina'.",
+      "Predstavljao sam BiH na Eurosongu sa pjesmama 'Love in Rewind' i 'Sva bol svijeta' (kao autor).",
+      "Moje pravo ime je Edin Dervišhalidović.",
+      "Napunio sam stadion Koševo i Beogradsku arenu više puta.",
+      "Poznati sam bh. kantautor, izvođač hitova 'Je l' Sarajevo gdje je nekad bilo' i 'Hotel Nacional'."
+    ],
+    "odgovorEnc": "RGlubyBNZXJsaW4=",
+    "aliasEnc": [
+      "RWRpbiBEZXJ2acWhaGFsaWRvdmnEhw==",
+      "RWRpbiBEZXJ2aXNoYWxpZG92aWM=",
+      "TWVybGlu"
+    ]
+  },
+  {
+    "id": 5,
+    "kategorija": "Tehnologija",
+    "tragovi": [
+      "Bio sam usvojeno dijete i napustio sam fakultet nakon samo jednog semestra.",
+      "Bio sam većinski vlasnik animacijskog studija Pixar prije nego što ga je kupio Disney.",
+      "Otpušten sam iz vlastite kompanije 1985, ali sam se vratio 1997. i spasio je od bankrota.",
+      "Predstavio sam revolucionarni prvi iPhone javnosti 2007. godine.",
+      "Suosnivač sam i dugogodišnji direktor kompanije Apple."
+    ],
+    "odgovorEnc": "U3RldmUgSm9icw==",
+    "aliasEnc": [
+      "U3RldmVuIEpvYnM=",
+      "Sm9icw==",
+      "U3RpdiBExb5vYnM="
+    ]
+  },
+  {
+    "id": 6,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Moje doba ostalo je zapamćeno kao period velikog ekonomskog prosperiteta i mira.",
+      "Vladao sam Bosnom krajem 12. i početkom 13. vijeka.",
+      "Optuživali su me pred papom da podržavam bogumile i patarene.",
+      "Napisao sam čuvenu Povelju Dubrovčanima 29. augusta 1189. godine.",
+      "Po meni postoji poznata narodna izreka: 'Od Kulina bana i dobrijeh dana'."
+    ],
+    "odgovorEnc": "S3VsaW4gYmFu",
+    "aliasEnc": [
+      "QmFuIEt1bGlu",
+      "S3VsaW4="
+    ]
+  },
+  {
+    "id": 7,
+    "kategorija": "Nauka",
+    "tragovi": [
+      "Osvojio sam Nobelovu nagradu za fiziku 1921. godine za objašnjenje fotoelektričnog efekta.",
+      "Ponuđeno mi je mjesto predsjednika države Izrael 1952. godine, što sam odbio.",
+      "Rođen sam u Njemačkoj, a kasniji dio života proveo sam na Univerzitetu Princeton u SAD-u.",
+      "Tvorac sam Specijalne i Opšte teorije relativnosti.",
+      "Poznat sam po najslavnijoj jednačini u fizici: E=mc²."
+    ],
+    "odgovorEnc": "QWxiZXJ0IEVpbnN0ZWlu",
+    "aliasEnc": [
+      "RWluc3RlaW4=",
+      "QWpuxaF0YWpu",
+      "QWxiZXJ0IEFqbnN0YWpu"
+    ]
+  },
+  {
+    "id": 8,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Osnovao me Isa-beg Isaković u 15. vijeku pod Osmanskom upravom.",
+      "U meni je 1914. godine izvršen atentat koji je bio povod za Prvi svjetski rat.",
+      "Bio sam domaćin XIV Zimskih olimpijskih igara 1984. godine.",
+      "Poznat sam po Baščaršiji, Sebilju i rijeci Miljacki.",
+      "Glavni sam i najveći grad Bosne i Hercegovine."
+    ],
+    "odgovorEnc": "U2FyYWpldm8=",
+    "aliasEnc": [
+      "R3JhZCBTYXJhamV2bw=="
+    ]
+  },
+  {
+    "id": 9,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Karijeru sam započeo još kao dječak sa svojom braćom u grupi 'The Jackson 5'.",
+      "Moj album 'Thriller' iz 1982. godine i dalje je najprodavaniji album svih vremena.",
+      "Patentirao sam posebne cipele koje su mi omogućavale da se naginjem prkoseći gravitaciji.",
+      "Izmislio sam i popularizovao plesni korak 'Moonwalk'.",
+      "Poznat sam širom svijeta kao neprikosnoveni 'Kralj popa'."
+    ],
+    "odgovorEnc": "TWljaGFlbCBKYWNrc29u",
+    "aliasEnc": [
+      "TWFqa2wgRMW+ZWtzb24=",
+      "TUo=",
+      "TWFqa2wgRHpla3Nvbg=="
+    ]
+  },
+  {
+    "id": 10,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Držim apsolutni rekord po broju sedmica provedenih na prvom mjestu ATP liste.",
+      "Jedini sam igrač u historiji koji je osvojio sve Masters turnire bar po dva puta.",
+      "Poznat sam po velikim rivalstvima sa Rafaelom Nadalom i Rogerom Federerom.",
+      "Osvojio sam rekordna 24 Grand Slam trofeja u pojedinačnoj konkurenciji.",
+      "Najbolji sam srbijanski i jedan od najvećih tenisera svih vremena."
+    ],
+    "odgovorEnc": "Tm92YWsgxJBva292acSH",
+    "aliasEnc": [
+      "xJBva292acSH",
+      "Tm92YWsgRGpva292aWM=",
+      "RGpva292aWM=",
+      "Tm9sZQ=="
+    ]
+  },
+  {
+    "id": 11,
+    "kategorija": "Tehnologija",
+    "tragovi": [
+      "Moj predak bio je vojni projekat ARPANET, razvijen u SAD-u krajem 1960-ih.",
+      "Tim Berners-Lee je stvorio WWW standard koji je omogućio moju masovnu upotrebu.",
+      "Koristim TCP/IP protokol za prenos podataka između računara.",
+      "Bez mene ne bi postojali Google, Facebook, društvene mreže ni e-mail.",
+      "Ja sam globalna računarska mreža koja danas povezuje milijarde ljudi."
+    ],
+    "odgovorEnc": "SW50ZXJuZXQ=",
+    "aliasEnc": [
+      "TXJlxb5h",
+      "V29ybGQgV2lkZSBXZWI=",
+      "V2Vi"
+    ]
+  },
+  {
+    "id": 12,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Znatno sam proširio teritoriju svoje države, obuhvativši dijelove današnje Hrvatske i Srbije.",
+      "Krunisan sam 1377. godine u Miletima kod Visokog.",
+      "Tokom moje vladavine iskovan je četverostruki zlatnik, jedan od najljepših u Evropi.",
+      "Bio sam prvi bosanski ban koji se krunisao za kralja.",
+      "Smatram se najvećim i najmoćnijim vladarom srednjovjekovne Bosne."
+    ],
+    "odgovorEnc": "VHZydGtvIEkgS290cm9tYW5pxIc=",
+    "aliasEnc": [
+      "S3JhbGogVHZydGtv",
+      "VHZydGtvIEk=",
+      "VHZydGtvIEtvdHJvbWFuaWM="
+    ]
+  },
+  {
+    "id": 13,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Karijeru sam započeo pjevanjem u sarajevskim kafanama sedamdesetih godina.",
+      "Preživio sam tešku saobraćajnu nesreću 2009. godine u blizini Sarajeva.",
+      "Otpjevao sam kultne numere za filmove i serije, poput pjesme 'Malo je malo dana'.",
+      "Moji ogromni hitovi su 'Romanija', 'Prvi poljubac' i 'Miljacka'.",
+      "Omiljeni sam bh. pjevač narodne muzike čije pjesme pjevaju sve generacije."
+    ],
+    "odgovorEnc": "SGFsaWQgQmXFoWxpxIc=",
+    "aliasEnc": [
+      "SGFsaWQgQmVzbGlj",
+      "SGFsaWQ="
+    ]
+  },
+  {
+    "id": 14,
+    "kategorija": "Nauka",
+    "tragovi": [
+      "Prva sam žena koja je dobila Nobelovu nagradu i jedina osoba koja je dobila Nobelovu nagradu u dvije različite naučne oblasti.",
+      "Otkrila sam hemijske elemente polonijum i radijum.",
+      "Umrla sam od posljedica radijacije kojoj sam godinama bila izložena tokom istraživanja.",
+      "Rođena sam u Poljskoj, ali sam većinu naučnog rada ostvarila u Francuskoj.",
+      "Slavna sam fizičarka i hemičarka, pionirka u oblasti radioaktivnosti."
+    ],
+    "odgovorEnc": "TWFyaWUgQ3VyaWU=",
+    "aliasEnc": [
+      "TWFyaWphIEtpcmk=",
+      "TWFyaWEgU2tsb2Rvd3NrYS1DdXJpZQ==",
+      "TWFyaWUgU2tsb2Rvd3NrYSBDdXJpZQ=="
+    ]
+  },
+  {
+    "id": 15,
+    "kategorija": "Tehnologija",
+    "tragovi": [
+      "Prvi uređaj ove vrste zvao se IBM Simon i predstavljen je 1992. godine.",
+      "Operativni sistemi koji me pokreću danas su uglavnom Android i iOS.",
+      "Spojio sam funkcije fotoaparata, navigacije, kalendara i računara u jedan uređaj.",
+      "Imam ekran osjetljiv na dodir i stalni pristup internetu.",
+      "Mobilni sam uređaj koji nosite u džepu i koristite svakodnevno za komunikaciju."
+    ],
+    "odgovorEnc": "UGFtZXRuaSB0ZWxlZm9u",
+    "aliasEnc": [
+      "U21hcnRwaG9uZQ==",
+      "TW9iaXRlbA==",
+      "TW9iaWxuaSB0ZWxlZm9u"
+    ]
+  },
+  {
+    "id": 16,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Izabran sam kao 3. pik na NBA draftu 1984. godine od strane kluba iz Čikaga.",
+      "Osvojio sam 6 NBA šampionskih prstenova sa Chicago Bullsima.",
+      "Poznat sam po patikama sa mojim imenom i brendu 'Jumpman'.",
+      "Nosio sam dres sa legendarnim brojem 23.",
+      "Naširoko se smatram najboljim košarkašem svih vremena."
+    ],
+    "odgovorEnc": "TWljaGFlbCBKb3JkYW4=",
+    "aliasEnc": [
+      "Sm9yZGFu",
+      "TWFqa2wgRMW+b3JkYW4=",
+      "TWFqa2wgRGpvcmRhbg==",
+      "QWlyIEpvcmRhbg=="
+    ]
+  },
+  {
+    "id": 17,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Kroz mene protiče poznata rijeka Sena.",
+      "U meni se nalazi čuveni muzej Louvre u kojem se čuva slika Mona Lisa.",
+      "Bio sam domaćin Ljetnih olimpijskih igara 1924. i ponovo 2024. godine.",
+      "Nose me nazivi 'Grad svjetlosti' i 'Grad ljubavi'.",
+      "Glavni sam grad Francuske, prepoznatljiv po Eiffelovom tornju."
+    ],
+    "odgovorEnc": "UGFyaXo=",
+    "aliasEnc": [
+      "UGFyaXM="
+    ]
+  },
+  {
+    "id": 18,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Rođen sam na mediteranskom ostrvu Korzika 1769. godine.",
+      "Tvorac sam građanskog zakonika (Code Civil) koji je uticao na pravne sisteme širom svijeta.",
+      "Doživio sam konačni vojni poraz u čuvenoj bici kod Waterlooa 1815. godine.",
+      "Bio sam prognan na ostrva Elba i Sveta Jelena, gdje sam i umro.",
+      "Bio sam francuski imperator i vojskovođa koji je pokorio većinu Evrope."
+    ],
+    "odgovorEnc": "TmFwb2xlb24gQm9uYXBhcnRl",
+    "aliasEnc": [
+      "TmFwb2xlb24=",
+      "Qm9uYXBhcnRl"
+    ]
+  },
+  {
+    "id": 19,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Rođen sam pod imenom Farrokh Bulsara na ostrvu Zanzibar.",
+      "Moj raspon glasa iznosio je impresivne četiri oktave.",
+      "Napisao sam i otpjevao bezvremenske hitove 'Bohemian Rhapsody' i 'We Are the Champions'.",
+      "Održao sam nezaboravan nastup na humanitarnom koncertu Live Aid 1985. na Wembleyju.",
+      "Bio sam karizmatični frontmen i pjevač britanske rok grupe Queen."
+    ],
+    "odgovorEnc": "RnJlZGRpZSBNZXJjdXJ5",
+    "aliasEnc": [
+      "RnJlZGkgTWVya2p1cmk=",
+      "RmFycm9raCBCdWxzYXJh",
+      "RnJlZGkgTWVya3VyaQ=="
+    ]
+  },
+  {
+    "id": 20,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Rođen sam u Tuzli 1954. godine.",
+      "Postao sam prvak Evrope sa sarajevskom KK Bosna 1979. godine.",
+      "Osvojio sam zlatne medalje na Olimpijskim igrama, Svjetskom i Evropskom prvenstvu sa Jugoslavijom.",
+      "Igrao sam i ostavio veliki trag u španskom gigantu Real Madridu.",
+      "Proglasiše me za najboljeg sportistu Bosne i Hercegovine 20. vijeka, a nadimak mi je bio Kinđe."
+    ],
+    "odgovorEnc": "TWlyemEgRGVsaWJhxaFpxIc=",
+    "aliasEnc": [
+      "TWlyemEgRGVsaWJhc2lj",
+      "S2luxJFl",
+      "S2luZGpl"
+    ]
+  },
+  {
+    "id": 21,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Crtao sam skice helikoptera, tenka i padobrana vijekovima prije nego što su izumljeni.",
+      "Autor sam zidne slike 'Posljednja večera' u samostanu u Milanu.",
+      "Moj crtež 'Vitruvijev čovjek' prikazuje idealne matematičke proporcije ljudskog tijela.",
+      "Bio sam ključna figura italijanske renesanse.",
+      "Slikar sam najpoznatijeg portreta na svijetu – 'Mona Lisa'."
+    ],
+    "odgovorEnc": "TGVvbmFyZG8gZGEgVmluY2k=",
+    "aliasEnc": [
+      "RGEgVmluxI1p",
+      "RGEgVmluY2k=",
+      "TGVvbmFyZG8gZGEgVmluY2k="
+    ]
+  },
+  {
+    "id": 22,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Moj sliv obuhvata najveću kišnu prašumu na planeti Zemlji.",
+      "Nemam nijedan most koji premošćuje moje korito zbog ogromne širine i nepristupačnog terena.",
+      "U mom okruženju žive brojna nekontaktirana domorodačka plemena.",
+      "Izvirem u Peruanskim Andima i ulivam se u Atlantski okean.",
+      "Najveća sam rijeka na svijetu po zapremini vode."
+    ],
+    "odgovorEnc": "QW1hem9u",
+    "aliasEnc": [
+      "UmlqZWthIEFtYXpvbg==",
+      "QW1hem9uYXM="
+    ]
+  },
+  {
+    "id": 23,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Komponovao sam muziku za poznate filmove 'Dom za vešanje' i 'Underground'.",
+      "Danas nastupam širom svijeta sa svojim 'Orkestrom za svadbe i sahrane'.",
+      "Bio sam vođa, gitarista i autor pjesama najpopularnije jugoslovenske rok grupe.",
+      "Grupa koju sam osnovao zvala se 'Bijelo dugme'.",
+      "Poznati sam sarajevski i regionalni muzičar i kompozitor."
+    ],
+    "odgovorEnc": "R29yYW4gQnJlZ292acSH",
+    "aliasEnc": [
+      "QnJlZ292acSH",
+      "QnJlZ292aWM=",
+      "QnJlZ2E="
+    ]
+  },
+  {
+    "id": 24,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Režirao sam i glumio u klasicima poput 'Veliki diktator' i 'Moderna vremena'.",
+      "Bio sam suosnivač holivudskog filmskog studija United Artists 1919. godine.",
+      "Moj najpoznatiji filmski lik bio je siromašni 'Skitnica' (The Tramp).",
+      "Prepoznatljiv sam po malim brkovima, cilindru i štapu.",
+      "Najpoznatija sam ikona nijemog filma u historiji kinematografije."
+    ],
+    "odgovorEnc": "Q2hhcmxpZSBDaGFwbGlu",
+    "aliasEnc": [
+      "xIxhcmxpIMSMYXBsaW4=",
+      "Q2FybGkgQ2FwbGlu",
+      "Q2hhcGxpbg=="
+    ]
+  },
+  {
+    "id": 25,
+    "kategorija": "Nauka",
+    "tragovi": [
+      "Svojom gravitacijom izazivam pojavu plime i oseke na Zemlji.",
+      "Moja prosječna udaljenost od Zemlje iznosi oko 384.400 kilometara.",
+      "Neil Armstrong je bio prvi čovjek koji je kročio na moju površinu 1969. godine.",
+      "Moje faze se mijenjaju i nazivaju se mlađak, prva četvrt, pun i zadnja četvrt.",
+      "Ja sam jedini prirodni satelit planete Zemlje."
+    ],
+    "odgovorEnc": "TWplc2Vj",
+    "aliasEnc": [
+      "TW9vbg=="
+    ]
+  },
+  {
+    "id": 26,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Rođena sam u Mostaru 2006. godine.",
+      "Moja primarna i najuspješnija plivačka disciplina je stil delfin/leptir.",
+      "Postala sam seniorska evropska prvakinja na 200m delfin sa samo 16 godina u Rimu 2022.",
+      "Osvojila sam prve historijske medalje za BiH na evropskim i svjetskim plivačkim prvenstvima.",
+      "Najbolja sam bosanskohercegovačka plivačica i mlada sportska zvijezda."
+    ],
+    "odgovorEnc": "TGFuYSBQdWRhcg==",
+    "aliasEnc": [
+      "TGFuYQ=="
+    ]
+  },
+  {
+    "id": 27,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Gradio sam se i dograđivao stoljećima, od 7. vijeka p.n.e. pa sve do dinastije Ming.",
+      "Moja ukupna dužina sa svim sporednim krakovima iznosi više od 21.000 kilometara.",
+      "Služio sam za odbranu kineskih carstava od najezda nomadskih plemena sa sjevera.",
+      "Smatram se najvećom građevinskom strukturom koju je ljudska ruka ikada napravila.",
+      "Najpoznatija sam istorijska građevina i simbol Kine."
+    ],
+    "odgovorEnc": "S2luZXNraSB6aWQ=",
+    "aliasEnc": [
+      "VmVsaWtpIGtpbmVza2kgemlk",
+      "R3JlYXQgV2FsbCBvZiBDaGluYQ=="
+    ]
+  },
+  {
+    "id": 28,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Izvirem ispod planine Lebršnik u Bosni i Hercegovini.",
+      "Moj gornji tok pruža odlične uslove za rafting, posebno blizu Konjica.",
+      "Ulivam se u Jadransko more stvarajući prelijepu deltu u Hrvatskoj.",
+      "Iznad mene se u Mostaru uzdiže čuveni Stari most.",
+      "Prepoznatljiva sam po smaragdno-zelenoj boji zbog koje me zovu 'Zelena rijeka'."
+    ],
+    "odgovorEnc": "TmVyZXR2YQ==",
+    "aliasEnc": [
+      "UmlqZWthIE5lcmV0dmE="
+    ]
+  },
+  {
+    "id": 29,
+    "kategorija": "Tehnologija",
+    "tragovi": [
+      "Turingov test se koristi za procjenu moje sposobnosti da simuliram ljudsko razmišljanje.",
+      "Zasnovana sam na mašinskom učenju, obradi podataka i dubokim neutralnim mrežama.",
+      "Stojim iza razvoja autonomnih vozila, prepoznavanja govora i generatora teksta.",
+      "Skraćeno me na engleskom nazivaju AI.",
+      "Grana sam računarske nauke koja nastoji stvoriti pametne sisteme sposobne za učenje."
+    ],
+    "odgovorEnc": "VW1qZXRuYSBpbnRlbGlnZW5jaWph",
+    "aliasEnc": [
+      "VmplxaF0YcSNa2EgaW50ZWxpZ2VuY2lqYQ==",
+      "QUk=",
+      "QXJ0aWZpY2lhbCBJbnRlbGxpZ2VuY2U="
+    ]
+  },
+  {
+    "id": 30,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Rođen sam 1986. godine u Sarajevu i profesionalnu karijeru započeo u FK Željezničar.",
+      "Bio sam najbolji strijelac u dvije od 'liga petice' (Njemačka i Italija).",
+      "Igrao sam za Wolfsburg, Manchester City, Romu, Inter i Fenerbahče.",
+      "Navijači me sa ponosom zovu 'Bosanski dijamant'.",
+      "Kapiten sam i najbolji strijelac u historiji fudbalske reprezentacije BiH."
+    ],
+    "odgovorEnc": "RWRpbiBExb5la28=",
+    "aliasEnc": [
+      "RMW+ZWtv",
+      "RWRpbiBEemVrbw==",
+      "RHpla28=",
+      "RGlqYW1hbnQ="
+    ]
+  },
+  {
+    "id": 31,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Karijeru sam počeo u Malmöu, a igrao sam u više evropskih liga.",
+      "Osvojio sam titule u Nizozemskoj, Italiji, Španiji i Francuskoj.",
+      "Poznat sam po akrobatskim golovima i snažnom karakteru.",
+      "Igrao sam za Ajax, Juventus, Milan, PSG, Barcelonu i Manchester United.",
+      "Jedan sam od najpoznatijih švedskih fudbalera svih vremena."
+    ],
+    "odgovorEnc": "WmxhdGFuIElicmFoaW1vdmnEhw==",
+    "aliasEnc": [
+      "WmxhdGFuIElicmFoaW1vdmlj",
+      "SWJyYWhpbW92aWM=",
+      "WmxhdGFu"
+    ]
+  },
+  {
+    "id": 32,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Turnir je održan na južnoameričkom kontinentu.",
+      "Na njemu je zabilježena najveća pobjeda u polufinalu historije takmičenja.",
+      "Finale je odlučeno golom u produžecima.",
+      "Njemačka je u polufinalu pobijedila domaćina sa 7:1.",
+      "Njemačka je osvojila naslov prvaka svijeta u Brazilu 2014. godine."
+    ],
+    "odgovorEnc": "U3ZqZXRza28gcHJ2ZW5zdHZvIDIwMTQ=",
+    "aliasEnc": [
+      "U1AgMjAxNA==",
+      "TXVuZGlqYWwgMjAxNA==",
+      "QnJhemlsIDIwMTQ="
+    ]
+  },
+  {
+    "id": 33,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Osnovan sam početkom dvadesetog vijeka u gradu na Neretvi.",
+      "Moje boje su crvena i bijela.",
+      "Domaće utakmice igram na stadionu Rođeni.",
+      "Navijači me zovu Rođeni.",
+      "Poznati sam fudbalski klub iz Mostara."
+    ],
+    "odgovorEnc": "VmVsZcW+IE1vc3Rhcg==",
+    "aliasEnc": [
+      "RksgVmVsZcW+",
+      "Um/EkWVuaQ==",
+      "VmVsZcW+"
+    ]
+  },
+  {
+    "id": 34,
+    "kategorija": "Sport",
+    "tragovi": [
+      "Nastupao sam u evropskim takmičenjima protiv klubova iz velikih liga.",
+      "Moje najveće rivalstvo u gradu je sa Željezničarom.",
+      "Domaći stadion nosi ime Asim Ferhatović Hase.",
+      "Moje tradicionalne boje su bordo i bijela.",
+      "Fudbalski sam klub iz glavnog grada Bosne i Hercegovine."
+    ],
+    "odgovorEnc": "RksgU2FyYWpldm8=",
+    "aliasEnc": [
+      "U2FyYWpldm8=",
+      "Qm9yZG8ga2x1Yg==",
+      "Qm9yZG8tYmlqZWxp"
+    ]
+  },
+  {
+    "id": 35,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Kroz mene protiče smaragdna Neretva.",
+      "Stari dio grada nalazi se na UNESCO listi svjetske baštine.",
+      "Poznat sam po tradicionalnim skokovima sa Starog mosta.",
+      "U meni se nalazi Stari most koji povezuje dvije obale.",
+      "Grad sam na jugu Bosne i Hercegovine."
+    ],
+    "odgovorEnc": "TW9zdGFy",
+    "aliasEnc": [
+      "R3JhZCBNb3N0YXI="
+    ]
+  },
+  {
+    "id": 36,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Ime mi se često povezuje sa latinskom riječju za jednu i jedinu.",
+      "Nacionalni park štiti moj gornji tok i slapove.",
+      "Kroz mene prolaze gradovi Bihać, Bosanska Krupa i Novi Grad.",
+      "Poznata sam po Štrbačkom buku i čistoj vodi.",
+      "Rijeka sam sjeverozapadne Bosne koja se ulijeva u Savu."
+    ],
+    "odgovorEnc": "VW5h",
+    "aliasEnc": [
+      "UmlqZWthIFVuYQ=="
+    ]
+  },
+  {
+    "id": 37,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Na mojim vrhovima zadržava se snijeg dugo u proljeće.",
+      "Na meni se održavala alpska disciplina tokom Zimskih olimpijskih igara 1984.",
+      "Nalazim se južno od Sarajeva, uz Igman i Treskavicu.",
+      "Moj najviši vrh visok je 2067 metara.",
+      "Planina sam poznata po skijanju i olimpijskim stazama."
+    ],
+    "odgovorEnc": "QmplbGHFoW5pY2E=",
+    "aliasEnc": [
+      "UGxhbmluYSBCamVsYcWhbmljYQ==",
+      "QmplbGFzbmljYQ=="
+    ]
+  },
+  {
+    "id": 38,
+    "kategorija": "Geografija",
+    "tragovi": [
+      "Kroz mene protiče rijeka čiji plimni tok ulazi duboko u grad.",
+      "Moja podzemna željeznica jedna je od najstarijih na svijetu.",
+      "Big Ben i Tower Bridge neke su od mojih znamenitosti.",
+      "Bio sam domaćin modernih Olimpijskih igara tri puta.",
+      "Glavni sam grad Ujedinjenog Kraljevstva."
+    ],
+    "odgovorEnc": "TG9uZG9u",
+    "aliasEnc": [
+      "TG9uZG9uIGdyYWQ=",
+      "Q2l0eSBvZiBMb25kb24="
+    ]
+  },
+  {
+    "id": 39,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Rođen sam u osmanskoj dinastiji i postao sultan kao tinejdžer.",
+      "Koristio sam velike topove i pomorsku taktiku u velikoj opsadi.",
+      "Nakon osvajanja grada proglasio sam ga prijestolnicom carstva.",
+      "Osvojio sam Konstantinopol 1453. godine.",
+      "Poznat sam kao osmanski sultan Mehmed Osvajač."
+    ],
+    "odgovorEnc": "TWVobWVkIElJIEVsIEZhdGlo",
+    "aliasEnc": [
+      "TWVobWVkIE9zdmFqYcSN",
+      "RmF0aWggU3VsdGFuIE1laG1ldA==",
+      "TWVobWVkIElJ"
+    ]
+  },
+  {
+    "id": 40,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Pripadao sam revolucionarnoj organizaciji Mlada Bosna.",
+      "Moj čin promijenio je diplomatske odnose evropskih sila.",
+      "Uhvaćen sam nakon napada u Sarajevu 1914. godine.",
+      "Pucao sam na austrougarskog prijestolonasljednika Franca Ferdinanda.",
+      "Moje ime se vezuje za sarajevski atentat."
+    ],
+    "odgovorEnc": "R2F2cmlsbyBQcmluY2lw",
+    "aliasEnc": [
+      "UHJpbmNpcA==",
+      "R2F2cmlsbyBQcmluY2lw"
+    ]
+  },
+  {
+    "id": 41,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Ukrašeni su simbolima, scenama lova, kolom i natpisima.",
+      "Nastajali su u srednjem vijeku na prostoru Balkana.",
+      "Najčešće su klesani od kamena i postavljani iznad grobova.",
+      "Njihove nekropole nalaze se u Bosni i Hercegovini, Hrvatskoj, Srbiji i Crnoj Gori.",
+      "Srednjovjekovni nadgrobni spomenici su upisani na UNESCO listu."
+    ],
+    "odgovorEnc": "U3RlxIdjaQ==",
+    "aliasEnc": [
+      "U3RlxIdhaw==",
+      "U3JlZG5qb3ZqZWtvdm5pIHN0ZcSHY2k=",
+      "TXJhbW9yb3Zp"
+    ]
+  },
+  {
+    "id": 42,
+    "kategorija": "Historija",
+    "tragovi": [
+      "Vodila se u Drugom svjetskom ratu na prostoru tadašnje Jugoslavije.",
+      "Partizani su pokušavali spasiti ranjenike i probiti obruč.",
+      "Jedan od ključnih događaja bio je rušenje mosta kod Jablanice.",
+      "Poznata je i kao bitka za ranjenike.",
+      "O ovom događaju snimljen je poznati jugoslavenski film."
+    ],
+    "odgovorEnc": "Qml0a2EgbmEgTmVyZXR2aQ==",
+    "aliasEnc": [
+      "TmVyZXR2YW5za2EgYml0a2E=",
+      "Qml0a2EgemEgcmFuamVuaWtl",
+      "T3BlcmFjaWphIFdlaXNz"
+    ]
+  },
+  {
+    "id": 43,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Moja poezija često razgovara sa srednjovjekovnim natpisima i prošlošću Bosne.",
+      "Radio sam kao novinar i urednik prije nego što sam postao poznat pjesnik.",
+      "Najpoznatija zbirka nosi naslov Kameni spavač.",
+      "U stihovima sam oživio jezik stećaka.",
+      "Jedan sam od najvažnijih bosanskohercegovačkih pjesnika dvadesetog vijeka."
+    ],
+    "odgovorEnc": "TWFrIERpemRhcg==",
+    "aliasEnc": [
+      "TWVobWVkYWxpamEgTWFrIERpemRhcg==",
+      "RGl6ZGFy"
+    ]
+  },
+  {
+    "id": 44,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Diplomatska služba vodila me kroz više evropskih gradova.",
+      "Roman Prokleta avlija jedno je od mojih značajnih djela.",
+      "Dobio sam Nobelovu nagradu za književnost 1961. godine.",
+      "Roman Na Drini ćuprija govori o mostu i historiji Višegrada.",
+      "Bio sam pisac rođen u Travniku i dobitnik Nobelove nagrade."
+    ],
+    "odgovorEnc": "SXZvIEFuZHJpxIc=",
+    "aliasEnc": [
+      "QW5kcmlj",
+      "SXZvIEFuZHJpYw==",
+      "QW5kcmnEhw=="
+    ]
+  },
+  {
+    "id": 45,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Moj glas čuva stare gradske i sevdalijske melodije.",
+      "Nastupala sam u velikim koncertnim dvoranama širom svijeta.",
+      "Muziku izvodim uz sevdah, tradicionalni bosanski muzički izraz.",
+      "Često me nazivaju bosanskom Billie Holiday.",
+      "Poznata sam interpretatorka sevdalinki iz Bosne i Hercegovine."
+    ],
+    "odgovorEnc": "QW1pcmEgTWVkdW5qYW5pbg==",
+    "aliasEnc": [
+      "QW1pcmE=",
+      "Qm9zYW5za2EgQmlsbGllIEhvbGlkYXk="
+    ]
+  },
+  {
+    "id": 46,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Moje stvaralaštvo prolazilo je kroz Plavi i Ružičasti period.",
+      "Sa Georgesom Braqueom razvio sam kubizam.",
+      "Moja slika Guernica reaguje na strahote rata.",
+      "Naslikao sam portret Dora Maar i mnoge avangardne kompozicije.",
+      "Bio sam španski slikar i jedan od najuticajnijih umjetnika modernog doba."
+    ],
+    "odgovorEnc": "UGFibG8gUGljYXNzbw==",
+    "aliasEnc": [
+      "UGljYXNzbw==",
+      "UGFibG8gUGlrYXNv"
+    ]
+  },
+  {
+    "id": 47,
+    "kategorija": "Film i muzika",
+    "tragovi": [
+      "Došli smo iz Liverpoola i promijenili popularnu kulturu.",
+      "Naši albumi su uticali na razvoj rok i pop muzike.",
+      "Četvorica članova bili su John, Paul, George i Ringo.",
+      "Pjesme Hey Jude, Yesterday i Let It Be postale su klasici.",
+      "Bili smo najpoznatija britanska rok grupa svih vremena."
+    ],
+    "odgovorEnc": "VGhlIEJlYXRsZXM=",
+    "aliasEnc": [
+      "QmVhdGxlcw==",
+      "Qml0bHNp",
+      "VGhlIEZhYiBGb3Vy"
+    ]
+  },
+  {
+    "id": 48,
+    "kategorija": "Tehnologija",
+    "tragovi": [
+      "Počeo sam kao istraživački projekat dvojice studenata na Stanfordu.",
+      "Moje ime potiče od matematičkog pojma googol.",
+      "Osim pretrage razvijam Android, Maps, YouTube i mnoge druge servise.",
+      "Moja početna stranica poznata je po jednostavnom polju za pretragu.",
+      "Najpoznatiji sam internet pretraživač i tehnološka kompanija."
+    ],
+    "odgovorEnc": "R29vZ2xl",
+    "aliasEnc": [
+      "R29vZ2xlIHByZXRyYcW+aXZhxI0=",
+      "R3VnbA=="
+    ]
+  },
+  {
+    "id": 49,
+    "kategorija": "Tehnologija",
+    "tragovi": [
+      "Nastao sam kao studentski projekat početkom devedesetih.",
+      "Moj razvoj oslanja se na otvoreni izvorni kod i zajednicu.",
+      "Često me koriste serveri, superračunari i ugrađeni uređaji.",
+      "Distribucije kao Ubuntu i Debian izgrađene su na meni.",
+      "Ja sam otvoreni operativni sistem čiji je tvorac Linus Torvalds."
+    ],
+    "odgovorEnc": "TGludXg=",
+    "aliasEnc": [
+      "TGludXgga2VybmVs",
+      "R05VIExpbnV4"
+    ]
+  },
+  {
+    "id": 50,
+    "kategorija": "Nauka",
+    "tragovi": [
+      "Nosim nasljedne upute zapisane u nizu nukleotida.",
+      "Sastavljena sam od dvije spiralno uvijene niti.",
+      "Baze adenin, timin, citozin i gvanin grade moje stepenice.",
+      "Nalazim se u ćelijama gotovo svih živih organizama.",
+      "Ja sam molekula koja nosi genetske informacije."
+    ],
+    "odgovorEnc": "RE5L",
+    "aliasEnc": [
+      "RE5B",
+      "RGV6b2tzaXJpYm9udWtsZWluc2thIGtpc2VsaW5h",
+      "RGVva3Npcmlib251a2xlaW5za2Ega2lzZWxpbmE="
+    ]
+  }
+]
