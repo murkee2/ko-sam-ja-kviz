@@ -373,8 +373,8 @@ function showResult(victory, points, clues, daily) {
 }
 
 function closeModal() { dom.overlay.classList.add('hidden'); }
-function openRules() { dom.rulesOverlay.classList.remove('hidden'); }
-function closeRulesModal() { dom.rulesOverlay.classList.add('hidden'); }
+function openRules() { if (dom.rulesOverlay) dom.rulesOverlay.classList.remove('hidden'); }
+function closeRulesModal() { if (dom.rulesOverlay) dom.rulesOverlay.classList.add('hidden'); }
 
 function nextFreeQuestion() {
   closeModal();
@@ -424,27 +424,37 @@ function showToast(message) {
 
 // --- Event Listeneri ---
 function setupEvents() {
-  dom.sound.addEventListener('click', () => {
-    state.muted = !state.muted;
-    localStorage.setItem('ko_sam_ja_muted', state.muted);
-    dom.soundIcon.textContent = state.muted ? '🔇' : '🔊';
-    dom.sound.setAttribute('aria-label', state.muted ? 'Uključi zvuk' : 'Isključi zvuk');
-  });
+  if (dom.sound) {
+    dom.sound.addEventListener('click', () => {
+      state.muted = !state.muted;
+      localStorage.setItem('ko_sam_ja_muted', state.muted);
+      if (dom.soundIcon) dom.soundIcon.textContent = state.muted ? '🔇' : '🔊';
+      dom.sound.setAttribute('aria-label', state.muted ? 'Uključi zvuk' : 'Isključi zvuk');
+    });
+  }
 
-  dom.help.addEventListener('click', openRules);
-  dom.closeRules.addEventListener('click', closeRulesModal);
-  dom.rulesOk.addEventListener('click', closeRulesModal);
-  dom.rulesOverlay.addEventListener('click', (e) => { if (e.target === dom.rulesOverlay) closeRulesModal(); });
+  if (dom.help) dom.help.addEventListener('click', openRules);
+  if (dom.closeRules) dom.closeRules.addEventListener('click', closeRulesModal);
+  if (dom.rulesOk) dom.rulesOk.addEventListener('click', closeRulesModal);
+  if (dom.rulesOverlay) {
+    dom.rulesOverlay.addEventListener('click', (e) => { 
+      if (e.target === dom.rulesOverlay) closeRulesModal(); 
+    });
+  }
 
-  dom.daily.addEventListener('click', startDaily);
-  dom.free.addEventListener('click', startFree);
-  dom.form.addEventListener('submit', submitGuess);
-  dom.reveal.addEventListener('click', revealNextClue);
-  dom.skip.addEventListener('click', skipQuestion);
-  dom.closeModal.addEventListener('click', closeModal);
-  dom.next.addEventListener('click', nextFreeQuestion);
-  dom.share.addEventListener('click', shareResult);
-  dom.overlay.addEventListener('click', (e) => { if (e.target === dom.overlay) closeModal(); });
+  if (dom.daily) dom.daily.addEventListener('click', startDaily);
+  if (dom.free) dom.free.addEventListener('click', startFree);
+  if (dom.form) dom.form.addEventListener('submit', submitGuess);
+  if (dom.reveal) dom.reveal.addEventListener('click', revealNextClue);
+  if (dom.skip) dom.skip.addEventListener('click', skipQuestion);
+  if (dom.closeModal) dom.closeModal.addEventListener('click', closeModal);
+  if (dom.next) dom.next.addEventListener('click', nextFreeQuestion);
+  if (dom.share) dom.share.addEventListener('click', shareResult);
+  if (dom.overlay) {
+    dom.overlay.addEventListener('click', (e) => { 
+      if (e.target === dom.overlay) closeModal(); 
+    });
+  }
   
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
@@ -458,11 +468,11 @@ function setupEvents() {
     button.classList.add('active');
     state.category = button.dataset.category;
     state.freeOrder = [];
-    dom.categoryBadge.textContent = state.category;
+    if (dom.categoryBadge) dom.categoryBadge.textContent = state.category;
     if (state.mode === 'free') startFree();
   }));
 
-  dom.soundIcon.textContent = state.muted ? '🔇' : '🔊';
+  if (dom.soundIcon) dom.soundIcon.textContent = state.muted ? '🔇' : '🔊';
 }
 
 // --- Inicijalizacija ---
