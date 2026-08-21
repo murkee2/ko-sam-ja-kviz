@@ -37,31 +37,44 @@
           <button id='btn-mode-daily' class='mode-button active' type='button'>📅 Dnevni izazov</button>
           <button id='btn-mode-free' class='mode-button' type='button'>🎲 Slobodna igra</button>
         </div>
-        <button id='btn-help' class='icon-button' type='button' aria-label='Pravila igre' title='Pravila igre'>❓</button>
-        <button id='btn-sound-toggle' class='icon-button' type='button' aria-label='Isključi zvuk' title='Zvuk'>
-          <span id='sound-icon'>🔊</span>
-        </button>
+        <div class='icon-actions'>
+          <button id='btn-help' class='icon-button' type='button' aria-label='Pravila igre' title='Pravila igre'>❓</button>
+          <button id='btn-sound-toggle' class='icon-button' type='button' aria-label='Isključi zvuk' title='Zvuk'>
+            <span id='sound-icon'>🔊</span>
+          </button>
+        </div>
       </div>
     </header>
 
     <!-- Traka sa statistikama -->
     <section class='score-strip glass-panel' aria-label='Statistika igre'>
-      <div>
-        <span>MOD</span>
-        <strong id='stat-mode-name'>Dnevni izazov</strong>
+      <div class='score-item'>
+        <span class='score-icon'>🎮</span>
+        <span class='score-body'>
+          <span class='score-label'>MOD</span>
+          <strong id='stat-mode-name'>Dnevni izazov</strong>
+        </span>
       </div>
-      <div>
-        <span>VRIJEDI</span>
-        <strong id='stat-current-points' class='gold'>5</strong>
-        <small>bodova</small>
+      <div class='score-item'>
+        <span class='score-icon'>⭐</span>
+        <span class='score-body'>
+          <span class='score-label'>VRIJEDI</span>
+          <strong id='stat-current-points' class='gold'>5</strong>
+        </span>
       </div>
-      <div>
-        <span>STREAK</span>
-        <strong id='stat-streak'>🔥 0</strong>
+      <div class='score-item'>
+        <span class='score-icon'>🔥</span>
+        <span class='score-body'>
+          <span class='score-label'>STREAK</span>
+          <strong id='stat-streak'>0</strong>
+        </span>
       </div>
-      <div>
-        <span>UKUPNO</span>
-        <strong id='stat-total-score'>0</strong>
+      <div class='score-item'>
+        <span class='score-icon'>🏆</span>
+        <span class='score-body'>
+          <span class='score-label'>UKUPNO</span>
+          <strong id='stat-total-score'>0</strong>
+        </span>
       </div>
     </section>
 
@@ -74,20 +87,23 @@
         </div>
         <span id='active-category-badge' class='category-badge'>Sve</span>
       </div>
-      <div id='category-filter-list' class='category-list mt-5'>
-        <button class='category-button active' data-category='Sve' type='button'>✨ Sve</button>
-        <button class='category-button' data-category='Sport' type='button'>⚽ Sport</button>
-        <button class='category-button' data-category='Geografija' type='button'>🌍 Geografija</button>
-        <button class='category-button' data-category='Historija' type='button'>🏛️ Historija</button>
-        <button class='category-button' data-category='Film i muzika' type='button'>🎬 Film i muzika</button>
-        <button class='category-button' data-category='Tehnologija' type='button'>💻 Tehnologija</button>
-        <button class='category-button' data-category='Nauka' type='button'>🔬 Nauka</button>
-        <button class='category-button' data-category='Književnost i umjetnost' type='button'>📖 Književnost i umjetnost</button>
+      <div id='category-list-wrap' class='category-list-wrap'>
+        <div id='category-filter-list' class='category-list'>
+          <button class='category-button active' data-category='Sve' type='button'>✨ Sve</button>
+          <button class='category-button' data-category='Sport' type='button'>⚽ Sport</button>
+          <button class='category-button' data-category='Geografija' type='button'>🌍 Geografija</button>
+          <button class='category-button' data-category='Historija' type='button'>🏛️ Historija</button>
+          <button class='category-button' data-category='Film i muzika' type='button'>🎬 Film i muzika</button>
+          <button class='category-button' data-category='Tehnologija' type='button'>💻 Tehnologija</button>
+          <button class='category-button' data-category='Nauka' type='button'>🔬 Nauka</button>
+          <button class='category-button' data-category='Književnost i umjetnost' type='button'>📖 Književnost i umjetnost</button>
+        </div>
       </div>
     </section>
 
     <!-- Glavna kartica igre -->
     <main class='game-card glass-panel'>
+      <div id='category-emblem' class='category-emblem' aria-hidden='true'>🎭</div>
       <div class='game-heading'>
         <div>
           <span class='eyebrow'>PITANJE <span id='question-number'>01</span></span>

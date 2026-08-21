@@ -7,7 +7,7 @@ Moderni, interaktivni web kviz znanja u Wordle stilu, izrađen u čistom JavaScr
 ## ✨ Glavne funkcionalnosti
 
 * **📅 Dnevni izazov (Daily Challenge):** Jedinstven, zajednički pojam za sve igrače svakog dana sa praćenjem niza pobjeda (*Streak* 🔥).
-* **🎲 Slobodna igra (Free Play):** Neograničeno igranje sa preko 300 pažljivo pripremljenih pitanja.
+* **🎲 Slobodna igra (Free Play):** Neograničeno igranje sa preko 1000 pažljivo pripremljenih pitanja.
 * **🏷️ Tematski filteri:** Filtriranje pojmova po kategorijama (Sport, Geografija, Historija, Film i muzika, Tehnologija, Nauka, Književnost).
 * **🔊 Retro Web Audio efekti:** Dinamički zvučni efekti sintetizovani direktno u browseru pomoću Web Audio API-ja (bez eksternih `.mp3` fajlova).
 * **🔒 Zaštita od varanja:** Svi odgovori i aliasi u bazi su enkodirani u Base64 formatu kako bi se spriječilo jednostavno čitanje rješenja kroz Inspect element.
@@ -43,8 +43,6 @@ ko-sam-ja-kviz/
 ├── data/
 │   └── questions.json    # Baza pitanja sa Base64 zaštićenim odgovorima
 │
-├── generate_data.js      # Node.js skripta za AI generisanje novih pitanja
-├── package.json          # Zavisnosti za generatorsku skriptu
 └── README.md             # Dokumentacija projekta
 
 🚀 Pokretanje lokalno
@@ -65,19 +63,4 @@ Bash
 npx serve .
 Otvori ponuđeni link u browseru (npr. http://localhost:3000).
 
-🤖 Generisanje novih pitanja (AI Generator)
-Projekat sadrži Node.js skriptu za automatsko generisanje novih pitanja koristeći Google Gemini API:
-
-Instaliraj zavisnosti:
-
-Bash
-npm install
-Kreiraj .env fajl u root folderu (možeš krenuti od predloška `.env.example`) i postavi svoj API ključ:
-
-Code snippet
-GEMINI_API_KEY=tvoj_gemini_api_kljuc
-Pokreni skriptu:
-
-Bash
-node generate_data.js
-Skripta će automatski generisati pitanja, enkodirati rješenja u Base64 i ažurirati data/questions.json.
+Baza od 1000 pitanja je u potpunosti hardkodovana u `data/questions.json` — igra ne poziva nikakav eksterni API.

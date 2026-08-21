@@ -64,14 +64,41 @@ button:disabled {
   opacity: 0.16;
   pointer-events: none;
 }
-.ambient-one { top: -15vw; left: -10vw; background: var(--blue); }
-.ambient-two { right: -12vw; bottom: -18vw; background: var(--lime); }
+.ambient-one { top: -15vw; left: -10vw; background: var(--blue); animation: ambientFloat 16s ease-in-out infinite; }
+.ambient-two { right: -12vw; bottom: -18vw; background: var(--lime); animation: ambientFloat 20s ease-in-out infinite reverse; }
+
+@keyframes ambientFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(3vw, 4vw) scale(1.08); }
+}
 
 .app-shell {
   width: min(100% - 32px, 860px);
   margin: 28px auto 48px;
   display: grid;
   gap: 18px;
+}
+
+.app-shell > * {
+  animation: shellFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.app-shell > *:nth-child(1) { animation-delay: 0s; }
+.app-shell > *:nth-child(2) { animation-delay: 0.06s; }
+.app-shell > *:nth-child(3) { animation-delay: 0.1s; }
+.app-shell > *:nth-child(4) { animation-delay: 0.14s; }
+.app-shell > *:nth-child(5) { animation-delay: 0.18s; }
+
+@keyframes shellFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 .glass-panel {
@@ -89,7 +116,7 @@ button:disabled {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 14px 20px;
+  padding: 12px 20px;
 }
 
 .brand {
@@ -98,18 +125,26 @@ button:disabled {
   gap: 12px;
   color: var(--ink);
   text-decoration: none;
+  transition: opacity 0.2s ease;
 }
+
+.brand:hover { opacity: 0.85; }
 
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   color: #070a13;
   background: linear-gradient(135deg, var(--lime), var(--lime-dark));
   border-radius: 12px;
   font: 800 1.35rem var(--sans);
   box-shadow: 0 0 20px rgba(216, 243, 106, 0.3);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-8deg) scale(1.08);
 }
 
 .brand strong, .brand small { display: block; }
@@ -119,26 +154,37 @@ button:disabled {
 .topbar-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  height: 42px;
 }
 
 .mode-switch {
   display: flex;
   align-items: center;
+  height: 100%;
   padding: 4px;
   gap: 4px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 13px;
   background: rgba(0, 0, 0, 0.3);
 }
 
 .mode-button {
-  padding: 7px 13px;
-  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  border-radius: 9px;
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 600;
+  white-space: nowrap;
   transition: all 0.2s ease;
+}
+
+.mode-button:hover:not(.active) {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .mode-button.active {
@@ -148,22 +194,37 @@ button:disabled {
   box-shadow: 0 4px 15px rgba(216, 243, 106, 0.25);
 }
 
+.icon-actions {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 8px;
+  padding-left: 4px;
+  margin-left: 4px;
+  border-left: 1px solid var(--line);
+}
+
 .icon-button {
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border: 1px solid var(--line);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
   font-size: 1.05rem;
+  line-height: 1;
   transition: all 0.2s ease;
 }
 
 .icon-button:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
   transform: translateY(-1px);
+}
+
+.icon-button:active {
+  transform: translateY(0);
 }
 
 /* Score Strip */
@@ -177,34 +238,68 @@ button:disabled {
   border-radius: var(--radius);
 }
 
-.score-strip > div {
-  min-height: 68px;
-  padding: 12px 18px;
+.score-item {
+  min-height: 72px;
+  padding: 12px 16px;
   background: rgba(13, 18, 30, 0.85);
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s ease;
 }
 
-.score-strip span {
+.score-item:hover {
+  background: rgba(18, 24, 38, 0.95);
+}
+
+.score-icon {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.score-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.score-label {
   display: block;
   color: var(--muted);
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
 
-.score-strip strong {
-  display: inline-block;
-  margin-top: 3px;
-  font: 800 1.25rem var(--sans);
+.score-item strong {
+  display: block;
+  font: 800 1.2rem var(--sans);
+  line-height: 1.1;
 }
 
-.score-strip small {
-  display: inline-block;
-  margin-left: 4px;
-  font-size: 0.7rem;
+#stat-current-points::after {
+  content: ' bod.';
+  font-size: 0.62rem;
+  font-weight: 600;
   color: var(--dim);
+}
+
+.score-item strong.value-pop {
+  animation: valuePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes valuePop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.35); color: var(--lime); }
+  100% { transform: scale(1); }
 }
 
 .gold { color: var(--gold); }
@@ -256,33 +351,66 @@ button:disabled {
 .category-badge[data-category="Nauka"] { color: var(--violet); border-color: rgba(167, 139, 250, 0.3); background: rgba(167, 139, 250, 0.06); }
 .category-badge[data-category="Književnost i umjetnost"] { color: var(--rose); border-color: rgba(251, 113, 133, 0.3); background: rgba(251, 113, 133, 0.06); }
 
+.category-panel {
+  position: relative;
+}
+
+.category-list-wrap {
+  position: relative;
+}
+
+.category-list-wrap::before,
+.category-list-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 12px;
+  width: 32px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.category-list-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--panel-solid), transparent);
+}
+
+.category-list-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--panel-solid), transparent);
+}
+
+.category-list-wrap.scroll-start::before { opacity: 0.9; }
+.category-list-wrap.scroll-end::after { opacity: 0.9; }
+
 .category-list {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 12px;
+  padding: 2px 2px 14px;
   margin-bottom: -4px;
   scroll-snap-type: x proximity;
   scroll-padding-left: 2px;
   scrollbar-width: thin;
   scrollbar-color: rgba(216, 243, 106, 0.35) transparent;
-  -webkit-mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
-  mask-image: linear-gradient(to right, black calc(100% - 28px), transparent);
 }
 
 .category-list::-webkit-scrollbar {
   height: 6px;
 }
 .category-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
   border-radius: 10px;
 }
 .category-list::-webkit-scrollbar-thumb {
-  background: rgba(216, 243, 106, 0.35);
+  background: rgba(216, 243, 106, 0.45);
   border-radius: 10px;
 }
 .category-list::-webkit-scrollbar-thumb:hover {
-  background: rgba(216, 243, 106, 0.55);
+  background: rgba(216, 243, 106, 0.65);
 }
 
 .category-button {
@@ -341,7 +469,7 @@ button:disabled {
 /* Game Card */
 .game-card {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   padding: 28px;
   display: grid;
   gap: 20px;
@@ -397,9 +525,37 @@ button:disabled {
   place-items: center;
 }
 
-.game-card[data-category]::before,
-.game-card[data-category]::after {
+.game-card[data-category]::before {
   opacity: 1;
+}
+
+.game-card[data-category]::after {
+  opacity: 0.5;
+}
+
+/* Vidljiva kategorijska značka — na vrhu po sredini glavne kartice */
+.category-emblem {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent, var(--lime)), color-mix(in srgb, var(--accent, var(--lime)) 70%, #070a13));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 24px var(--accent-glow, rgba(216, 243, 106, 0.3)), 0 0 0 6px var(--base);
+  transform: translateX(-50%) scale(1);
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: emblemPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes emblemPop {
+  from { transform: translateX(-50%) scale(0.4); opacity: 0; }
+  to { transform: translateX(-50%) scale(1); opacity: 1; }
 }
 
 /* Tematski uzorci po kategoriji — slojeviti CSS pattern-i, bez slika */
@@ -604,6 +760,22 @@ button:disabled {
   border-style: dashed;
 }
 
+.clue.solved {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.12);
+}
+
+.clue.solved .clue-badge {
+  color: #052e21;
+  background: var(--emerald);
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
+}
+
+.clue.solved .clue-text {
+  color: #a7f3d0;
+}
+
 .clue-badge {
   padding: 5px 10px;
   border-radius: 8px;
@@ -673,6 +845,17 @@ button:disabled {
 
 .input-row input::placeholder {
   color: var(--dim);
+}
+
+.input-row:has(input.solved) {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(16, 185, 129, 0.08);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+}
+
+.input-row input.solved {
+  color: #a7f3d0;
+  font-weight: 700;
 }
 
 .button {
@@ -835,6 +1018,13 @@ footer {
 .result-icon {
   margin-bottom: 8px;
   font-size: 3rem;
+  animation: resultIconPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes resultIconPop {
+  0% { transform: scale(0.3) rotate(-15deg); opacity: 0; }
+  60% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0); }
 }
 
 .modal h2 { 
@@ -960,74 +1150,86 @@ footer {
 
 /* Mobile responsive */
 @media (max-width: 768px) {
-  .app-shell { 
-    width: min(100% - 20px, 600px); 
-    margin: 16px auto 30px; 
-    gap: 14px; 
+  .app-shell {
+    width: min(100% - 20px, 600px);
+    margin: 14px auto 24px;
+    gap: 12px;
   }
-  .topbar { 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 12px; 
-    padding: 14px; 
+  .topbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 12px;
   }
-  .topbar-actions { 
-    width: 100%; 
-    justify-content: space-between; 
+  .brand-mark { width: 38px; height: 38px; font-size: 1.2rem; }
+  .topbar-actions {
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
   }
-  .mode-switch { flex: 1; }
-  .score-strip > div { 
-    min-height: 60px; 
-    padding: 8px 6px; 
-    text-align: center; 
+  .mode-switch { flex: 1; height: 44px; }
+  .mode-button { flex: 1; justify-content: center; padding: 0 8px; font-size: 0.74rem; }
+  .icon-actions { height: 44px; }
+  .icon-button { width: 44px; height: 44px; }
+
+  .score-strip { grid-template-columns: repeat(2, 1fr); }
+  .score-item {
+    min-height: 60px;
+    padding: 10px 12px;
+    gap: 9px;
   }
-  .score-strip strong { font-size: 1rem; }
-  .score-strip small { display: none; }
-  .game-card { 
-    padding: 20px 16px; 
-    border-radius: 16px; 
-    gap: 16px; 
+  .score-icon { width: 28px; height: 28px; font-size: 0.88rem; }
+  .score-item strong { font-size: 1.02rem; }
+  .score-label { font-size: 0.56rem; }
+
+  .category-panel { padding: 14px 16px; }
+  .category-list { flex-wrap: wrap; }
+  .category-list-wrap::before,
+  .category-list-wrap::after { display: none; }
+
+  .game-card {
+    padding: 22px 16px 18px;
+    border-radius: 16px;
+    gap: 14px;
   }
-  .game-heading { 
-    flex-direction: column; 
-    gap: 10px; 
+  .category-emblem { width: 42px; height: 42px; font-size: 1.3rem; top: -18px; }
+  .game-heading {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
   }
-  .clue-counter { 
-    width: 100%; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+  .clue-counter {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   .clue-counter strong { margin-left: 6px; }
-  .icon-button { width: 44px; height: 44px; }
-  .mode-button { padding: 10px 14px; }
   .clue {
-    grid-template-columns: 1fr; 
-    gap: 8px; 
-    padding: 12px; 
+    grid-template-columns: 1fr auto;
+    gap: 6px 10px;
+    padding: 12px;
   }
-  .input-row { 
-    flex-direction: column; 
-    gap: 8px; 
+  .clue-text { grid-column: 1 / -1; }
+  .input-row {
+    flex-direction: column;
+    gap: 8px;
+    padding: 6px;
   }
   .input-row input, .input-row .button { width: 100%; }
+  .input-row input { padding: 13px 12px; font-size: 16px; }
   .secondary-actions { flex-direction: column; }
-  .secondary-actions .button { width: 100%; }
-  footer { 
-    flex-direction: column; 
-    text-align: center; 
-    gap: 4px; 
+  .secondary-actions .button { width: 100%; padding: 13px 20px; }
+  footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
   }
   .modal { padding: 24px 18px; }
 }
 
 /* Sitni ekrani */
 @media (max-width: 400px) {
-  .score-strip {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .score-strip > div {
-    min-height: 56px;
-  }
+  .score-strip { grid-template-columns: repeat(2, 1fr); }
+  .score-item { min-height: 56px; }
   .brand small { display: none; }
 }

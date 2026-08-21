@@ -17,9 +17,11 @@ const dom = {
   streak: $('#stat-streak'),
   total: $('#stat-total-score'),
   gameCard: $('.game-card'),
+  categoryEmblem: $('#category-emblem'),
   categoryPanel: $('#category-panel'),
   categoryBadge: $('#active-category-badge'),
   categoryList: $('#category-filter-list'),
+  categoryListWrap: $('#category-list-wrap'),
   questionCategoryTitle: $('#question-category-title'),
   questionNumber: $('#question-number'),
   clueCount: $('#clues-revealed-count'),
@@ -172,15 +174,43 @@ function pointsLabel(points) {
   return `${points} ${points === 1 ? 'bod' : points < 5 ? 'boda' : 'bodova'}`;
 }
 
+function popValue(el) {
+  if (!el) return;
+  el.classList.remove('value-pop');
+  void el.offsetWidth;
+  el.classList.add('value-pop');
+}
+
 function updateStats() {
   dom.mode.textContent = state.mode === 'daily' ? 'Dnevni izazov' : 'Slobodna igra';
   dom.points.textContent = state.points;
-  dom.streak.textContent = `🔥 ${state.streak}`;
-  dom.total.textContent = state.total;
+
+  if (dom.streak.dataset.value !== String(state.streak)) {
+    dom.streak.dataset.value = String(state.streak);
+    dom.streak.textContent = state.streak;
+    popValue(dom.streak);
+  }
+  if (dom.total.dataset.value !== String(state.total)) {
+    dom.total.dataset.value = String(state.total);
+    dom.total.textContent = state.total;
+    popValue(dom.total);
+  }
+
   dom.categoryBadge.textContent = state.category;
   dom.daily.classList.toggle('active', state.mode === 'daily');
   dom.free.classList.toggle('active', state.mode === 'free');
 }
+
+const CATEGORY_ICONS = {
+  'Sve': '🎭',
+  'Sport': '⚽',
+  'Geografija': '🌍',
+  'Historija': '🏛️',
+  'Film i muzika': '🎬',
+  'Tehnologija': '💻',
+  'Nauka': '🔬',
+  'Književnost i umjetnost': '📖'
+};
 
 // --- Renderovanje ---
 function renderClues(justUnlocked = 0) {
@@ -188,6 +218,9 @@ function renderClues(justUnlocked = 0) {
   dom.clues.innerHTML = '';
   dom.questionCategoryTitle.textContent = state.question.kategorija || 'Ko sam ja?';
   if (dom.gameCard) dom.gameCard.dataset.category = state.question.kategorija || '';
+  if (dom.categoryEmblem) {
+    dom.categoryEmblem.textContent = CATEGORY_ICONS[state.question.kategorija] || '🎭';
+  }
 
   state.question.tragovi.slice(0, 5).forEach((clueText, index) => {
     const clueNumber = index + 1;
@@ -244,12 +277,20 @@ function resetQuestion(question, number = 1) {
   dom.questionNumber.textContent = String(number).padStart(2, '0');
   dom.input.value = '';
   dom.input.placeholder = 'Upiši ime, grad ili pojam...';
+  dom.input.classList.remove('solved');
+  if (dom.gameCard) dom.gameCard.classList.remove('solved');
   clearFeedback();
   setControls(true);
   renderClues();
   updateStats();
   playCardTransition();
   dom.input.focus();
+}
+
+function markSolved() {
+  if (dom.gameCard) dom.gameCard.classList.add('solved');
+  dom.input.classList.add('solved');
+  dom.clues.querySelectorAll('.clue.unlocked').forEach((clue) => clue.classList.add('solved'));
 }
 
 function playCardTransition() {
@@ -279,7 +320,8 @@ function startDaily() {
 function startFree() {
   state.mode = 'free';
   dom.categoryPanel.classList.remove('hidden');
-  const pool = state.category === 'Sve' 
+  requestAnimationFrame(updateScrollFade);
+  const pool = state.category === 'Sve'
     ? state.questions 
     : state.questions.filter((q) => q.kategorija === state.category);
   
@@ -318,6 +360,7 @@ function submitGuess(event) {
     state.total += state.points;
     state.streak += 1;
     saveStats();
+    markSolved();
 
     if (state.mode === 'daily') {
       localStorage.setItem(getDailyStorageKey(), JSON.stringify({ completed: true, ...state.result }));
@@ -346,7 +389,18 @@ function submitGuess(event) {
 }
 
 function skipQuestion() {
-  if (state.result) return;
+  if (state.result) {
+    // Pitanje je već riješeno/preskočeno, modal je zatvoren bez klika na
+    // "Sljedeći pojam" — Preskoči sada samo učitava novo pitanje.
+    if (state.mode === 'daily') {
+      state.mode = 'free';
+      dom.daily.classList.remove('active');
+      dom.free.classList.add('active');
+      dom.categoryPanel.classList.remove('hidden');
+    }
+    startFree();
+    return;
+  }
   state.result = { victory: false, points: 0, unlocked: state.unlocked };
   state.streak = 0;
   saveStats();
@@ -382,7 +436,18 @@ function showResult(victory, points, clues, daily) {
   dom.overlay.classList.remove('hidden');
 }
 
-function closeModal() { dom.overlay.classList.add('hidden'); }
+function closeModal() {
+  dom.overlay.classList.add('hidden');
+  // Ako je pitanje već riješeno (rezultat postoji) a korisnik je samo
+  // zatvorio modal bez klika na "Sljedeći pojam", dugmad moraju ostati
+  // funkcionalna — Preskoči tad ponaša se kao prelazak na novo pitanje.
+  if (state.result) {
+    dom.input.disabled = true;
+    dom.form.querySelector('button').disabled = true;
+    dom.reveal.disabled = true;
+    dom.skip.disabled = false;
+  }
+}
 function openRules() { if (dom.rulesOverlay) dom.rulesOverlay.classList.remove('hidden'); }
 function closeRulesModal() { if (dom.rulesOverlay) dom.rulesOverlay.classList.add('hidden'); }
 
@@ -492,6 +557,20 @@ function setupEvents() {
   }));
 
   if (dom.soundIcon) dom.soundIcon.textContent = state.muted ? '🔇' : '🔊';
+
+  if (dom.categoryList && dom.categoryListWrap) {
+    dom.categoryList.addEventListener('scroll', updateScrollFade);
+    window.addEventListener('resize', updateScrollFade);
+  }
+}
+
+function updateScrollFade() {
+  const el = dom.categoryList;
+  const wrap = dom.categoryListWrap;
+  if (!el || !wrap) return;
+  const scrollable = el.scrollWidth > el.clientWidth + 2;
+  wrap.classList.toggle('scroll-start', scrollable && el.scrollLeft > 4);
+  wrap.classList.toggle('scroll-end', scrollable && el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
 }
 
 // --- Inicijalizacija ---
