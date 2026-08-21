@@ -80,13 +80,16 @@
 
     <!-- Filter kategorija -->
     <section id='category-panel' class='category-panel glass-panel hidden' aria-label='Filter kategorija'>
-      <div class='section-heading'>
+      <button id='category-toggle' class='section-heading category-toggle' type='button' aria-expanded='false' aria-controls='category-list-wrap'>
         <div>
           <span class='eyebrow'>TEMATSKI FILTER</span>
           <h2>Kategorije</h2>
         </div>
-        <span id='active-category-badge' class='category-badge'>Sve</span>
-      </div>
+        <span class='category-toggle-right'>
+          <span id='active-category-badge' class='category-badge'>Sve</span>
+          <span class='category-toggle-arrow' aria-hidden='true'>▾</span>
+        </span>
+      </button>
       <div id='category-list-wrap' class='category-list-wrap'>
         <div id='category-filter-list' class='category-list'>
           <button class='category-button active' data-category='Sve' type='button'>✨ Sve</button>
@@ -135,6 +138,12 @@
             🔍 Otkrij sljedeći trag <em>(-1 bod)</em>
           </button>
           <button id='btn-skip' class='button skip' type='button'>⏭️ Preskoči</button>
+        </div>
+
+        <div id='daily-countdown' class='daily-countdown hidden'>
+          <p id='daily-countdown-result' class='daily-countdown-result'></p>
+          <span class='daily-countdown-label'>Sljedeći dnevni izazov za</span>
+          <strong id='daily-countdown-timer' class='daily-countdown-timer'>00:00:00</strong>
         </div>
       </div>
     </main>

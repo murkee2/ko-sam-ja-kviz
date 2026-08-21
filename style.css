@@ -318,6 +318,24 @@ button:disabled {
   margin-bottom: 12px;
 }
 
+button.section-heading {
+  width: 100%;
+  text-align: left;
+}
+
+.category-toggle-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.category-toggle-arrow {
+  display: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  transition: transform 0.25s ease;
+}
+
 .eyebrow {
   color: var(--lime);
   font-size: 0.65rem;
@@ -501,8 +519,7 @@ button:disabled {
   z-index: 1;
 }
 
-.game-card::before,
-.game-card::after {
+.game-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -512,25 +529,8 @@ button:disabled {
   transition: opacity 0.5s ease;
 }
 
-.game-card::after {
-  right: -12px;
-  bottom: -22px;
-  left: auto;
-  top: auto;
-  width: 200px;
-  height: 200px;
-  font-size: 7rem;
-  line-height: 1;
-  display: grid;
-  place-items: center;
-}
-
 .game-card[data-category]::before {
   opacity: 1;
-}
-
-.game-card[data-category]::after {
-  opacity: 0.5;
 }
 
 /* Vidljiva kategorijska značka — na vrhu po sredini glavne kartice */
@@ -567,7 +567,6 @@ button:disabled {
     repeating-linear-gradient(-45deg, rgba(16, 185, 129, 0.07) 0 2px, transparent 2px 26px),
     linear-gradient(160deg, rgba(16, 185, 129, 0.12), transparent 60%);
 }
-.game-card[data-category="Sport"]::after { content: '⚽'; opacity: 0.06; }
 .game-card[data-category="Sport"] .eyebrow { color: var(--emerald); }
 
 /* Geografija: topografske konturne linije + koordinatna mreža */
@@ -578,7 +577,6 @@ button:disabled {
     linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px) 0 0 / 34px 34px,
     linear-gradient(160deg, rgba(56, 189, 248, 0.1), transparent 60%);
 }
-.game-card[data-category="Geografija"]::after { content: '🌍'; opacity: 0.06; }
 .game-card[data-category="Geografija"] .eyebrow { color: var(--blue); }
 
 /* Historija: kolonada stubova + zlatna patina */
@@ -589,7 +587,6 @@ button:disabled {
   mask-image: linear-gradient(-25deg, black 0%, black 35%, transparent 70%);
   -webkit-mask-image: linear-gradient(-25deg, black 0%, black 35%, transparent 70%);
 }
-.game-card[data-category="Historija"]::after { content: '🏛️'; opacity: 0.06; }
 .game-card[data-category="Historija"] .eyebrow { color: var(--gold); }
 
 /* Film i muzika: filmska traka rupice + zvučni valovi */
@@ -601,7 +598,6 @@ button:disabled {
   mask-image: linear-gradient(to left, black 0%, black 12%, transparent 55%);
   -webkit-mask-image: linear-gradient(to left, black 0%, black 12%, transparent 55%);
 }
-.game-card[data-category="Film i muzika"]::after { content: '🎬'; opacity: 0.06; }
 .game-card[data-category="Film i muzika"] .eyebrow { color: var(--indigo); }
 
 /* Tehnologija: circuit-board mreža linija i čvorova */
@@ -612,7 +608,6 @@ button:disabled {
     radial-gradient(circle, rgba(34, 211, 238, 0.16) 2px, transparent 2.5px) 14px 14px / 28px 28px,
     linear-gradient(160deg, rgba(34, 211, 238, 0.1), transparent 60%);
 }
-.game-card[data-category="Tehnologija"]::after { content: '💻'; opacity: 0.06; }
 .game-card[data-category="Tehnologija"] .eyebrow { color: var(--cyan); }
 
 /* Nauka: molekularna/heksagonalna mreža tačaka */
@@ -622,7 +617,6 @@ button:disabled {
     radial-gradient(circle at 60% 65%, rgba(167, 139, 250, 0.13) 2px, transparent 3px) 0 0 / 46px 46px,
     linear-gradient(160deg, rgba(167, 139, 250, 0.11), transparent 60%);
 }
-.game-card[data-category="Nauka"]::after { content: '🔬'; opacity: 0.06; }
 .game-card[data-category="Nauka"] .eyebrow { color: var(--violet); }
 
 /* Književnost i umjetnost: linije teksta stranice + mrlje boje */
@@ -634,7 +628,6 @@ button:disabled {
   mask-image: linear-gradient(to left, black 0%, black 30%, transparent 68%);
   -webkit-mask-image: linear-gradient(to left, black 0%, black 30%, transparent 68%);
 }
-.game-card[data-category="Književnost i umjetnost"]::after { content: '📖'; opacity: 0.06; }
 .game-card[data-category="Književnost i umjetnost"] .eyebrow { color: var(--rose); }
 
 /* Tematsko bojenje polja za odgovor i tragove prema aktivnoj kategoriji */
@@ -1092,6 +1085,41 @@ footer {
   font-weight: 600;
 }
 
+.daily-countdown {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.daily-countdown-result {
+  margin: 0 0 4px;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.daily-countdown-result.victory { color: #a7f3d0; }
+.daily-countdown-result.defeat { color: #fca5a5; }
+
+.daily-countdown-label {
+  color: var(--dim);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.daily-countdown-timer {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: var(--lime);
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
 .modal-actions {
   display: flex;
   flex-direction: column;
@@ -1164,12 +1192,21 @@ footer {
   .topbar-actions {
     width: 100%;
     height: auto;
+    flex-wrap: wrap;
     justify-content: space-between;
   }
-  .mode-switch { flex: 1; height: 44px; }
-  .mode-button { flex: 1; justify-content: center; padding: 0 8px; font-size: 0.74rem; }
-  .icon-actions { height: 44px; }
-  .icon-button { width: 44px; height: 44px; }
+  .mode-switch { width: 100%; height: 44px; }
+  .mode-button {
+    flex: 1;
+    justify-content: center;
+    padding: 0 6px;
+    font-size: 0.7rem;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.15;
+  }
+  .icon-actions { height: 40px; margin-left: 0; padding-left: 0; border-left: 0; gap: 8px; }
+  .icon-button { width: 40px; height: 40px; }
 
   .score-strip { grid-template-columns: repeat(2, 1fr); }
   .score-item {
@@ -1182,9 +1219,24 @@ footer {
   .score-label { font-size: 0.56rem; }
 
   .category-panel { padding: 14px 16px; }
-  .category-list { flex-wrap: wrap; }
+  .category-toggle-arrow { display: inline-block; }
+  .category-panel.category-open .category-toggle-arrow { transform: rotate(180deg); }
   .category-list-wrap::before,
   .category-list-wrap::after { display: none; }
+  .category-list-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+  }
+  .category-list-wrap > .category-list { overflow: hidden; }
+  .category-panel.category-open .category-list-wrap { grid-template-rows: 1fr; }
+  .category-list {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    padding: 10px 2px 2px;
+  }
+  .category-button { width: 100%; }
 
   .game-card {
     padding: 22px 16px 18px;
@@ -1211,11 +1263,9 @@ footer {
   }
   .clue-text { grid-column: 1 / -1; }
   .input-row {
-    flex-direction: column;
     gap: 8px;
     padding: 6px;
   }
-  .input-row input, .input-row .button { width: 100%; }
   .input-row input { padding: 13px 12px; font-size: 16px; }
   .secondary-actions { flex-direction: column; }
   .secondary-actions .button { width: 100%; padding: 13px 20px; }
@@ -1223,8 +1273,25 @@ footer {
     flex-direction: column;
     text-align: center;
     gap: 4px;
+    margin-bottom: 84px;
   }
   .modal { padding: 24px 18px; }
+
+  /* Traka za unos ostaje zalijepljena na dnu ekrana da se ne mora
+     stalno skrolati gore-dole između trага i pokušaja pogađanja. */
+  .guess-form {
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin: 0 -16px;
+    padding: 8px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(7, 10, 19, 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .input-row .button span { display: none; }
+  .input-row .button { padding: 0 16px; }
 }
 
 /* Sitni ekrani */

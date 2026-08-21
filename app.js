@@ -19,6 +19,7 @@ const dom = {
   gameCard: $('.game-card'),
   categoryEmblem: $('#category-emblem'),
   categoryPanel: $('#category-panel'),
+  categoryToggle: $('#category-toggle'),
   categoryBadge: $('#active-category-badge'),
   categoryList: $('#category-filter-list'),
   categoryListWrap: $('#category-list-wrap'),
@@ -42,6 +43,10 @@ const dom = {
   modalClues: $('#modal-clues-used'),
   matrix: $('#modal-clue-matrix'),
   dailyMessage: $('#daily-timer-msg'),
+  dailyCountdown: $('#daily-countdown'),
+  dailyCountdownResult: $('#daily-countdown-result'),
+  dailyCountdownTimer: $('#daily-countdown-timer'),
+  secondaryActions: $('.secondary-actions'),
   share: $('#btn-share'),
   next: $('#btn-next-question'),
   help: $('#btn-help'),
@@ -139,10 +144,94 @@ function getAcceptedAnswers(question) {
   return [decodeBase64(question.odgovorEnc), ...aliases.map(decodeBase64)];
 }
 
+// Svodi strane pravopisne obrasce na približan bosanski fonetski zapis,
+// tako da npr. "Thierry Henry" i "Tijeri Enri" postanu uporedivi.
+function phoneticKey(normalized) {
+  return normalized
+    .replace(/tch/g, 'č')
+    .replace(/sch/g, 'š')
+    .replace(/sh/g, 'š')
+    .replace(/ch/g, 'č')
+    .replace(/ph/g, 'f')
+    .replace(/th/g, 't')
+    .replace(/kh/g, 'h')
+    .replace(/qu/g, 'kv')
+    .replace(/ck/g, 'k')
+    .replace(/wh/g, 'v')
+    .replace(/oo/g, 'u')
+    .replace(/ee/g, 'i')
+    .replace(/ea/g, 'i')
+    .replace(/ou/g, 'u')
+    .replace(/ai/g, 'aj')
+    .replace(/ey/g, 'i')
+    .replace(/ay/g, 'aj')
+    .replace(/y/g, 'i')
+    .replace(/w/g, 'v')
+    .replace(/c(?=[eiy])/g, 's')
+    .replace(/c/g, 'k')
+    .replace(/x/g, 'ks')
+    .replace(/q/g, 'k')
+    .replace(/(.)\1+/g, '$1');
+}
+
+function levenshtein(a, b) {
+  const m = a.length;
+  const n = b.length;
+  if (m === 0) return n;
+  if (n === 0) return m;
+
+  let previous = Array.from({ length: n + 1 }, (_, i) => i);
+  let current = new Array(n + 1);
+
+  for (let i = 1; i <= m; i++) {
+    current[0] = i;
+    for (let j = 1; j <= n; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      current[j] = Math.min(
+        previous[j] + 1,
+        current[j - 1] + 1,
+        previous[j - 1] + cost
+      );
+    }
+    [previous, current] = [current, previous];
+  }
+  return previous[n];
+}
+
+function fuzzyMatchTolerance(length) {
+  if (length <= 4) return 0;
+  if (length <= 7) return 1;
+  if (length <= 11) return 2;
+  return 3;
+}
+
 function isCorrectGuess(guess, question) {
   const accepted = getAcceptedAnswers(question);
   const normalizedGuess = normalize(guess);
-  return normalizedGuess.length > 0 && accepted.some((answer) => normalize(answer) === normalizedGuess);
+  if (normalizedGuess.length === 0) return false;
+  const phoneticGuess = phoneticKey(normalizedGuess);
+
+  return accepted.some((answer) => {
+    const normalizedAnswer = normalize(answer);
+    if (normalizedAnswer === normalizedGuess) return true;
+
+    const tolerance = Math.min(
+      fuzzyMatchTolerance(normalizedAnswer.length),
+      fuzzyMatchTolerance(normalizedGuess.length)
+    );
+    if (tolerance > 0 && levenshtein(normalizedAnswer, normalizedGuess) <= tolerance) return true;
+
+    const phoneticAnswer = phoneticKey(normalizedAnswer);
+    if (phoneticAnswer === phoneticGuess) return true;
+
+    const phoneticTolerance = Math.min(
+      fuzzyMatchTolerance(phoneticAnswer.length),
+      fuzzyMatchTolerance(phoneticGuess.length)
+    );
+    if (phoneticTolerance > 0 && levenshtein(phoneticAnswer, phoneticGuess) <= phoneticTolerance) return true;
+
+    return false;
+  });
 }
 
 function getDailyIndex() {
@@ -268,7 +357,8 @@ function clearFeedback() {
   dom.feedback.className = 'feedback hidden';
 }
 
-function resetQuestion(question, number = 1) {
+function resetQuestion(question, number = 1, options = {}) {
+  const { focusInput = true, scrollToClues = false } = options;
   state.question = question;
   state.unlocked = 1;
   state.points = 5;
@@ -284,7 +374,12 @@ function resetQuestion(question, number = 1) {
   renderClues();
   updateStats();
   playCardTransition();
-  dom.input.focus();
+  if (scrollToClues && dom.clues) {
+    dom.clues.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  if (focusInput && window.innerWidth > 768) {
+    dom.input.focus();
+  }
 }
 
 function markSolved() {
@@ -300,43 +395,102 @@ function playCardTransition() {
   dom.gameCard.classList.add('card-transition');
 }
 
+let dailyCountdownInterval = null;
+
+function stopDailyCountdown() {
+  if (dailyCountdownInterval) {
+    clearInterval(dailyCountdownInterval);
+    dailyCountdownInterval = null;
+  }
+}
+
+function hideDailyCountdown() {
+  stopDailyCountdown();
+  if (dom.dailyCountdown) dom.dailyCountdown.classList.add('hidden');
+  if (dom.form) dom.form.classList.remove('hidden');
+  dom.feedback.classList.remove('hidden');
+  if (dom.secondaryActions) dom.secondaryActions.classList.remove('hidden');
+}
+
+function msUntilNextDay() {
+  const now = Date.now();
+  return 86400000 - (now % 86400000);
+}
+
+function formatCountdown(ms) {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+  const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+  const seconds = String(totalSeconds % 60).padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+}
+
+function showDailyCountdown(saved) {
+  stopDailyCountdown();
+  if (dom.form) dom.form.classList.add('hidden');
+  dom.feedback.classList.add('hidden');
+  if (dom.secondaryActions) dom.secondaryActions.classList.add('hidden');
+
+  if (dom.dailyCountdownResult) {
+    dom.dailyCountdownResult.textContent = saved.victory
+      ? `🎉 Tačno! Osvojio/la si ${pointsLabel(saved.points)}.`
+      : `🧠 Netačno. Odgovor: ${decodeBase64(state.question.odgovorEnc)}`;
+    dom.dailyCountdownResult.className = `daily-countdown-result ${saved.victory ? 'victory' : 'defeat'}`;
+  }
+
+  if (dom.dailyCountdown) dom.dailyCountdown.classList.remove('hidden');
+
+  const tick = () => {
+    const remaining = msUntilNextDay();
+    if (dom.dailyCountdownTimer) dom.dailyCountdownTimer.textContent = formatCountdown(remaining);
+    if (remaining <= 1000) {
+      stopDailyCountdown();
+      if (state.mode === 'daily') startDaily();
+    }
+  };
+  tick();
+  dailyCountdownInterval = setInterval(tick, 1000);
+}
+
 function startDaily() {
   state.mode = 'daily';
   dom.categoryPanel.classList.add('hidden');
+  hideDailyCountdown();
   const question = state.questions[getDailyIndex()];
   const saved = readDailyResult();
-  resetQuestion(question, getDailyIndex() + 1);
+  resetQuestion(question, getDailyIndex() + 1, { focusInput: false });
 
   if (saved?.completed) {
     state.unlocked = saved.unlocked || 5;
     state.points = saved.points || 0;
     renderClues();
     setControls(false);
-    showResult(saved.victory, saved.points, saved.unlocked, true);
+    showDailyCountdown(saved);
   }
   updateStats();
 }
 
-function startFree() {
+function startFree(options = {}) {
   state.mode = 'free';
+  hideDailyCountdown();
   dom.categoryPanel.classList.remove('hidden');
   requestAnimationFrame(updateScrollFade);
   const pool = state.category === 'Sve'
-    ? state.questions 
+    ? state.questions
     : state.questions.filter((q) => q.kategorija === state.category);
-  
+
   if (!pool.length) {
     showToast('Nema pitanja u ovoj kategoriji.');
     return;
   }
-  
+
   if (state.freeOrder.length === 0 || state.freePosition >= state.freeOrder.length) {
     state.freeOrder = [...pool].sort(() => Math.random() - 0.5);
     state.freePosition = 0;
   }
-  
+
   const question = state.freeOrder[state.freePosition++];
-  resetQuestion(question, state.freePosition);
+  resetQuestion(question, state.freePosition, options);
   updateStats();
 }
 
@@ -438,6 +592,10 @@ function showResult(victory, points, clues, daily) {
 
 function closeModal() {
   dom.overlay.classList.add('hidden');
+  if (state.result && state.mode === 'daily') {
+    showDailyCountdown(state.result);
+    return;
+  }
   // Ako je pitanje već riješeno (rezultat postoji) a korisnik je samo
   // zatvorio modal bez klika na "Sljedeći pojam", dugmad moraju ostati
   // funkcionalna — Preskoči tad ponaša se kao prelazak na novo pitanje.
@@ -538,7 +696,16 @@ function setupEvents() {
     }
   });
 
+  if (dom.categoryToggle) {
+    dom.categoryToggle.addEventListener('click', () => {
+      if (window.innerWidth > 768) return;
+      const isOpen = dom.categoryPanel.classList.toggle('category-open');
+      dom.categoryToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
   $$('.category-button').forEach((button) => button.addEventListener('click', () => {
+    closeCategoryDropdown();
     if (button.classList.contains('active')) return;
     $$('.category-button').forEach((item) => item.classList.remove('active'));
     button.classList.add('active');
@@ -553,7 +720,7 @@ function setupEvents() {
       void dom.categoryPanel.offsetWidth;
       dom.categoryPanel.classList.add('filter-pulse');
     }
-    if (state.mode === 'free') startFree();
+    if (state.mode === 'free') startFree({ focusInput: false, scrollToClues: true });
   }));
 
   if (dom.soundIcon) dom.soundIcon.textContent = state.muted ? '🔇' : '🔊';
@@ -562,6 +729,12 @@ function setupEvents() {
     dom.categoryList.addEventListener('scroll', updateScrollFade);
     window.addEventListener('resize', updateScrollFade);
   }
+}
+
+function closeCategoryDropdown() {
+  if (!dom.categoryPanel) return;
+  dom.categoryPanel.classList.remove('category-open');
+  if (dom.categoryToggle) dom.categoryToggle.setAttribute('aria-expanded', 'false');
 }
 
 function updateScrollFade() {
