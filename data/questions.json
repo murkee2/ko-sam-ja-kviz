@@ -133,7 +133,7 @@
     "id": 9,
     "kategorija": "Film i muzika",
     "tragovi": [
-      "Karijeru sam započeo još kao dječak sa svojom braćom u grupi 'The Jackson 5'.",
+      "Kao dijete sam pjevao i plesao u porodičnom muzičkom sastavu iz Garyja u Indiani.",
       "Moj album 'Thriller' iz 1982. godine i dalje je najprodavaniji album svih vremena.",
       "Patentirao sam posebne cipele koje su mi omogućavale da se naginjem prkoseći gravitaciji.",
       "Izmislio sam i popularizovao plesni korak 'Moonwalk'.",
@@ -693,7 +693,7 @@
   },
   {
     "id": 43,
-    "kategorija": "Film i muzika",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Moja poezija često razgovara sa srednjovjekovnim natpisima i prošlošću Bosne.",
       "Radio sam kao novinar i urednik prije nego što sam postao poznat pjesnik.",
@@ -709,7 +709,7 @@
   },
   {
     "id": 44,
-    "kategorija": "Film i muzika",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Diplomatska služba vodila me kroz više evropskih gradova.",
       "Roman Prokleta avlija jedno je od mojih značajnih djela.",
@@ -742,7 +742,7 @@
   },
   {
     "id": 46,
-    "kategorija": "Film i muzika",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Moje stvaralaštvo prolazilo je kroz Plavi i Ružičasti period.",
       "Sa Georgesom Braqueom razvio sam kubizam.",
@@ -1120,7 +1120,7 @@
     "id": 68,
     "kategorija": "Sport",
     "tragovi": [
-      "Osnovan sam 1945. godine u gradu čelika na rijeci Bosni.",
+      "Osnovan sam 1945. godine u gradu na rijeci Bosni, poznatom po metalurškoj industriji.",
       "Osvojio sam Srednjoevropski (Mitropa) kup dva puta 1970-ih godina.",
       "Domaće utakmice igram na stadionu Bilino polje.",
       "Moje klupske boje su crvena i crna, a navijačka grupa 'Robijaši'.",
@@ -2042,7 +2042,7 @@
     "id": 124,
     "kategorija": "Geografija",
     "tragovi": [
-      "Nalazim se u rimskoj četvrti Trevi i visoka sam preko 26 metara.",
+      "Nalazim se na spoju tri rimske ulice i visok sam preko 26 metara.",
       "Dizajnirao me arhitekta Nicola Salvi u baroknom stilu.",
       "Legenda kaže da bacanje jednog novčića preko lijevog ramena osigurava povratak u grad.",
       "Dnevno se u moju vodu ubaci preko 3.000 eura u novčićima.",
@@ -2501,7 +2501,7 @@
     "id": 152,
     "kategorija": "Historija",
     "tragovi": [
-      "Rođen sam u selu Sokolovići kod Višegrada kao Bajica Sokolović.",
+      "Rođen sam kao kršćanin u jednom selu na zapadu Balkana krajem 15. ili početkom 16. vijeka.",
       "Odveden sam u Istanbul kroz sistem 'danka u krvi' (devširme) i postao janjičar.",
       "Služio sam kao Veliki vezir za tri osmanska sultana: Sulejmana Veličanstvenog, Selima II i Murata III.",
       "Svojoj domovini poklonio sam most na Drini u Višegradu i most na Žepi.",
@@ -2586,7 +2586,7 @@
     "id": 157,
     "kategorija": "Historija",
     "tragovi": [
-      "Vodila se u ljeto 1943. godine na rijeci Sutjesci i planini Zelengori.",
+      "Vodila se u ljeto 1943. godine duboko u planinama jugoistočne Bosne i Hercegovine.",
       "Njemačka operacija nosila je šifrovani naziv 'Operacija Schwarz' (Peta neprijateljska ofanziva).",
       "Cilj neprijatelja bio je potpuno uništenje Glavne operativne grupe partizana i Vrhovnog štaba.",
       "U ovoj bici poginuo je legendarni komandant Sava Kovačević, a ranjen je Josip Broz Tito.",
@@ -2706,16 +2706,15 @@
     "id": 164,
     "kategorija": "Historija",
     "tragovi": [
-      "Rođen sam u Ajacciu na Korzici, a osvojio sam titulu cara Francuza 1804.",
-      "Pobijedio sam u čuvenoj 'Bici triju careva' kod Austerlitza 1805.",
-      "Moja invazija na Rusiju 1812. završila se katastrofalnim povlačenjem po ruskoj zimi.",
-      "Bio sam prognan na ostrvo Svetu Jelenu u južnom Atlantiku.",
-      "Poznati sam francuski osvajač i reformator prava."
+      "Rođen sam 1883. godine u Vrpolju, a djetinjstvo sam proveo u selu Otavice kod Drniša.",
+      "Kao mladi pastir počeo sam klesati kamen prije nego što sam se školovao u Beču.",
+      "Auguste Rodin me nazvao \"najvećim fenomenom među vajarima\".",
+      "Izradio sam Njegošev mauzolej na Lovćenu i Meštrovićev paviljon u Zagrebu.",
+      "Smatram se najvećim hrvatskim i jednim od najvećih svjetskih vajara 20. vijeka."
     ],
-    "odgovorEnc": "TmFwb2xlb24gQm9uYXBhcnRl",
+    "odgovorEnc": "SXZhbiBNZcWhdHJvdmnEhw==",
     "aliasEnc": [
-      "TmFwb2xlb24=",
-      "Qm9uYXBhcnRh"
+      "TWXFoXRyb3ZpxIc="
     ]
   },
   {
@@ -3407,9 +3406,10 @@
       "Moji proizvodi uključuju čitač Kindle i pametnog asistenta Alexa.",
       "Ime sam dobio po najvećoj rijeci na svijetu."
     ],
-    "odgovorEnc": "QW1hem9u",
+    "odgovorEnc": "QW1hem9uIChrb21wYW5pamEp",
     "aliasEnc": [
-      "QW1hem9uLmNvbQ=="
+      "QW1hem9uLmNvbQ==",
+      "QVdT"
     ]
   },
   {
@@ -3727,7 +3727,7 @@
   },
   {
     "id": 226,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Tuzli 1910. godine, a studirao i radio u Sarajevu i Beogradu.",
       "Napisao sam čuveni roman o dervišu Ahmedu Nurudinu i njegovoj unutrašnjoj drami.",
@@ -3745,7 +3745,7 @@
   },
   {
     "id": 227,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Mostaru 1868. godine gdje sam proveo gotovo čitav život.",
       "Napisao sam čuvenu rodoljubivu pjesmu 'Ostajte ovdje' upućenu onima koji napuštaju domovinu.",
@@ -3762,7 +3762,7 @@
   },
   {
     "id": 228,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u selu Hašani pod Grmečom 1915. godine.",
       "Napisao sam nezaboravne romane za djecu i omladinu 'Orlovi rano lete' i 'Magareće godine'.",
@@ -3779,7 +3779,7 @@
   },
   {
     "id": 229,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Vinkovcima 1873. godine, a veći dio književnog rada proveo u Sarajevu.",
       "Napisao sam slavnu pjesmu 'Zvijezda' i zbirku 'Trzaji'.",
@@ -3796,7 +3796,7 @@
   },
   {
     "id": 230,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Stratfordu na Avonu 1564. godine u Engleskoj.",
       "Napisao sam 38 pozorišnih komada uključujući tragedije 'Hamlet', 'Romeo i Julija', 'Macbeth' i 'Othello'.",
@@ -3814,7 +3814,7 @@
   },
   {
     "id": 231,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Jasnoj Poljani u Rusiji 1828. godine u plemićkoj porodici grofova.",
       "Napisao sam monumentalni historijski roman 'Rat i mir' koji prati rusko društvo tokom Napoleonove invazije.",
@@ -3832,7 +3832,7 @@
   },
   {
     "id": 232,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Bio sam osuđen na smrt i izveden pred streljački vod u carskoj Rusiji, ali sam pomilovan u posljednjem trenutku.",
       "Proveo sam četiri godine na teškoj robiji u Sibiru što je duboko promijenilo moje poglede na svijet.",
@@ -3849,7 +3849,7 @@
   },
   {
     "id": 233,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Firenci 1265. godine i bio prognan iz svog rodnog grada zbog političkih sukoba.",
       "Moja vječna muza i neprežaljena ljubav zvala se Beatriče Portinari.",
@@ -3865,7 +3865,7 @@
   },
   {
     "id": 234,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Smatra se da sam bio slijepi pjesnik sa grčkog ostrva Hios ili grada Smirne.",
       "Pripisuje mi se autorstvo nad dva temeljna epa evropske i svjetske književnosti.",
@@ -3881,7 +3881,7 @@
   },
   {
     "id": 235,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Bio sam španski pisac koji je izgubio upotrebu lijeve ruke u bici kod Lepanta 1571. godine.",
       "Proveo sam pet godina u ropstvu u Alžiru prije nego što su me otkupili franjevci.",
@@ -3898,7 +3898,7 @@
   },
   {
     "id": 236,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Pragu 1883. godine u jevrejskoj porodici i pisao na njemačkom jeziku.",
       "Za života sam objavio malo djela, a prijatelju Maxu Brodu naredio da spali sve moje rukopise nakon smrti (što je on odbio).",
@@ -3914,7 +3914,7 @@
   },
   {
     "id": 237,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Bio sam američki pisac, dobitnik Pulitzera i Nobelove nagrade za književnost 1954.",
       "Učestvovao sam u Prvom svjetskom i Španskom građanskom ratu, volio safari u Africi i lov na sabljarke na Kubi.",
@@ -3931,7 +3931,7 @@
   },
   {
     "id": 238,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Zundartu u Nizozemskoj 1853. godine i bio postimpresionistički slikar.",
       "Za života sam uspio prodati vjerovatno samo jednu sliku ('Crveni vinograd'), a živio sam u siromaštvu.",
@@ -3948,7 +3948,7 @@
   },
   {
     "id": 239,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Rođen sam u Capreseu u Italiji 1475. godine kao genijalni vajar, slikar i arhitekta visoke renesanse.",
       "Isklesao sam monumentalnu mramornu statuu 'David' i dirljivu skulpturu 'Pietà' u Vatikanu.",
@@ -3965,7 +3965,7 @@
   },
   {
     "id": 240,
-    "kategorija": "Književnost",
+    "kategorija": "Književnost i umjetnost",
     "tragovi": [
       "Naslikao me Leonardo da Vinci na drvetu topole početkom 16. vijeka u Firenci.",
       "Prikazujem portret Lise Gherardini, supruge firentinskog trgovca Francesca del Gioconda.",
@@ -4303,7 +4303,7 @@
     "id": 260,
     "kategorija": "Geografija",
     "tragovi": [
-      "Nalazim se u planinskom masivuPrenja, Čvrsnice i Čabulje.",
+      "Nalazim se u planinskom masivu u srcu Hercegovine, uz Čvrsnicu i Čabulju.",
       "Moji divlji i oštri krečnjački vrhovi prelaze 2.100 metara nadmorske visine.",
       "Planinari me zbog surove ljepote i alpskog izgleda nazivaju 'Hercegovačkim Himalajima'.",
       "Moj najviši vrh je Zelena glava (2.103 m).",

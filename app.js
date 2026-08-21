@@ -16,6 +16,7 @@ const dom = {
   points: $('#stat-current-points'),
   streak: $('#stat-streak'),
   total: $('#stat-total-score'),
+  gameCard: $('.game-card'),
   categoryPanel: $('#category-panel'),
   categoryBadge: $('#active-category-badge'),
   categoryList: $('#category-filter-list'),
@@ -186,6 +187,7 @@ function renderClues(justUnlocked = 0) {
   if (!state.question) return;
   dom.clues.innerHTML = '';
   dom.questionCategoryTitle.textContent = state.question.kategorija || 'Ko sam ja?';
+  if (dom.gameCard) dom.gameCard.dataset.category = state.question.kategorija || '';
 
   state.question.tragovi.slice(0, 5).forEach((clueText, index) => {
     const clueNumber = index + 1;
@@ -246,7 +248,15 @@ function resetQuestion(question, number = 1) {
   setControls(true);
   renderClues();
   updateStats();
+  playCardTransition();
   dom.input.focus();
+}
+
+function playCardTransition() {
+  if (!dom.gameCard) return;
+  dom.gameCard.classList.remove('card-transition');
+  void dom.gameCard.offsetWidth;
+  dom.gameCard.classList.add('card-transition');
 }
 
 function startDaily() {
@@ -464,11 +474,20 @@ function setupEvents() {
   });
 
   $$('.category-button').forEach((button) => button.addEventListener('click', () => {
+    if (button.classList.contains('active')) return;
     $$('.category-button').forEach((item) => item.classList.remove('active'));
     button.classList.add('active');
     state.category = button.dataset.category;
     state.freeOrder = [];
-    if (dom.categoryBadge) dom.categoryBadge.textContent = state.category;
+    if (dom.categoryBadge) {
+      dom.categoryBadge.textContent = state.category;
+      dom.categoryBadge.dataset.category = state.category;
+    }
+    if (dom.categoryPanel) {
+      dom.categoryPanel.classList.remove('filter-pulse');
+      void dom.categoryPanel.offsetWidth;
+      dom.categoryPanel.classList.add('filter-pulse');
+    }
     if (state.mode === 'free') startFree();
   }));
 

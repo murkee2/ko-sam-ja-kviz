@@ -72,7 +72,7 @@ Instaliraj zavisnosti:
 
 Bash
 npm install
-Kreiraj .env fajl u root folderu i postavi svoj API ključ:
+Kreiraj .env fajl u root folderu (možeš krenuti od predloška `.env.example`) i postavi svoj API ključ:
 
 Code snippet
 GEMINI_API_KEY=tvoj_gemini_api_kljuc
