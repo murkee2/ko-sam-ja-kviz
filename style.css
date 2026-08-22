@@ -484,6 +484,78 @@ button.section-heading {
   transform: translateY(-2px) scale(1.04);
 }
 
+/* Difficulty Filter (Freeplay only) */
+.difficulty-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.difficulty-label {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.difficulty-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.difficulty-button {
+  --diff-color: var(--lime);
+  --diff-color-dark: var(--lime-dark);
+  --diff-glow: rgba(216, 243, 106, 0.28);
+  --diff-tint: rgba(216, 243, 106, 0.1);
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transform: translateY(0) scale(1);
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.difficulty-button[data-difficulty="easy"] { --diff-color: var(--emerald); --diff-color-dark: #0d9668; --diff-glow: rgba(16, 185, 129, 0.28); --diff-tint: rgba(16, 185, 129, 0.1); }
+.difficulty-button[data-difficulty="medium"] { --diff-color: var(--gold); --diff-color-dark: #d97706; --diff-glow: rgba(245, 158, 11, 0.28); --diff-tint: rgba(245, 158, 11, 0.1); }
+.difficulty-button[data-difficulty="hard"] { --diff-color: var(--coral); --diff-color-dark: #dc2626; --diff-glow: rgba(239, 68, 68, 0.28); --diff-tint: rgba(239, 68, 68, 0.1); }
+
+.difficulty-button:hover {
+  color: var(--ink);
+  background: var(--diff-tint);
+  border-color: color-mix(in srgb, var(--diff-color) 40%, var(--line));
+  transform: translateY(-2px);
+}
+
+.difficulty-button.active {
+  color: #070a13;
+  border-color: var(--diff-color);
+  background: linear-gradient(135deg, var(--diff-color), var(--diff-color-dark));
+  font-weight: 700;
+  box-shadow: 0 4px 18px var(--diff-glow);
+  transform: translateY(-1px) scale(1.04);
+}
+
+.difficulty-button.active:hover {
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .difficulty-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
 /* Game Card */
 .game-card {
   position: relative;
@@ -687,6 +759,21 @@ button.section-heading {
   font-weight: 800;
   letter-spacing: -0.02em;
 }
+
+.difficulty-badge {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+}
+
+.difficulty-badge[data-difficulty="easy"] { color: var(--emerald); border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); }
+.difficulty-badge[data-difficulty="medium"] { color: var(--gold); border-color: rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.08); }
+.difficulty-badge[data-difficulty="hard"] { color: var(--coral); border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.08); }
 
 .clue-counter {
   text-align: right;

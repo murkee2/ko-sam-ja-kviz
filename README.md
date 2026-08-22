@@ -6,9 +6,9 @@ Moderni, interaktivni web kviz znanja u Wordle stilu, izrađen u čistom JavaScr
 
 ## ✨ Glavne funkcionalnosti
 
-* **📅 Dnevni izazov (Daily Challenge):** Jedinstven, zajednički pojam za sve igrače svakog dana sa praćenjem niza pobjeda (*Streak* 🔥).
-* **🎲 Slobodna igra (Free Play):** Neograničeno igranje sa preko 1000 pažljivo pripremljenih pitanja.
-* **🏷️ Tematski filteri:** Filtriranje pojmova po kategorijama (Sport, Geografija, Historija, Film i muzika, Tehnologija, Nauka, Književnost).
+* **📅 Dnevni izazov (Daily Challenge):** Jedinstven, zajednički pojam za sve igrače svakog dana — nasumična kategorija i težina, deterministički odabrane po datumu (isto za sve igrače, mijenja se svaki dan) — sa praćenjem niza pobjeda (*Streak* 🔥).
+* **🎲 Slobodna igra (Free Play):** Neograničeno igranje sa preko 1000 pažljivo pripremljenih pitanja, filtrirano po kategoriji i po težini (🟢 Lako, 🟡 Srednje, 🔴 Teško).
+* **🏷️ Tematski filteri:** Filtriranje pojmova po kategorijama (Sport, Geografija, Historija, Film i muzika, Tehnologija, Nauka, Književnost) i po težini.
 * **🔊 Retro Web Audio efekti:** Dinamički zvučni efekti sintetizovani direktno u browseru pomoću Web Audio API-ja (bez eksternih `.mp3` fajlova).
 * **🔒 Zaštita od varanja:** Svi odgovori i aliasi u bazi su enkodirani u Base64 formatu kako bi se spriječilo jednostavno čitanje rješenja kroz Inspect element.
 * **📋 Wordle-Style dijeljenje:** Kopiranje grafičkog prikaza rezultata sa emojijima (`🟩🟥⬜`) za dijeljenje na društvenim mrežama i chatovima.

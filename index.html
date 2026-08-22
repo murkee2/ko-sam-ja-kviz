@@ -102,6 +102,16 @@
           <button class='category-button' data-category='Književnost i umjetnost' type='button'>📖 Književnost i umjetnost</button>
         </div>
       </div>
+
+      <div class='difficulty-row' role='group' aria-label='Odabir težine'>
+        <span class='difficulty-label'>TEŽINA</span>
+        <div id='difficulty-list' class='difficulty-list'>
+          <button class='difficulty-button active' data-difficulty='sve' type='button'>Sve</button>
+          <button class='difficulty-button' data-difficulty='easy' type='button'>🟢 Lako</button>
+          <button class='difficulty-button' data-difficulty='medium' type='button'>🟡 Srednje</button>
+          <button class='difficulty-button' data-difficulty='hard' type='button'>🔴 Teško</button>
+        </div>
+      </div>
     </section>
 
     <!-- Glavna kartica igre -->
@@ -111,6 +121,7 @@
         <div>
           <span class='eyebrow'>PITANJE <span id='question-number'>01</span></span>
           <h1 id='question-category-title'>Ko sam ja?</h1>
+          <span id='question-difficulty-badge' class='difficulty-badge hidden'></span>
         </div>
         <div class='clue-counter'>
           <strong id='clues-revealed-count'>1 / 5</strong>
@@ -203,8 +214,8 @@
           <li><strong>Trag 1 (5 bodova):</strong> Najteži i najapstraktniji trag.</li>
           <li><strong>Tragovi 2–5 (4 do 1 bod):</strong> Svaki novi trag olakšava pogađanje, ali smanjuje nagradu za 1 bod.</li>
           <li><strong>Normalizacija unosa:</strong> Kvačice nisu obavezne (npr. unos <em>dzeko</em> ili <em>Džeko</em> vrijede jednako).</li>
-          <li><strong>Dnevni izazov:</strong> Jedan zajednički pojam dnevno za sve igrače uz praćenje niza pobjeda (streak 🔥).</li>
-          <li><strong>Slobodna igra:</strong> Neograničeno igranje sa preko 300 pojmova filtriranih po temama.</li>
+          <li><strong>Dnevni izazov:</strong> Jedan zajednički pojam dnevno za sve igrače — nasumična kategorija i težina (ista za sve, mijenja se svaki dan) — uz praćenje niza pobjeda (streak 🔥).</li>
+          <li><strong>Slobodna igra:</strong> Neograničeno igranje uz preko 1000 pojmova, filtriranih po temi i po težini (🟢 Lako, 🟡 Srednje, 🔴 Teško).</li>
         </ul>
       </div>
 

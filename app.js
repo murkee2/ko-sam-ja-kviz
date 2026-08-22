@@ -23,7 +23,9 @@ const dom = {
   categoryBadge: $('#active-category-badge'),
   categoryList: $('#category-filter-list'),
   categoryListWrap: $('#category-list-wrap'),
+  difficultyList: $('#difficulty-list'),
   questionCategoryTitle: $('#question-category-title'),
+  questionDifficultyBadge: $('#question-difficulty-badge'),
   questionNumber: $('#question-number'),
   clueCount: $('#clues-revealed-count'),
   clues: $('#clues-container'),
@@ -61,6 +63,7 @@ const state = {
   questions: [],
   mode: 'daily',
   category: 'Sve',
+  difficulty: 'sve',
   question: null,
   unlocked: 1,
   points: 5,
@@ -72,6 +75,8 @@ const state = {
   freeOrder: [],
   freePosition: 0
 };
+
+const DIFFICULTY_LABELS = { easy: 'Lako', medium: 'Srednje', hard: 'Teško' };
 
 // --- Web Audio Synthesizer ---
 class SoundManager {
@@ -234,8 +239,37 @@ function isCorrectGuess(guess, question) {
   });
 }
 
-function getDailyIndex() {
-  return Math.floor(Date.now() / 86400000) % state.questions.length;
+// Jednostavan deterministički PRNG (mulberry32) sjemenjen datumom, tako da
+// svi igrači dobiju isti "nasumični" izbor kategorije/težine tog dana.
+function seededRandom(seed) {
+  let t = seed + 0x6D2B79F5;
+  return function () {
+    t += 0x6D2B79F5;
+    let r = Math.imul(t ^ (t >>> 15), t | 1);
+    r ^= r + Math.imul(r ^ (r >>> 7), r | 61);
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function getDailySeed() {
+  return Math.floor(Date.now() / 86400000);
+}
+
+function getDailyQuestion() {
+  const dayIndex = getDailySeed();
+  const random = seededRandom(dayIndex);
+
+  const categories = [...new Set(state.questions.map((q) => q.kategorija))];
+  const difficulties = ['easy', 'medium', 'hard'];
+  const category = categories[Math.floor(random() * categories.length)];
+  const difficulty = difficulties[Math.floor(random() * difficulties.length)];
+
+  let pool = state.questions.filter((q) => q.kategorija === category && q.tezina === difficulty);
+  if (!pool.length) pool = state.questions.filter((q) => q.kategorija === category);
+  if (!pool.length) pool = state.questions;
+
+  const question = pool[dayIndex % pool.length];
+  return { question, category, difficulty };
 }
 
 function getTodayKey() {
@@ -309,6 +343,16 @@ function renderClues(justUnlocked = 0) {
   if (dom.gameCard) dom.gameCard.dataset.category = state.question.kategorija || '';
   if (dom.categoryEmblem) {
     dom.categoryEmblem.textContent = CATEGORY_ICONS[state.question.kategorija] || '🎭';
+  }
+  if (dom.questionDifficultyBadge) {
+    const difficulty = state.question.tezina;
+    if (difficulty && DIFFICULTY_LABELS[difficulty]) {
+      dom.questionDifficultyBadge.textContent = DIFFICULTY_LABELS[difficulty];
+      dom.questionDifficultyBadge.dataset.difficulty = difficulty;
+      dom.questionDifficultyBadge.classList.remove('hidden');
+    } else {
+      dom.questionDifficultyBadge.classList.add('hidden');
+    }
   }
 
   state.question.tragovi.slice(0, 5).forEach((clueText, index) => {
@@ -456,9 +500,9 @@ function startDaily() {
   state.mode = 'daily';
   dom.categoryPanel.classList.add('hidden');
   hideDailyCountdown();
-  const question = state.questions[getDailyIndex()];
+  const { question } = getDailyQuestion();
   const saved = readDailyResult();
-  resetQuestion(question, getDailyIndex() + 1, { focusInput: false });
+  resetQuestion(question, 1, { focusInput: false });
 
   if (saved?.completed) {
     state.unlocked = saved.unlocked || 5;
@@ -475,12 +519,15 @@ function startFree(options = {}) {
   hideDailyCountdown();
   dom.categoryPanel.classList.remove('hidden');
   requestAnimationFrame(updateScrollFade);
-  const pool = state.category === 'Sve'
+  let pool = state.category === 'Sve'
     ? state.questions
     : state.questions.filter((q) => q.kategorija === state.category);
+  if (state.difficulty !== 'sve') {
+    pool = pool.filter((q) => q.tezina === state.difficulty);
+  }
 
   if (!pool.length) {
-    showToast('Nema pitanja u ovoj kategoriji.');
+    showToast('Nema pitanja za odabranu kategoriju i težinu.');
     return;
   }
 
@@ -720,6 +767,16 @@ function setupEvents() {
       void dom.categoryPanel.offsetWidth;
       dom.categoryPanel.classList.add('filter-pulse');
     }
+    if (state.mode === 'free') startFree({ focusInput: false, scrollToClues: true });
+  }));
+
+  $$('.difficulty-button').forEach((button) => button.addEventListener('click', () => {
+    closeCategoryDropdown();
+    if (button.classList.contains('active')) return;
+    $$('.difficulty-button').forEach((item) => item.classList.remove('active'));
+    button.classList.add('active');
+    state.difficulty = button.dataset.difficulty;
+    state.freeOrder = [];
     if (state.mode === 'free') startFree({ focusInput: false, scrollToClues: true });
   }));
 
