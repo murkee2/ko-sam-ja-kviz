@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
 :root {
   --ink: #f8fafc;
   --muted: #94a3b8;
@@ -19,7 +17,7 @@
   --violet: #a78bfa;
   --rose: #fb7185;
   --radius: 18px;
-  --sans: 'Plus Jakarta Sans', sans-serif;
+  --sans: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
 }
 
 * { 
@@ -330,10 +328,26 @@ button.section-heading {
 }
 
 .category-toggle-arrow {
-  display: none;
+  display: inline-block;
   color: var(--muted);
   font-size: 0.85rem;
   transition: transform 0.25s ease;
+}
+
+.category-toggle.open .category-toggle-arrow,
+.difficulty-toggle.open .category-toggle-arrow {
+  transform: rotate(180deg);
+}
+
+.category-toggle,
+.difficulty-toggle {
+  cursor: pointer;
+}
+
+.difficulty-toggle {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
 
 .eyebrow {
@@ -369,49 +383,45 @@ button.section-heading {
 .category-badge[data-category="Nauka"] { color: var(--violet); border-color: rgba(167, 139, 250, 0.3); background: rgba(167, 139, 250, 0.06); }
 .category-badge[data-category="Književnost i umjetnost"] { color: var(--rose); border-color: rgba(251, 113, 133, 0.3); background: rgba(251, 113, 133, 0.06); }
 
+.category-badge[data-difficulty="easy"] { color: var(--emerald); border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.06); }
+.category-badge[data-difficulty="medium"] { color: var(--gold); border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.06); }
+.category-badge[data-difficulty="hard"] { color: var(--coral); border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.06); }
+
 .category-panel {
   position: relative;
 }
 
-.category-list-wrap {
+.category-list-wrap,
+.difficulty-list-wrap {
   position: relative;
-}
-
-.category-list-wrap::before,
-.category-list-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 12px;
-  width: 32px;
-  z-index: 2;
-  pointer-events: none;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: grid-template-rows 0.25s ease, opacity 0.2s ease;
 }
 
-.category-list-wrap::before {
-  left: 0;
-  background: linear-gradient(to right, var(--panel-solid), transparent);
+.category-list-wrap.open,
+.difficulty-list-wrap.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
 }
 
-.category-list-wrap::after {
-  right: 0;
-  background: linear-gradient(to left, var(--panel-solid), transparent);
+.category-list-wrap > .category-list,
+.difficulty-list-wrap > .difficulty-list {
+  overflow: hidden;
+  min-height: 0;
 }
-
-.category-list-wrap.scroll-start::before { opacity: 0.9; }
-.category-list-wrap.scroll-end::after { opacity: 0.9; }
 
 .category-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  overflow-x: auto;
-  padding: 2px 2px 14px;
-  margin-bottom: -4px;
-  scroll-snap-type: x proximity;
-  scroll-padding-left: 2px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
   scrollbar-width: thin;
   scrollbar-color: rgba(216, 243, 106, 0.35) transparent;
 }
@@ -441,7 +451,7 @@ button.section-heading {
   --cat-glow: rgba(216, 243, 106, 0.2);
   --cat-tint: rgba(216, 243, 106, 0.08);
   position: relative;
-  flex-shrink: 0;
+  width: fit-content;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -485,27 +495,16 @@ button.section-heading {
 }
 
 /* Difficulty Filter (Freeplay only) */
-.difficulty-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
-.difficulty-label {
-  flex-shrink: 0;
-  color: var(--muted);
-  font-size: 0.65rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-}
-
 .difficulty-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .difficulty-button {
@@ -513,12 +512,17 @@ button.section-heading {
   --diff-color-dark: var(--lime-dark);
   --diff-glow: rgba(216, 243, 106, 0.28);
   --diff-tint: rgba(216, 243, 106, 0.1);
-  padding: 7px 14px;
+  position: relative;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
   color: var(--muted);
   background: rgba(255, 255, 255, 0.02);
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 600;
   transform: translateY(0) scale(1);
   transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
@@ -546,14 +550,6 @@ button.section-heading {
 
 .difficulty-button.active:hover {
   transform: translateY(-2px) scale(1.04);
-}
-
-@media (max-width: 768px) {
-  .difficulty-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
 }
 
 /* Game Card */
@@ -1306,24 +1302,6 @@ footer {
   .score-label { font-size: 0.56rem; }
 
   .category-panel { padding: 14px 16px; }
-  .category-toggle-arrow { display: inline-block; }
-  .category-panel.category-open .category-toggle-arrow { transform: rotate(180deg); }
-  .category-list-wrap::before,
-  .category-list-wrap::after { display: none; }
-  .category-list-wrap {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.25s ease;
-  }
-  .category-list-wrap > .category-list { overflow: hidden; }
-  .category-panel.category-open .category-list-wrap { grid-template-rows: 1fr; }
-  .category-list {
-    flex-direction: column;
-    flex-wrap: nowrap;
-    overflow-x: hidden;
-    padding: 10px 2px 2px;
-  }
-  .category-button { width: 100%; }
 
   .game-card {
     padding: 22px 16px 18px;

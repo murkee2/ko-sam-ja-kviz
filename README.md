@@ -1,6 +1,6 @@
 # 🧠 Ko sam ja? — Kviz po tragovima
 
-Moderni, interaktivni web kviz znanja u Wordle stilu, izrađen u čistom JavaScriptu (Vanilla JS), HTML5 i CSS3 sa *glassmorphism* tamnim dizajnom. Igrači pogađaju tajne pojmove (ličnosti, gradove, spomenike, historijske događaje i izume) na osnovu najviše 5 postepenih tragova.
+Moderni, interaktivni web kviz znanja u Wordle stilu, izrađen u **Next.js (App Router) + TypeScript** sa *glassmorphism* tamnim dizajnom. Igrači pogađaju tajne pojmove (ličnosti, gradove, spomenike, historijske događaje i izume) na osnovu najviše 5 postepenih tragova.
 
 ---
 
@@ -31,36 +31,55 @@ Moderni, interaktivni web kviz znanja u Wordle stilu, izrađen u čistom JavaScr
 
 ---
 
+## 🧱 Tehnički stek
+
+* [Next.js 15](https://nextjs.org/) (App Router, React 19, TypeScript)
+* Client-side game state u custom React hookovima (`lib/useQuizGame.ts`)
+* `next/font` za Google Font (Plus Jakarta Sans) bez eksternog `<link>`-a
+* [canvas-confetti](https://www.npmjs.com/package/canvas-confetti) kao npm zavisnost (umjesto CDN-a)
+* Baza pitanja servirana staticki iz `public/data/questions.json`
+
 ## 📂 Struktura projekta
 
 ```text
 ko-sam-ja-kviz/
 │
-├── index.html            # Glavna HTML struktura sa semantikom i modalima
-├── style.css             # Glassmorphism stilovi, ambient glow i animacije
-├── app.js                # Game engine logika, audio sinteza i stanje igre
+├── app/
+│   ├── layout.tsx         # Root layout, meta tagovi, font
+│   ├── page.tsx           # Glavna stranica koja sastavlja sve komponente
+│   └── globals.css        # Glassmorphism stilovi, ambient glow i animacije
 │
-├── data/
-│   └── questions.json    # Baza pitanja sa Base64 zaštićenim odgovorima
+├── components/            # Header, ScoreStrip, CategoryPanel, GameCard,
+│                           # ResultModal, RulesModal, Toast
 │
-└── README.md             # Dokumentacija projekta
+├── lib/
+│   ├── gameLogic.ts        # Normalizacija, fuzzy matching, dnevni seed itd.
+│   ├── useQuizGame.ts       # Centralni React hook sa stanjem igre
+│   ├── useSound.ts          # Web Audio sintetizator
+│   └── shareResult.ts       # Wordle-style tekst za dijeljenje
+│
+├── types/question.ts       # TypeScript tipovi
+│
+├── public/data/
+│   └── questions.json      # Baza pitanja sa Base64 zaštićenim odgovorima
+│
+└── README.md
+```
 
-🚀 Pokretanje lokalno
-Pošto projekat koristi standardni browser fetch API za učitavanje questions.json, potrebno ga je pokrenuti preko lokalnog servera:
+## 🚀 Pokretanje lokalno
 
-Kloniraj repozitorij:
+```bash
+npm install
+npm run dev
+```
 
-Bash
-git clone [https://github.com/murkee2/ko-sam-ja-kviz.git](https://github.com/murkee2/ko-sam-ja-kviz.git)
-cd ko-sam-ja-kviz
-Pokreni lokalni server:
+Otvori [http://localhost:3000](http://localhost:3000) u browseru.
 
-Preko VS Code Live Server ekstenzije: Desni klik na index.html > Open with Live Server.
+Za produkcijski build:
 
-Ili putem terminala:
+```bash
+npm run build
+npm run start
+```
 
-Bash
-npx serve .
-Otvori ponuđeni link u browseru (npr. http://localhost:3000).
-
-Baza od 1000 pitanja je u potpunosti hardkodovana u `data/questions.json` — igra ne poziva nikakav eksterni API.
+Baza od 1000 pitanja je u potpunosti hardkodovana u `public/data/questions.json` — igra ne poziva nikakav eksterni API.
