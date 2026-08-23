@@ -4,7 +4,7 @@ Moderni, interaktivni web kviz znanja u Wordle stilu, izrađen u **Next.js (App 
 
 ---
 
-## ✨ Glavne funkcionalnosti
+## ✨ Glavne funkcionalnosti ✨
 
 * **📅 Dnevni izazov (Daily Challenge):** Jedinstven, zajednički pojam za sve igrače svakog dana — nasumična kategorija i težina, deterministički odabrane po datumu (isto za sve igrače, mijenja se svaki dan) — sa praćenjem niza pobjeda (*Streak* 🔥).
 * **🎲 Slobodna igra (Free Play):** Neograničeno igranje sa preko 1000 pažljivo pripremljenih pitanja, filtrirano po kategoriji i po težini (🟢 Lako, 🟡 Srednje, 🔴 Teško).
