@@ -20,7 +20,8 @@ export default function HomePage() {
     let cancelled = false;
     (async () => {
       try {
-        const response = await fetch("/data/questions.json");
+        const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+        const response = await fetch(`${basePath}/data/questions.json`);
         if (!response.ok) throw new Error("Pitanja nisu dostupna.");
         const data: Question[] = await response.json();
         if (!data.length) throw new Error("Baza pitanja je prazna.");
