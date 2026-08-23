@@ -5,8 +5,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Opciono: Ako ti css ili slike ne budu radile, otkomentariši liniju ispod
-  // basePath: '/ko-sam-ja-kviz', 
+  basePath: '/ko-sam-ja-kviz', // Obavezno dodaj ovo
 };
 
 export default nextConfig;
