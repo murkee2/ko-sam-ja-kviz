@@ -20,8 +20,11 @@ export default function HomePage() {
     let cancelled = false;
     (async () => {
       try {
-        const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-        const response = await fetch(`${basePath}/data/questions.json`);
+        const response = await fetch("data/questions.json", {
+          // Resolve relative to the deployed document (works under any basePath,
+          // e.g. GitHub Pages project sites) instead of relying on a build-time env var.
+          cache: "no-store",
+        });
         if (!response.ok) throw new Error("Pitanja nisu dostupna.");
         const data: Question[] = await response.json();
         if (!data.length) throw new Error("Baza pitanja je prazna.");
