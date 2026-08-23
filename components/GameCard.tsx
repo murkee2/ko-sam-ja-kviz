@@ -131,6 +131,10 @@ export function GameCard({
                 placeholder="Upiši ime, grad ili pojam..."
                 aria-describedby="feedback-msg"
                 spellCheck={false}
+                autoCapitalize="off"
+                autoCorrect="off"
+                autoComplete="off"
+                enterKeyHint="go"
                 disabled={!controlsEnabled}
                 className={solved ? "solved" : ""}
                 value={inputValue}

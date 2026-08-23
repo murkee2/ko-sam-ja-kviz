@@ -1,21 +1,35 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import confetti from "canvas-confetti";
-import type { GameMode, RoundResult } from "@/types/question";
-import { pointsLabel } from "@/lib/gameLogic";
+import type { GameMode, Question, RoundResult } from "@/types/question";
+import { CATEGORY_ICONS, formatCountdown, pointsLabel } from "@/lib/gameLogic";
 
 interface ResultModalProps {
   open: boolean;
   result: RoundResult | null;
   answerText: string;
+  question: Question | null;
   mode: GameMode;
+  dailyCountdownMs: number;
   onClose: () => void;
   onNext: () => void;
   onShare: () => void;
 }
 
-export function ResultModal({ open, result, answerText, mode, onClose, onNext, onShare }: ResultModalProps) {
+export function ResultModal({
+  open,
+  result,
+  answerText,
+  question,
+  mode,
+  dailyCountdownMs,
+  onClose,
+  onNext,
+  onShare,
+}: ResultModalProps) {
+  const [showAllClues, setShowAllClues] = useState(false);
+
   useEffect(() => {
     if (open && result?.victory) {
       confetti({
@@ -28,6 +42,10 @@ export function ResultModal({ open, result, answerText, mode, onClose, onNext, o
   }, [open, result]);
 
   useEffect(() => {
+    if (open) setShowAllClues(false);
+  }, [open]);
+
+  useEffect(() => {
     if (!open) return;
     const handleKeydown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -36,11 +54,12 @@ export function ResultModal({ open, result, answerText, mode, onClose, onNext, o
     return () => document.removeEventListener("keydown", handleKeydown);
   }, [open, onClose]);
 
-  if (!open || !result) return null;
+  if (!open || !result || !question) return null;
 
   const clues = result.unlocked;
   const victory = result.victory;
   const daily = mode === "daily";
+  const emblem = CATEGORY_ICONS[question.kategorija] || "🎭";
 
   let matrixStr = "";
   for (let i = 1; i <= 5; i++) {
@@ -48,6 +67,9 @@ export function ResultModal({ open, result, answerText, mode, onClose, onNext, o
     else if (i <= clues) matrixStr += "🟥";
     else matrixStr += "⬜";
   }
+
+  const usedClues = question.tragovi.slice(0, clues);
+  const remainingClues = question.tragovi.slice(clues, 5);
 
   return (
     <div
@@ -59,23 +81,29 @@ export function ResultModal({ open, result, answerText, mode, onClose, onNext, o
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="modal glass-panel">
+      <div className="modal modal-summary glass-panel">
         <button className="modal-close" type="button" aria-label="Zatvori" onClick={onClose}>
           ×
         </button>
+
         <div className="result-icon">{victory ? "🎉" : "🧠"}</div>
-        <span className="eyebrow">REZULTAT</span>
-        <h2 id="modal-title">{victory ? "Svaka čast!" : "Dobar pokušaj!"}</h2>
-        <p>
+        <span className="eyebrow">{victory ? "TAČAN ODGOVOR" : "REZULTAT"}</span>
+
+        <div className="summary-subject">
+          <span className="summary-subject-emblem" aria-hidden="true">
+            {emblem}
+          </span>
+          <h2 id="modal-title" className="summary-subject-name">
+            {answerText}
+          </h2>
+          <span className="summary-subject-category">{question.kategorija}</span>
+        </div>
+
+        <p className="summary-lede">
           {victory
             ? "Uspješno si odgonetnuo/la pojam."
-            : "Tačan odgovor je prikazan ispod. Sljedeći put ide još bolje!"}
+            : "Nisi ovaj put pogodio/la, ali evo ko je bio u pitanju."}
         </p>
-
-        <div className="answer-reveal">
-          <span>TAČAN ODGOVOR</span>
-          <strong>{answerText}</strong>
-        </div>
 
         <div className="result-grid">
           <div>
@@ -91,7 +119,44 @@ export function ResultModal({ open, result, answerText, mode, onClose, onNext, o
         <div className="clue-matrix" aria-label="Rezultat po tragovima">
           {matrixStr}
         </div>
-        {daily && <p className="daily-message">Novi dnevni izazov stiže sutra!</p>}
+
+        <div className="summary-clues">
+          <div className="summary-clues-heading">
+            <span className="eyebrow">PREGLED TRAGOVA</span>
+            {remainingClues.length > 0 && (
+              <button
+                type="button"
+                className="summary-clues-toggle"
+                onClick={() => setShowAllClues((prev) => !prev)}
+                aria-expanded={showAllClues}
+              >
+                {showAllClues ? "Sakrij zaključane" : `Pročitaj sve (${remainingClues.length})`}
+              </button>
+            )}
+          </div>
+          <ul className="summary-clue-list">
+            {usedClues.map((text, index) => (
+              <li key={index} className="summary-clue-item used">
+                <span className="clue-badge">Trag {index + 1}</span>
+                <p>{text}</p>
+              </li>
+            ))}
+            {showAllClues &&
+              remainingClues.map((text, index) => (
+                <li key={clues + index} className="summary-clue-item unused">
+                  <span className="clue-badge">Trag {clues + index + 1}</span>
+                  <p>{text}</p>
+                </li>
+              ))}
+          </ul>
+        </div>
+
+        {daily && (
+          <div className="daily-countdown summary-countdown">
+            <span className="daily-countdown-label">Novi dnevni izazov za</span>
+            <strong className="daily-countdown-timer">{formatCountdown(dailyCountdownMs)}</strong>
+          </div>
+        )}
 
         <div className="modal-actions">
           <button className="button share" type="button" onClick={onShare}>

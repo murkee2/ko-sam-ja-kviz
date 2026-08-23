@@ -2,14 +2,38 @@ import type { Question } from "@/types/question";
 
 const COMBINING_DIACRITICS = new RegExp("[\\u0300-\\u036f]", "g");
 
+// Eksplicitno mapiranje bosanskih/hrvatskih/srpskih dijakritika na latinicu
+// bez kvačica, prije NFD rastavljanja — ovo hvata slučajeve koje golo
+// uklanjanje kombinujućih znakova ne bi (npr. dž/đ koji se svode na digraf "dz").
+const DIACRITIC_MAP: Record<string, string> = {
+  č: "c",
+  ć: "c",
+  đ: "dj",
+  š: "s",
+  ž: "z",
+  dž: "dz",
+};
+
+// Normalizacija unosa: lowercase, trim, zamjena dijakritika, uklanjanje
+// specijalnih znakova i viška razmaka — tako da "Ðžeko", "dzeko" i "Džeko"
+// svi budu ekvivalentni pri poređenju.
 export function normalize(value: string | null | undefined): string {
-  return String(value || "")
-    .toLocaleLowerCase("bs-BA")
-    .replace(/đ/g, "dj")
+  let result = String(value ?? "")
+    .trim()
+    .toLocaleLowerCase("bs-BA");
+
+  result = result.replace(/dž/g, "dz");
+  result = result.replace(/[čćđšž]/g, (ch) => DIACRITIC_MAP[ch] ?? ch);
+
+  result = result
     .normalize("NFD")
     .replace(COMBINING_DIACRITICS, "")
-    .replace(/\s+/g, "")
-    .replace(/[^a-z0-9]/g, "");
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/[^a-z0-9 ]/g, "")
+    .replace(/\s+/g, "");
+
+  return result;
 }
 
 export function decodeBase64(value: string): string {
@@ -80,11 +104,15 @@ export function levenshtein(a: string, b: string): number {
   return previous[n];
 }
 
+// Prag tolerancije grešaka za fuzzy poređenje, po dužini normalizovanog pojma:
+// - ispod 4 slova: mora biti tačno (0 grešaka) — prekratki pojmovi su previše
+//   rizični za fuzzy poređenje (npr. "Baš" vs "Aš").
+// - 4-8 slova: dozvoljena je 1 greška (tipfeler, transponovano slovo...).
+// - preko 8 slova: dozvoljene su 2 greške.
 export function fuzzyMatchTolerance(length: number): number {
-  if (length <= 4) return 0;
-  if (length <= 7) return 1;
-  if (length <= 11) return 2;
-  return 3;
+  if (length < 4) return 0;
+  if (length <= 8) return 1;
+  return 2;
 }
 
 export function isCorrectGuess(guess: string, question: Question): boolean {

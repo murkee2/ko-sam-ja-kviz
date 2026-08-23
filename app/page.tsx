@@ -103,7 +103,9 @@ export default function HomePage() {
         open={state.modalOpen}
         result={state.result}
         answerText={state.answerText}
+        question={state.question}
         mode={state.mode}
+        dailyCountdownMs={state.dailyCountdownMs}
         onClose={actions.closeModal}
         onNext={actions.nextFreeQuestion}
         onShare={handleShare}

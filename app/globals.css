@@ -1,9 +1,12 @@
 :root {
   --ink: #f8fafc;
   --muted: #94a3b8;
-  --dim: #64748b;
+  /* #94a3b8 na tamnoj pozadini je ~5.4:1 (AA za normalan tekst).
+     --dim je za sekundarni/manje bitan tekst, ali podignut sa #64748b (~3.5:1, fail)
+     na #a0aec0 (~6.2:1) da zaključani tragovi i bedževi ostanu čitljivi (WCAG AA). */
+  --dim: #a0aec0;
   --base: #070a13;
-  --panel: rgba(18, 24, 38, 0.65);
+  --panel: rgba(18, 24, 38, 0.6);
   --panel-solid: #0f172a;
   --line: rgba(255, 255, 255, 0.08);
   --lime: #d8f36a;
@@ -16,8 +19,11 @@
   --cyan: #22d3ee;
   --violet: #a78bfa;
   --rose: #fb7185;
-  --radius: 18px;
+  --radius: 20px;
   --sans: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
+  --touch-min: 44px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 * { 
@@ -26,11 +32,20 @@
   padding: 0; 
 }
 
+html {
+  height: 100%;
+}
+
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   color: var(--ink);
-  background: radial-gradient(circle at 50% -10%, #171d33 0%, #070a13 80%);
+  background:
+    radial-gradient(circle at 15% -10%, rgba(99, 102, 241, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 50% 110%, rgba(167, 139, 250, 0.14) 0%, transparent 50%),
+    radial-gradient(circle at 50% -10%, #171d33 0%, #070a13 80%);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
 }
@@ -71,10 +86,10 @@ button:disabled {
 }
 
 .app-shell {
-  width: min(100% - 32px, 860px);
-  margin: 28px auto 48px;
+  width: min(100% - 32px, 900px);
+  margin: max(28px, calc(var(--safe-top) + 16px)) auto calc(48px + var(--safe-bottom));
   display: grid;
-  gap: 18px;
+  gap: 22px;
 }
 
 .app-shell > * {
@@ -100,11 +115,11 @@ button:disabled {
 }
 
 .glass-panel {
-  border: 1px solid var(--line);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background: var(--panel);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
   border-radius: var(--radius);
 }
 
@@ -153,7 +168,7 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 42px;
+  height: var(--touch-min);
 }
 
 .mode-switch {
@@ -205,8 +220,8 @@ button:disabled {
 .icon-button {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: var(--touch-min);
+  height: var(--touch-min);
   border: 1px solid var(--line);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.04);
@@ -455,6 +470,7 @@ button.section-heading {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: var(--touch-min);
   padding: 8px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -517,6 +533,7 @@ button.section-heading {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  min-height: var(--touch-min);
   padding: 8px 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -832,8 +849,16 @@ button.section-heading {
 }
 
 .clue.locked {
-  opacity: 0.45;
+  opacity: 0.85;
   border-style: dashed;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.clue.locked:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.035);
 }
 
 .clue.solved {
@@ -867,9 +892,9 @@ button.section-heading {
 }
 
 .clue.locked .clue-badge {
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--line);
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .clue-text {
@@ -879,7 +904,9 @@ button.section-heading {
 }
 
 .clue.locked .clue-text {
-  color: var(--dim);
+  /* var(--muted) umjesto var(--dim) — "Ovaj trag je zaključan" mora ostati
+     čitljiv na WCAG AA nivou, ne samo dekorativan. */
+  color: var(--muted);
   font-style: italic;
 }
 
@@ -939,6 +966,7 @@ button.section-heading {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  min-height: var(--touch-min);
   padding: 11px 20px;
   border-radius: 11px;
   font-size: 0.88rem;
@@ -947,29 +975,41 @@ button.section-heading {
   white-space: nowrap;
 }
 
-.button.primary {
-  color: #070a13;
-  background: var(--lime);
-  box-shadow: 0 4px 18px rgba(216, 243, 106, 0.25);
-}
-.button.primary:hover {
-  background: var(--lime-dark);
-  transform: translateY(-1px);
-}
-.button.primary:active {
-  transform: translateY(0);
-  filter: brightness(0.92);
+.button:focus-visible {
+  outline: 2px solid var(--lime);
+  outline-offset: 2px;
 }
 
+/* Primarno: jarki gradient akcent, jasan fokus/hover/active — ovo je
+   glavna radnja na ekranu ("Pogodi") i mora vizuelno dominirati. */
+.button.primary {
+  color: #070a13;
+  background: linear-gradient(135deg, var(--lime), #8fd93a 65%, #5fc9d9);
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  box-shadow: 0 4px 20px rgba(216, 243, 106, 0.3);
+}
+.button.primary:hover:not(:disabled) {
+  background-position: 100% 50%;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(216, 243, 106, 0.4);
+}
+.button.primary:active:not(:disabled) {
+  transform: translateY(0);
+  filter: brightness(0.94);
+}
+
+/* Sekundarno: suptilan outline/ghost — vidljivo, ali ne konkuriše primarnom. */
 .button.secondary {
   color: var(--ink);
   border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.04);
 }
-.button.secondary:hover {
-  background: rgba(255, 255, 255, 0.09);
+.button.secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
 }
-.button.secondary:active {
+.button.secondary:active:not(:disabled) {
   filter: brightness(0.92);
 }
 
@@ -982,19 +1022,18 @@ button.section-heading {
   color: var(--coral);
 }
 
+/* Destruktivno ("Preskoči"): minimalistički ghost — namjerno tiho, bez
+   ispunjene pozadine ili obruba, tako da ne odvlači pažnju od primarne radnje. */
 .button.skip {
-  color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.35);
-  background: rgba(239, 68, 68, 0.08);
+  color: var(--muted);
+  border: 1px solid transparent;
+  background: transparent;
 }
 .button.skip:hover {
-  color: #fff;
-  background: rgba(239, 68, 68, 0.22);
-  border-color: rgba(239, 68, 68, 0.55);
-  transform: translateY(-1px);
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.08);
 }
 .button.skip:active {
-  transform: translateY(0);
   filter: brightness(0.92);
 }
 
@@ -1064,7 +1103,7 @@ footer {
 .modal {
   position: relative;
   width: min(100%, 460px);
-  max-height: min(90vh, 640px);
+  max-height: min(90dvh, 640px);
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 32px 24px;
@@ -1114,25 +1153,11 @@ footer {
   font-size: 0.88rem; 
 }
 
-.answer-reveal {
-  padding: 14px;
-  border: 1px solid rgba(216, 243, 106, 0.25);
-  border-radius: 14px;
-  background: rgba(216, 243, 106, 0.05);
-}
-
-.answer-reveal span, .result-grid span {
+.result-grid span {
   font-size: 0.65rem;
   font-weight: 700;
   color: var(--dim);
   letter-spacing: 0.1em;
-}
-
-.answer-reveal strong {
-  display: block;
-  margin-top: 2px;
-  color: var(--lime);
-  font: 800 1.35rem var(--sans);
 }
 
 .result-grid {
@@ -1201,6 +1226,122 @@ footer {
   color: var(--lime);
   letter-spacing: 2px;
   font-variant-numeric: tabular-nums;
+}
+
+/* Summary/Win-End state kartica */
+.modal-summary {
+  width: min(100%, 520px);
+  padding: 28px 22px;
+}
+
+.summary-subject {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin: 6px 0 2px;
+}
+
+.summary-subject-emblem {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 4px;
+  font-size: 1.4rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--lime), var(--lime-dark));
+  box-shadow: 0 8px 24px rgba(216, 243, 106, 0.3);
+}
+
+.summary-subject-name {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.summary-subject-category {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.summary-lede {
+  margin: 8px 0 18px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.summary-clues {
+  margin-top: 18px;
+  text-align: left;
+}
+
+.summary-clues-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.summary-clues-toggle {
+  padding: 6px 12px;
+  min-height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.summary-clues-toggle:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.summary-clue-list {
+  display: grid;
+  gap: 8px;
+  list-style: none;
+}
+
+.summary-clue-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 10px 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.summary-clue-item.used {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.25);
+}
+
+.summary-clue-item.used .clue-badge {
+  color: #052e21;
+  background: var(--emerald);
+}
+
+.summary-clue-item.unused {
+  color: var(--muted);
+  animation: slideDown 0.25s ease-out forwards;
+}
+
+.summary-countdown {
+  margin-top: 18px;
 }
 
 .modal-actions {
@@ -1288,8 +1429,8 @@ footer {
     text-align: center;
     line-height: 1.15;
   }
-  .icon-actions { height: 40px; margin-left: 0; padding-left: 0; border-left: 0; gap: 8px; }
-  .icon-button { width: 40px; height: 40px; }
+  .icon-actions { height: var(--touch-min); margin-left: 0; padding-left: 0; border-left: 0; gap: 8px; }
+  .icon-button { width: var(--touch-min); height: var(--touch-min); }
 
   .score-strip { grid-template-columns: repeat(2, 1fr); }
   .score-item {
@@ -1340,7 +1481,8 @@ footer {
     gap: 4px;
     margin-bottom: 84px;
   }
-  .modal { padding: 24px 18px; }
+  .modal { padding: 24px 18px; max-height: min(88dvh, 640px); }
+  .summary-clue-item { font-size: 0.82rem; padding: 10px 12px; }
 
   /* Traka za unos ostaje zalijepljena na dnu ekrana da se ne mora
      stalno skrolati gore-dole između trага i pokušaja pogađanja. */
@@ -1356,7 +1498,7 @@ footer {
     border-top: 1px solid var(--line);
   }
   .input-row .button span { display: none; }
-  .input-row .button { padding: 0 16px; }
+  .input-row .button { padding: 0 16px; min-height: var(--touch-min); }
 }
 
 /* Sitni ekrani */
