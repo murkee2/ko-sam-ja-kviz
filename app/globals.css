@@ -1,39 +1,37 @@
 :root {
-  --ink: #f8fafc;
-  --muted: #94a3b8;
-  /* #94a3b8 na tamnoj pozadini je ~5.4:1 (AA za normalan tekst).
-     --dim je za sekundarni/manje bitan tekst, ali podignut sa #64748b (~3.5:1, fail)
-     na #a0aec0 (~6.2:1) da zaključani tragovi i bedževi ostanu čitljivi (WCAG AA). */
-  --dim: #a0aec0;
-  --base: #070a13;
-  --panel: rgba(18, 24, 38, 0.6);
-  --panel-solid: #0f172a;
-  --line: rgba(255, 255, 255, 0.08);
-  --lime: #d8f36a;
-  --lime-dark: #b5d932;
-  --emerald: #10b981;
-  --coral: #ef4444;
-  --blue: #38bdf8;
-  --indigo: #6366f1;
-  --gold: #f59e0b;
-  --cyan: #22d3ee;
-  --violet: #a78bfa;
-  --rose: #fb7185;
-  --radius: 20px;
+  --ink: #221c10;
+  --muted: #6b6152;
+  --dim: #6b6152;
+  --base: #f2ead9;
+  --panel: #fffdf7;
+  --panel-solid: #fffdf7;
+  --line: #221c10;
+  --lime: #f4d03f;
+  --lime-dark: #e0b823;
+  --emerald: #3fae64;
+  --coral: #e2523f;
+  --blue: #4d7ea8;
+  --indigo: #5b4fc7;
+  --gold: #d99a2b;
+  --cyan: #2fa3ac;
+  --violet: #7c5cd6;
+  --rose: #d1497a;
+  --radius: 14px;
   --sans: var(--font-plus-jakarta-sans), 'Plus Jakarta Sans', sans-serif;
   --touch-min: 44px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-* { 
-  box-sizing: border-box; 
-  margin: 0; 
-  padding: 0; 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   height: 100%;
+  background: var(--base);
 }
 
 body {
@@ -41,55 +39,39 @@ body {
   min-height: 100dvh;
   overflow-x: hidden;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 15% -10%, rgba(99, 102, 241, 0.16) 0%, transparent 45%),
-    radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 50% 110%, rgba(167, 139, 250, 0.14) 0%, transparent 50%),
-    radial-gradient(circle at 50% -10%, #171d33 0%, #070a13 80%);
+  background: var(--base);
+  background-image: radial-gradient(rgba(34, 28, 16, 0.07) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 
-button, input { 
-  font: inherit; 
-  color: inherit; 
+button, input {
+  font: inherit;
+  color: inherit;
 }
 
-button { 
-  border: 0; 
-  cursor: pointer; 
-  background: transparent; 
+button {
+  border: 0;
+  cursor: pointer;
+  background: transparent;
 }
 
-button:disabled { 
-  cursor: not-allowed; 
-  opacity: 0.45; 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
 }
 
-/* Ambient pozadina */
+/* Ambient pozadina — uklonjena u neo-brutalist dizajnu (ravna tačkasta pozadina umjesto sjaja) */
 .ambient {
-  position: fixed;
-  z-index: -1;
-  width: 45vw;
-  height: 45vw;
-  border-radius: 50%;
-  filter: blur(140px);
-  opacity: 0.16;
-  pointer-events: none;
-}
-.ambient-one { top: -15vw; left: -10vw; background: var(--blue); animation: ambientFloat 16s ease-in-out infinite; }
-.ambient-two { right: -12vw; bottom: -18vw; background: var(--lime); animation: ambientFloat 20s ease-in-out infinite reverse; }
-
-@keyframes ambientFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(3vw, 4vw) scale(1.08); }
+  display: none;
 }
 
 .app-shell {
   width: min(100% - 32px, 900px);
   margin: max(28px, calc(var(--safe-top) + 16px)) auto calc(48px + var(--safe-bottom));
   display: grid;
-  gap: 22px;
+  gap: 18px;
 }
 
 .app-shell > * {
@@ -114,12 +96,14 @@ button:disabled {
   }
 }
 
+/* "glass-panel" ime je ostalo iz starog dizajna, ali sada je čvrsta
+   neo-brutalist kartica: bijela pozadina, debeli mastilo-obrub, offset senka. */
 .glass-panel {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--line);
   background: var(--panel);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px) saturate(140%);
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 4px 4px 0 0 var(--line);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-radius: var(--radius);
 }
 
@@ -129,7 +113,7 @@ button:disabled {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  padding: 12px 20px;
+  padding: 14px 20px;
 }
 
 .brand {
@@ -138,31 +122,32 @@ button:disabled {
   gap: 12px;
   color: var(--ink);
   text-decoration: none;
-  transition: opacity 0.2s ease;
+  transition: transform 0.15s ease;
 }
 
-.brand:hover { opacity: 0.85; }
+.brand:hover { opacity: 1; transform: translate(-1px, -1px); }
 
 .brand-mark {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  color: #070a13;
-  background: linear-gradient(135deg, var(--lime), var(--lime-dark));
-  border-radius: 12px;
-  font: 800 1.35rem var(--sans);
-  box-shadow: 0 0 20px rgba(216, 243, 106, 0.3);
+  width: 44px;
+  height: 44px;
+  color: var(--ink);
+  background: var(--lime);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  font: 800 1.4rem var(--sans);
+  box-shadow: 2px 2px 0 0 var(--line);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .brand:hover .brand-mark {
-  transform: rotate(-8deg) scale(1.08);
+  transform: rotate(-6deg) scale(1.05);
 }
 
 .brand strong, .brand small { display: block; }
-.brand strong { font: 800 0.95rem var(--sans); letter-spacing: 0.05em; }
-.brand small { margin-top: 1px; color: var(--muted); font-size: 0.68rem; font-weight: 500; }
+.brand strong { font: 800 1rem var(--sans); letter-spacing: 0.03em; text-transform: uppercase; }
+.brand small { margin-top: 1px; color: var(--muted); font-size: 0.7rem; font-weight: 600; }
 
 .topbar-actions {
   display: flex;
@@ -175,11 +160,11 @@ button:disabled {
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 4px;
+  padding: 3px;
   gap: 4px;
-  border: 1px solid var(--line);
-  border-radius: 13px;
-  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--line);
+  border-radius: 11px;
+  background: #efe6d2;
 }
 
 .mode-button {
@@ -187,24 +172,25 @@ button:disabled {
   align-items: center;
   height: 100%;
   padding: 0 14px;
-  border-radius: 9px;
+  border-radius: 8px;
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
 }
 
 .mode-button:hover:not(.active) {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(34, 28, 16, 0.06);
 }
 
 .mode-button.active {
-  color: #070a13;
+  color: var(--ink);
   background: var(--lime);
-  font-weight: 700;
-  box-shadow: 0 4px 15px rgba(216, 243, 106, 0.25);
+  font-weight: 800;
+  border: 2px solid var(--line);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 
 .icon-actions {
@@ -214,7 +200,7 @@ button:disabled {
   gap: 8px;
   padding-left: 4px;
   margin-left: 4px;
-  border-left: 1px solid var(--line);
+  border-left: 2px solid var(--line);
 }
 
 .icon-button {
@@ -222,57 +208,63 @@ button:disabled {
   place-items: center;
   width: var(--touch-min);
   height: var(--touch-min);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
   font-size: 1.05rem;
   line-height: 1;
-  transition: all 0.2s ease;
+  box-shadow: 2px 2px 0 0 var(--line);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
 }
 
 .icon-button:hover {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.18);
-  transform: translateY(-1px);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--line);
 }
 
 .icon-button:active {
-  transform: translateY(0);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 var(--line);
 }
 
 /* Score Strip */
 .score-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  background: var(--line);
-  border-radius: var(--radius);
+  gap: 12px;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .score-item {
   min-height: 72px;
   padding: 12px 16px;
-  background: rgba(13, 18, 30, 0.85);
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: background 0.2s ease;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 4px 4px 0 0 var(--line);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
 }
 
 .score-item:hover {
-  background: rgba(18, 24, 38, 0.95);
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 0 var(--line);
 }
 
 .score-icon {
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--line);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--lime);
   font-size: 1rem;
   line-height: 1;
 }
@@ -288,7 +280,7 @@ button:disabled {
   display: block;
   color: var(--muted);
   font-size: 0.6rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.12em;
 }
 
@@ -301,7 +293,7 @@ button:disabled {
 #stat-current-points::after {
   content: ' bod.';
   font-size: 0.62rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--dim);
 }
 
@@ -311,7 +303,7 @@ button:disabled {
 
 @keyframes valuePop {
   0% { transform: scale(1); }
-  40% { transform: scale(1.35); color: var(--lime); }
+  40% { transform: scale(1.35); color: var(--indigo); }
   100% { transform: scale(1); }
 }
 
@@ -319,8 +311,7 @@ button:disabled {
 
 /* Category Panel */
 .category-panel {
-  padding: 18px 22px;
-  border-radius: var(--radius);
+  padding: 16px 20px;
   animation: slideDown 0.3s ease-out;
 }
 
@@ -359,66 +350,98 @@ button.section-heading {
   cursor: pointer;
 }
 
-.difficulty-toggle {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
+.filter-row {
+  display: flex;
+  gap: 18px;
+}
+
+.filter-col {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.filter-col:not(:last-child) {
+  padding-right: 18px;
+  border-right: 2px dashed var(--line);
 }
 
 .eyebrow {
-  color: var(--lime);
-  font-size: 0.65rem;
+  color: var(--indigo);
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-.section-heading h2 { 
-  margin-top: 2px; 
-  font-size: 1.15rem; 
+.section-heading h2 {
+  margin-top: 2px;
+  font-size: 1.15rem;
   font-weight: 800;
 }
 
 .category-badge {
   padding: 5px 11px;
-  color: var(--lime);
-  border: 1px solid rgba(216, 243, 106, 0.3);
-  border-radius: 20px;
-  background: rgba(216, 243, 106, 0.06);
+  color: var(--ink);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--lime);
   font-size: 0.75rem;
   font-weight: 700;
-  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  box-shadow: 2px 2px 0 0 var(--line);
+  transition: background 0.2s ease;
 }
 
-.category-badge[data-category="Sport"] { color: var(--emerald); border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.06); }
-.category-badge[data-category="Geografija"] { color: var(--blue); border-color: rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.06); }
-.category-badge[data-category="Historija"] { color: var(--gold); border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.06); }
-.category-badge[data-category="Film i muzika"] { color: var(--indigo); border-color: rgba(99, 102, 241, 0.3); background: rgba(99, 102, 241, 0.06); }
-.category-badge[data-category="Tehnologija"] { color: var(--cyan); border-color: rgba(34, 211, 238, 0.3); background: rgba(34, 211, 238, 0.06); }
-.category-badge[data-category="Nauka"] { color: var(--violet); border-color: rgba(167, 139, 250, 0.3); background: rgba(167, 139, 250, 0.06); }
-.category-badge[data-category="Književnost i umjetnost"] { color: var(--rose); border-color: rgba(251, 113, 133, 0.3); background: rgba(251, 113, 133, 0.06); }
+.category-badge[data-category="Sport"] { background: color-mix(in srgb, var(--emerald) 55%, white); }
+.category-badge[data-category="Geografija"] { background: color-mix(in srgb, var(--blue) 45%, white); }
+.category-badge[data-category="Historija"] { background: color-mix(in srgb, var(--gold) 55%, white); }
+.category-badge[data-category="Film i muzika"] { background: color-mix(in srgb, var(--indigo) 35%, white); color: var(--ink); }
+.category-badge[data-category="Tehnologija"] { background: color-mix(in srgb, var(--cyan) 45%, white); }
+.category-badge[data-category="Nauka"] { background: color-mix(in srgb, var(--violet) 35%, white); }
+.category-badge[data-category="Književnost i umjetnost"] { background: color-mix(in srgb, var(--rose) 40%, white); }
 
-.category-badge[data-difficulty="easy"] { color: var(--emerald); border-color: rgba(16, 185, 129, 0.3); background: rgba(16, 185, 129, 0.06); }
-.category-badge[data-difficulty="medium"] { color: var(--gold); border-color: rgba(245, 158, 11, 0.3); background: rgba(245, 158, 11, 0.06); }
-.category-badge[data-difficulty="hard"] { color: var(--coral); border-color: rgba(239, 68, 68, 0.3); background: rgba(239, 68, 68, 0.06); }
+.category-badge[data-difficulty="easy"] { background: color-mix(in srgb, var(--emerald) 55%, white); }
+.category-badge[data-difficulty="medium"] { background: color-mix(in srgb, var(--gold) 55%, white); }
+.category-badge[data-difficulty="hard"] { background: color-mix(in srgb, var(--coral) 45%, white); color: var(--panel); }
 
 .category-panel {
   position: relative;
+  z-index: 30;
 }
 
 .category-list-wrap,
 .difficulty-list-wrap {
-  position: relative;
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
+  pointer-events: none;
   transition: grid-template-rows 0.25s ease, opacity 0.2s ease;
+}
+
+@media (min-width: 769px) {
+  .category-list-wrap {
+    left: 0;
+    right: 0;
+    width: auto;
+  }
+
+  .difficulty-list-wrap {
+    left: auto;
+    right: 0;
+    width: max(100%, 380px);
+  }
 }
 
 .category-list-wrap.open,
 .difficulty-list-wrap.open {
   grid-template-rows: 1fr;
   opacity: 1;
+  pointer-events: auto;
 }
 
 .category-list-wrap > .category-list,
@@ -427,33 +450,39 @@ button.section-heading {
   min-height: 0;
 }
 
+.category-list,
+.difficulty-list {
+  max-height: min(50vh, 340px);
+  overflow-y: auto;
+  background: var(--panel-solid);
+  box-shadow: 4px 4px 0 0 var(--line);
+}
+
 .category-list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 6px;
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--line);
+  border-radius: 12px;
   scrollbar-width: thin;
-  scrollbar-color: rgba(216, 243, 106, 0.35) transparent;
+  scrollbar-color: var(--lime) transparent;
 }
 
 .category-list::-webkit-scrollbar {
   height: 6px;
 }
 .category-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(34, 28, 16, 0.06);
   border-radius: 10px;
 }
 .category-list::-webkit-scrollbar-thumb {
-  background: rgba(216, 243, 106, 0.45);
+  background: var(--lime);
   border-radius: 10px;
 }
 .category-list::-webkit-scrollbar-thumb:hover {
-  background: rgba(216, 243, 106, 0.65);
+  background: var(--lime-dark);
 }
 
 .category-button {
@@ -463,121 +492,126 @@ button.section-heading {
 .category-button {
   --cat-color: var(--lime);
   --cat-color-dark: var(--lime-dark);
-  --cat-glow: rgba(216, 243, 106, 0.2);
-  --cat-tint: rgba(216, 243, 106, 0.08);
+  --cat-tint: color-mix(in srgb, var(--lime) 14%, white);
   position: relative;
-  width: fit-content;
-  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: var(--touch-min);
-  padding: 8px 16px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  justify-content: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 8px 6px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 0.82rem;
-  font-weight: 600;
+  background: var(--panel);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   transform: translateY(0) scale(1);
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.category-button[data-category="Sport"] { --cat-color: var(--emerald); --cat-color-dark: #0d9668; --cat-glow: rgba(16, 185, 129, 0.28); --cat-tint: rgba(16, 185, 129, 0.1); }
-.category-button[data-category="Geografija"] { --cat-color: var(--blue); --cat-color-dark: #0ea5e9; --cat-glow: rgba(56, 189, 248, 0.28); --cat-tint: rgba(56, 189, 248, 0.1); }
-.category-button[data-category="Historija"] { --cat-color: var(--gold); --cat-color-dark: #d97706; --cat-glow: rgba(245, 158, 11, 0.28); --cat-tint: rgba(245, 158, 11, 0.1); }
-.category-button[data-category="Film i muzika"] { --cat-color: var(--indigo); --cat-color-dark: #4f46e5; --cat-glow: rgba(99, 102, 241, 0.28); --cat-tint: rgba(99, 102, 241, 0.1); }
-.category-button[data-category="Tehnologija"] { --cat-color: var(--cyan); --cat-color-dark: #0891b2; --cat-glow: rgba(34, 211, 238, 0.28); --cat-tint: rgba(34, 211, 238, 0.1); }
-.category-button[data-category="Nauka"] { --cat-color: var(--violet); --cat-color-dark: #8b5cf6; --cat-glow: rgba(167, 139, 250, 0.28); --cat-tint: rgba(167, 139, 250, 0.1); }
-.category-button[data-category="Književnost i umjetnost"] { --cat-color: var(--rose); --cat-color-dark: #f43f5e; --cat-glow: rgba(251, 113, 133, 0.28); --cat-tint: rgba(251, 113, 133, 0.1); }
+.category-button[data-category="Sport"] { --cat-color: var(--emerald); --cat-color-dark: #2d8a4b; --cat-tint: color-mix(in srgb, var(--emerald) 16%, white); }
+.category-button[data-category="Geografija"] { --cat-color: var(--blue); --cat-color-dark: #3a6386; --cat-tint: color-mix(in srgb, var(--blue) 16%, white); }
+.category-button[data-category="Historija"] { --cat-color: var(--gold); --cat-color-dark: #b8811f; --cat-tint: color-mix(in srgb, var(--gold) 16%, white); }
+.category-button[data-category="Film i muzika"] { --cat-color: var(--indigo); --cat-color-dark: #4438a8; --cat-tint: color-mix(in srgb, var(--indigo) 16%, white); }
+.category-button[data-category="Tehnologija"] { --cat-color: var(--cyan); --cat-color-dark: #237e85; --cat-tint: color-mix(in srgb, var(--cyan) 16%, white); }
+.category-button[data-category="Nauka"] { --cat-color: var(--violet); --cat-color-dark: #6142b8; --cat-tint: color-mix(in srgb, var(--violet) 16%, white); }
+.category-button[data-category="Književnost i umjetnost"] { --cat-color: var(--rose); --cat-color-dark: #a8355f; --cat-tint: color-mix(in srgb, var(--rose) 16%, white); }
 
 .category-button:hover {
   color: var(--ink);
   background: var(--cat-tint);
-  border-color: color-mix(in srgb, var(--cat-color) 40%, var(--line));
-  transform: translateY(-2px);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 
 .category-button.active {
-  color: #070a13;
-  border-color: var(--cat-color);
-  background: linear-gradient(135deg, var(--cat-color), var(--cat-color-dark));
-  font-weight: 700;
-  box-shadow: 0 4px 18px var(--cat-glow);
-  transform: translateY(-1px) scale(1.04);
+  color: var(--ink);
+  background: var(--cat-color);
+  font-weight: 800;
+  box-shadow: 3px 3px 0 0 var(--line);
+  transform: translate(-1px, -1px);
 }
 
 .category-button.active:hover {
-  transform: translateY(-2px) scale(1.04);
+  transform: translate(-1px, -1px);
 }
 
 /* Difficulty Filter (Freeplay only) */
 .difficulty-list {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 6px;
   margin-top: 10px;
   padding: 10px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--line);
+  border-radius: 12px;
 }
 
 .difficulty-button {
   --diff-color: var(--lime);
   --diff-color-dark: var(--lime-dark);
-  --diff-glow: rgba(216, 243, 106, 0.28);
-  --diff-tint: rgba(216, 243, 106, 0.1);
+  --diff-tint: color-mix(in srgb, var(--lime) 16%, white);
   position: relative;
-  width: fit-content;
-  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: var(--touch-min);
-  padding: 8px 16px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  justify-content: center;
+  gap: 5px;
+  min-height: 44px;
+  padding: 8px 6px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.02);
-  font-size: 0.82rem;
-  font-weight: 600;
+  background: var(--panel);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   transform: translateY(0) scale(1);
-  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.difficulty-button[data-difficulty="easy"] { --diff-color: var(--emerald); --diff-color-dark: #0d9668; --diff-glow: rgba(16, 185, 129, 0.28); --diff-tint: rgba(16, 185, 129, 0.1); }
-.difficulty-button[data-difficulty="medium"] { --diff-color: var(--gold); --diff-color-dark: #d97706; --diff-glow: rgba(245, 158, 11, 0.28); --diff-tint: rgba(245, 158, 11, 0.1); }
-.difficulty-button[data-difficulty="hard"] { --diff-color: var(--coral); --diff-color-dark: #dc2626; --diff-glow: rgba(239, 68, 68, 0.28); --diff-tint: rgba(239, 68, 68, 0.1); }
+.difficulty-button[data-difficulty="easy"] { --diff-color: var(--emerald); --diff-color-dark: #2d8a4b; --diff-tint: color-mix(in srgb, var(--emerald) 16%, white); }
+.difficulty-button[data-difficulty="medium"] { --diff-color: var(--gold); --diff-color-dark: #b8811f; --diff-tint: color-mix(in srgb, var(--gold) 16%, white); }
+.difficulty-button[data-difficulty="hard"] { --diff-color: var(--coral); --diff-color-dark: #c73f2e; --diff-tint: color-mix(in srgb, var(--coral) 16%, white); }
 
 .difficulty-button:hover {
   color: var(--ink);
   background: var(--diff-tint);
-  border-color: color-mix(in srgb, var(--diff-color) 40%, var(--line));
-  transform: translateY(-2px);
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 
 .difficulty-button.active {
-  color: #070a13;
-  border-color: var(--diff-color);
-  background: linear-gradient(135deg, var(--diff-color), var(--diff-color-dark));
-  font-weight: 700;
-  box-shadow: 0 4px 18px var(--diff-glow);
-  transform: translateY(-1px) scale(1.04);
+  color: var(--ink);
+  background: var(--diff-color);
+  font-weight: 800;
+  box-shadow: 3px 3px 0 0 var(--line);
+  transform: translate(-1px, -1px);
 }
 
 .difficulty-button.active:hover {
-  transform: translateY(-2px) scale(1.04);
+  transform: translate(-1px, -1px);
 }
 
 /* Game Card */
 .game-card {
   position: relative;
   overflow: visible;
-  padding: 28px;
+  margin-top: 24px;
+  padding: 26px;
   display: grid;
-  gap: 20px;
+  gap: 18px;
   border-radius: var(--radius);
-  transition: border-color 0.4s ease;
+  transition: box-shadow 0.3s ease;
 }
 
 .game-card.card-transition {
@@ -585,8 +619,8 @@ button.section-heading {
 }
 
 @keyframes cardSwap {
-  0% { opacity: 0; transform: translateY(10px) scale(0.985); filter: blur(4px); }
-  55% { opacity: 1; transform: translateY(-2px) scale(1); filter: blur(0); }
+  0% { opacity: 0; transform: translateY(10px) scale(0.985); }
+  55% { opacity: 1; transform: translateY(-2px) scale(1); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -595,8 +629,8 @@ button.section-heading {
 }
 
 @keyframes filterPulse {
-  0% { box-shadow: 0 0 0 0 var(--accent-glow, rgba(216, 243, 106, 0.3)); }
-  100% { box-shadow: 0 0 0 10px rgba(216, 243, 106, 0); }
+  0% { box-shadow: 4px 4px 0 0 var(--line), 0 0 0 0 var(--accent-glow, rgba(244, 208, 63, 0.4)); }
+  100% { box-shadow: 4px 4px 0 0 var(--line), 0 0 0 8px rgba(244, 208, 63, 0); }
 }
 
 .game-card > * {
@@ -611,7 +645,8 @@ button.section-heading {
   z-index: 0;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  border-radius: var(--radius);
+  transition: opacity 0.4s ease;
 }
 
 .game-card[data-category]::before {
@@ -621,20 +656,20 @@ button.section-heading {
 /* Vidljiva kategorijska značka — na vrhu po sredini glavne kartice */
 .category-emblem {
   position: absolute;
-  top: -22px;
+  top: -24px;
   left: 50%;
-  z-index: 2;
-  width: 48px;
-  height: 48px;
+  z-index: 15;
+  width: 50px;
+  height: 50px;
   display: grid;
   place-items: center;
   font-size: 1.5rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent, var(--lime)), color-mix(in srgb, var(--accent, var(--lime)) 70%, #070a13));
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 24px var(--accent-glow, rgba(216, 243, 106, 0.3)), 0 0 0 6px var(--base);
+  background: var(--accent, var(--lime));
+  border: 2px solid var(--line);
+  box-shadow: 3px 3px 0 0 var(--line);
   transform: translateX(-50%) scale(1);
-  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: background 0.4s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   animation: emblemPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -643,120 +678,69 @@ button.section-heading {
   to { transform: translateX(-50%) scale(1); opacity: 1; }
 }
 
-/* Tematski uzorci po kategoriji — slojeviti CSS pattern-i, bez slika */
-
-/* Sport: dijagonalne linije terena + krug kao središnji krug igrališta */
-.game-card[data-category="Sport"]::before {
-  background:
-    radial-gradient(circle at 88% 82%, transparent 0 46px, rgba(16, 185, 129, 0.18) 47px, rgba(16, 185, 129, 0.18) 48px, transparent 49px),
-    repeating-linear-gradient(-45deg, rgba(16, 185, 129, 0.07) 0 2px, transparent 2px 26px),
-    linear-gradient(160deg, rgba(16, 185, 129, 0.12), transparent 60%);
-}
+/* Tematski uzorci po kategoriji — suptilni flat tint umjesto sjajnih gradijenata,
+   u skladu sa ravnim neo-brutalist stilom (bez blur/glow efekata). */
+.game-card[data-category="Sport"]::before { background: color-mix(in srgb, var(--emerald) 6%, transparent); }
 .game-card[data-category="Sport"] .eyebrow { color: var(--emerald); }
 
-/* Geografija: topografske konturne linije + koordinatna mreža */
-.game-card[data-category="Geografija"]::before {
-  background:
-    repeating-radial-gradient(circle at 90% 15%, transparent 0 18px, rgba(56, 189, 248, 0.09) 19px, transparent 20px 38px),
-    linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px) 0 0 / 34px 34px,
-    linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px) 0 0 / 34px 34px,
-    linear-gradient(160deg, rgba(56, 189, 248, 0.1), transparent 60%);
-}
+.game-card[data-category="Geografija"]::before { background: color-mix(in srgb, var(--blue) 6%, transparent); }
 .game-card[data-category="Geografija"] .eyebrow { color: var(--blue); }
 
-/* Historija: kolonada stubova + zlatna patina */
-.game-card[data-category="Historija"]::before {
-  background:
-    repeating-linear-gradient(90deg, rgba(245, 158, 11, 0.1) 0 3px, transparent 3px 22px),
-    linear-gradient(160deg, rgba(245, 158, 11, 0.12), transparent 55%);
-  mask-image: linear-gradient(-25deg, black 0%, black 35%, transparent 70%);
-  -webkit-mask-image: linear-gradient(-25deg, black 0%, black 35%, transparent 70%);
-}
+.game-card[data-category="Historija"]::before { background: color-mix(in srgb, var(--gold) 6%, transparent); }
 .game-card[data-category="Historija"] .eyebrow { color: var(--gold); }
 
-/* Film i muzika: filmska traka rupice + zvučni valovi */
-.game-card[data-category="Film i muzika"]::before {
-  background:
-    repeating-linear-gradient(180deg, rgba(99, 102, 241, 0.14) 0 6px, transparent 6px 20px) right -2px top 0 / 14px 100%,
-    repeating-radial-gradient(circle at 15% 90%, transparent 0 6px, rgba(99, 102, 241, 0.1) 7px 9px, transparent 10px 26px),
-    linear-gradient(160deg, rgba(99, 102, 241, 0.1), transparent 60%);
-  mask-image: linear-gradient(to left, black 0%, black 12%, transparent 55%);
-  -webkit-mask-image: linear-gradient(to left, black 0%, black 12%, transparent 55%);
-}
+.game-card[data-category="Film i muzika"]::before { background: color-mix(in srgb, var(--indigo) 6%, transparent); }
 .game-card[data-category="Film i muzika"] .eyebrow { color: var(--indigo); }
 
-/* Tehnologija: circuit-board mreža linija i čvorova */
-.game-card[data-category="Tehnologija"]::before {
-  background:
-    linear-gradient(rgba(34, 211, 238, 0.09) 1px, transparent 1px) 0 0 / 28px 28px,
-    linear-gradient(90deg, rgba(34, 211, 238, 0.09) 1px, transparent 1px) 0 0 / 28px 28px,
-    radial-gradient(circle, rgba(34, 211, 238, 0.16) 2px, transparent 2.5px) 14px 14px / 28px 28px,
-    linear-gradient(160deg, rgba(34, 211, 238, 0.1), transparent 60%);
-}
+.game-card[data-category="Tehnologija"]::before { background: color-mix(in srgb, var(--cyan) 6%, transparent); }
 .game-card[data-category="Tehnologija"] .eyebrow { color: var(--cyan); }
 
-/* Nauka: molekularna/heksagonalna mreža tačaka */
-.game-card[data-category="Nauka"]::before {
-  background:
-    radial-gradient(circle at 20% 25%, rgba(167, 139, 250, 0.16) 2px, transparent 3px) 0 0 / 46px 46px,
-    radial-gradient(circle at 60% 65%, rgba(167, 139, 250, 0.13) 2px, transparent 3px) 0 0 / 46px 46px,
-    linear-gradient(160deg, rgba(167, 139, 250, 0.11), transparent 60%);
-}
+.game-card[data-category="Nauka"]::before { background: color-mix(in srgb, var(--violet) 6%, transparent); }
 .game-card[data-category="Nauka"] .eyebrow { color: var(--violet); }
 
-/* Književnost i umjetnost: linije teksta stranice + mrlje boje */
-.game-card[data-category="Književnost i umjetnost"]::before {
-  background:
-    repeating-linear-gradient(rgba(251, 113, 133, 0.07) 0 2px, transparent 2px 15px),
-    radial-gradient(circle at 85% 20%, rgba(251, 113, 133, 0.14) 0 20px, transparent 21px),
-    linear-gradient(160deg, rgba(251, 113, 133, 0.1), transparent 60%);
-  mask-image: linear-gradient(to left, black 0%, black 30%, transparent 68%);
-  -webkit-mask-image: linear-gradient(to left, black 0%, black 30%, transparent 68%);
-}
+.game-card[data-category="Književnost i umjetnost"]::before { background: color-mix(in srgb, var(--rose) 6%, transparent); }
 .game-card[data-category="Književnost i umjetnost"] .eyebrow { color: var(--rose); }
 
 /* Tematsko bojenje polja za odgovor i tragove prema aktivnoj kategoriji */
-.game-card[data-category="Sport"] { --accent: var(--emerald); --accent-glow: rgba(16, 185, 129, 0.18); --accent-tint: rgba(16, 185, 129, 0.05); }
-.game-card[data-category="Geografija"] { --accent: var(--blue); --accent-glow: rgba(56, 189, 248, 0.18); --accent-tint: rgba(56, 189, 248, 0.05); }
-.game-card[data-category="Historija"] { --accent: var(--gold); --accent-glow: rgba(245, 158, 11, 0.18); --accent-tint: rgba(245, 158, 11, 0.05); }
-.game-card[data-category="Film i muzika"] { --accent: var(--indigo); --accent-glow: rgba(99, 102, 241, 0.18); --accent-tint: rgba(99, 102, 241, 0.05); }
-.game-card[data-category="Tehnologija"] { --accent: var(--cyan); --accent-glow: rgba(34, 211, 238, 0.18); --accent-tint: rgba(34, 211, 238, 0.05); }
-.game-card[data-category="Nauka"] { --accent: var(--violet); --accent-glow: rgba(167, 139, 250, 0.18); --accent-tint: rgba(167, 139, 250, 0.05); }
-.game-card[data-category="Književnost i umjetnost"] { --accent: var(--rose); --accent-glow: rgba(251, 113, 133, 0.18); --accent-tint: rgba(251, 113, 133, 0.05); }
+.game-card[data-category="Sport"] { --accent: var(--emerald); --accent-tint: color-mix(in srgb, var(--emerald) 10%, white); }
+.game-card[data-category="Geografija"] { --accent: var(--blue); --accent-tint: color-mix(in srgb, var(--blue) 10%, white); }
+.game-card[data-category="Historija"] { --accent: var(--gold); --accent-tint: color-mix(in srgb, var(--gold) 10%, white); }
+.game-card[data-category="Film i muzika"] { --accent: var(--indigo); --accent-tint: color-mix(in srgb, var(--indigo) 10%, white); }
+.game-card[data-category="Tehnologija"] { --accent: var(--cyan); --accent-tint: color-mix(in srgb, var(--cyan) 10%, white); }
+.game-card[data-category="Nauka"] { --accent: var(--violet); --accent-tint: color-mix(in srgb, var(--violet) 10%, white); }
+.game-card[data-category="Književnost i umjetnost"] { --accent: var(--rose); --accent-tint: color-mix(in srgb, var(--rose) 10%, white); }
 
 .game-card[data-category] .clue-counter,
 .game-card[data-category] .input-row {
-  border-color: color-mix(in srgb, var(--accent, var(--lime)) 30%, var(--line));
-  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  border-color: var(--line);
+  transition: box-shadow 0.3s ease;
 }
 
 .game-card[data-category] .clue-counter strong,
 .game-card[data-category] .clue.unlocked .clue-badge {
-  color: var(--accent, var(--lime));
+  color: var(--ink);
 }
 
 .game-card[data-category] .clue.unlocked {
-  background: var(--accent-tint, rgba(216, 243, 106, 0.04));
-  border-color: color-mix(in srgb, var(--accent, var(--lime)) 35%, var(--line));
+  background: var(--accent-tint, color-mix(in srgb, var(--lime) 10%, white));
+  border-color: var(--line);
 }
 
 .game-card[data-category] .clue.unlocked .clue-badge {
   background: var(--accent, var(--lime));
-  color: #070a13;
+  color: var(--ink);
 }
 
 .game-card[data-category] .input-row:focus-within {
-  border-color: color-mix(in srgb, var(--accent, var(--lime)) 55%, transparent);
-  box-shadow: 0 0 25px var(--accent-glow, rgba(216, 243, 106, 0.12));
+  box-shadow: 3px 3px 0 0 var(--accent, var(--lime));
 }
 
 .game-card[data-category] .button.secondary {
-  border-color: color-mix(in srgb, var(--accent, var(--lime)) 30%, var(--line));
+  border-color: var(--line);
 }
 
 .game-card[data-category] .button.secondary:hover {
-  background: var(--accent-tint, rgba(255, 255, 255, 0.05));
-  border-color: color-mix(in srgb, var(--accent, var(--lime)) 50%, var(--line));
+  background: var(--accent-tint, #efe6d2);
 }
 
 .game-heading {
@@ -777,36 +761,39 @@ button.section-heading {
   display: inline-block;
   margin-top: 8px;
   padding: 4px 10px;
-  border-radius: 20px;
+  border-radius: 8px;
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  border: 1px solid transparent;
+  text-transform: uppercase;
+  border: 2px solid var(--line);
 }
 
-.difficulty-badge[data-difficulty="easy"] { color: var(--emerald); border-color: rgba(16, 185, 129, 0.35); background: rgba(16, 185, 129, 0.08); }
-.difficulty-badge[data-difficulty="medium"] { color: var(--gold); border-color: rgba(245, 158, 11, 0.35); background: rgba(245, 158, 11, 0.08); }
-.difficulty-badge[data-difficulty="hard"] { color: var(--coral); border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.08); }
+.difficulty-badge[data-difficulty="easy"] { color: var(--ink); background: color-mix(in srgb, var(--emerald) 55%, white); }
+.difficulty-badge[data-difficulty="medium"] { color: var(--ink); background: color-mix(in srgb, var(--gold) 55%, white); }
+.difficulty-badge[data-difficulty="hard"] { color: var(--panel); background: var(--coral); }
 
 .clue-counter {
   text-align: right;
   padding: 8px 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.2);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--lime);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 
 .clue-counter strong {
   display: block;
-  color: var(--lime);
+  color: var(--ink);
   font: 800 1.1rem var(--sans);
 }
 
 .clue-counter span {
   display: block;
-  color: var(--muted);
+  color: var(--ink);
+  opacity: 0.7;
   font-size: 0.65rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Clues List */
@@ -821,16 +808,16 @@ button.section-heading {
   align-items: center;
   gap: 14px;
   padding: 14px 16px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.02);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  transition: all 0.2s ease;
 }
 
 .clue.unlocked {
-  background: rgba(216, 243, 106, 0.04);
-  border-color: rgba(216, 243, 106, 0.25);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+  background: color-mix(in srgb, var(--lime) 18%, white);
+  border-color: var(--line);
+  box-shadow: 3px 3px 0 0 var(--line);
   animation: slideDown 0.35s ease-out forwards;
 }
 
@@ -840,45 +827,46 @@ button.section-heading {
 }
 
 .clue.just-unlocked {
-  animation: slideDown 0.35s ease-out forwards, cluePulse 1s ease-out;
+  animation: slideDown 0.35s ease-out forwards, cluePulse 0.8s ease-out;
 }
 
 @keyframes cluePulse {
-  0% { box-shadow: 0 0 0 0 rgba(216, 243, 106, 0.45); }
-  100% { box-shadow: 0 0 0 14px rgba(216, 243, 106, 0); }
+  0% { box-shadow: 3px 3px 0 0 var(--line), 0 0 0 0 rgba(244, 208, 63, 0.5); }
+  100% { box-shadow: 3px 3px 0 0 var(--line), 0 0 0 10px rgba(244, 208, 63, 0); }
 }
 
 .clue.locked {
   opacity: 0.85;
   border-style: dashed;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  border-color: color-mix(in srgb, var(--line) 45%, transparent);
+  background: #efe6d2;
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
 .clue.locked:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  background: rgba(255, 255, 255, 0.035);
+  border-color: var(--line);
+  background: #e9dfc8;
 }
 
 .clue.solved {
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.45);
-  box-shadow: 0 6px 25px rgba(16, 185, 129, 0.12);
+  background: color-mix(in srgb, var(--emerald) 22%, white);
+  border-color: var(--line);
+  box-shadow: 3px 3px 0 0 var(--line);
 }
 
 .clue.solved .clue-badge {
-  color: #052e21;
+  color: var(--panel);
   background: var(--emerald);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.25);
 }
 
 .clue.solved .clue-text {
-  color: #a7f3d0;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .clue-badge {
   padding: 5px 10px;
+  border: 2px solid var(--line);
   border-radius: 8px;
   font: 700 0.72rem var(--sans);
   letter-spacing: 0.02em;
@@ -886,15 +874,14 @@ button.section-heading {
 }
 
 .clue.unlocked .clue-badge {
-  color: #070a13;
+  color: var(--ink);
   background: var(--lime);
-  box-shadow: 0 2px 8px rgba(216, 243, 106, 0.2);
 }
 
 .clue.locked .clue-badge {
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--muted);
+  background: var(--panel);
+  border-color: color-mix(in srgb, var(--line) 45%, transparent);
 }
 
 .clue-text {
@@ -904,8 +891,6 @@ button.section-heading {
 }
 
 .clue.locked .clue-text {
-  /* var(--muted) umjesto var(--dim) — "Ovaj trag je zaključan" mora ostati
-     čitljiv na WCAG AA nivou, ne samo dekorativan. */
   color: var(--muted);
   font-style: italic;
 }
@@ -918,22 +903,22 @@ button.section-heading {
 .answer-area {
   display: grid;
   gap: 12px;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .input-row {
   display: flex;
   gap: 10px;
   padding: 4px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.35);
-  transition: all 0.25s ease;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: #efe6d2;
+  transition: all 0.15s ease;
 }
 
 .input-row:focus-within {
-  border-color: rgba(216, 243, 106, 0.45);
-  box-shadow: 0 0 25px rgba(216, 243, 106, 0.12);
+  background: var(--panel);
+  box-shadow: 3px 3px 0 0 var(--indigo);
 }
 
 .input-row input {
@@ -943,21 +928,22 @@ button.section-heading {
   background: transparent;
   color: var(--ink);
   font-size: 0.95rem;
+  font-weight: 500;
   outline: none;
 }
 
 .input-row input::placeholder {
   color: var(--dim);
+  opacity: 0.7;
 }
 
 .input-row:has(input.solved) {
-  border-color: rgba(16, 185, 129, 0.5);
-  background: rgba(16, 185, 129, 0.08);
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+  background: color-mix(in srgb, var(--emerald) 20%, white);
+  box-shadow: 3px 3px 0 0 var(--emerald);
 }
 
 .input-row input.solved {
-  color: #a7f3d0;
+  color: var(--ink);
   font-weight: 700;
 }
 
@@ -968,54 +954,57 @@ button.section-heading {
   gap: 8px;
   min-height: var(--touch-min);
   padding: 11px 20px;
-  border-radius: 11px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
   font-size: 0.88rem;
   font-weight: 700;
-  transition: all 0.2s ease;
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
   white-space: nowrap;
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--lime);
+  outline: 2px solid var(--indigo);
   outline-offset: 2px;
 }
 
-/* Primarno: jarki gradient akcent, jasan fokus/hover/active — ovo je
+/* Primarno: puna žuta pozadina, oštar obrub, offset senka — ovo je
    glavna radnja na ekranu ("Pogodi") i mora vizuelno dominirati. */
 .button.primary {
-  color: #070a13;
-  background: linear-gradient(135deg, var(--lime), #8fd93a 65%, #5fc9d9);
-  background-size: 160% 160%;
-  background-position: 0% 50%;
-  box-shadow: 0 4px 20px rgba(216, 243, 106, 0.3);
+  color: var(--ink);
+  background: var(--lime);
+  box-shadow: 4px 4px 0 0 var(--line);
 }
 .button.primary:hover:not(:disabled) {
-  background-position: 100% 50%;
-  transform: translateY(-1px);
-  box-shadow: 0 6px 26px rgba(216, 243, 106, 0.4);
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 0 var(--line);
 }
 .button.primary:active:not(:disabled) {
-  transform: translateY(0);
-  filter: brightness(0.94);
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 0 var(--line);
 }
 
-/* Sekundarno: suptilan outline/ghost — vidljivo, ali ne konkuriše primarnom. */
+/* Sekundarno: bijela pozadina sa obrubom — vidljivo, ali ne konkuriše primarnom. */
 .button.secondary {
   color: var(--ink);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid var(--line);
+  background: var(--panel);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 .button.secondary:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.16);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--line);
+  background: #efe6d2;
 }
 .button.secondary:active:not(:disabled) {
-  filter: brightness(0.92);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 0 var(--line);
 }
 
 .button.ghost {
   color: var(--muted);
+  border-color: transparent;
   background: transparent;
+  box-shadow: none;
   padding-inline: 12px;
 }
 .button.ghost:hover {
@@ -1026,40 +1015,42 @@ button.section-heading {
    ispunjene pozadine ili obruba, tako da ne odvlači pažnju od primarne radnje. */
 .button.skip {
   color: var(--muted);
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   background: transparent;
+  box-shadow: none;
 }
 .button.skip:hover {
-  color: #fca5a5;
-  background: rgba(239, 68, 68, 0.08);
+  color: var(--coral);
+  background: color-mix(in srgb, var(--coral) 10%, transparent);
 }
 .button.skip:active {
-  filter: brightness(0.92);
+  filter: brightness(0.95);
 }
 
 .feedback {
   padding: 10px 14px;
+  border: 2px solid var(--line);
   border-radius: 10px;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   animation: slideDown 0.2s ease;
 }
 
 .feedback.error {
-  color: #fca5a5;
-  border: 1px solid rgba(239, 68, 68, 0.3);
-  background: rgba(239, 68, 68, 0.08);
+  color: var(--panel);
+  border-color: var(--line);
+  background: var(--coral);
 }
 
 .feedback.info {
-  color: #7dd3fc;
-  border: 1px solid rgba(56, 189, 248, 0.3);
-  background: rgba(56, 189, 248, 0.08);
+  color: var(--ink);
+  border-color: var(--line);
+  background: color-mix(in srgb, var(--blue) 35%, white);
 }
 
 .shake {
   animation: shakeInput 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  border-color: var(--coral) !important;
+  box-shadow: 3px 3px 0 0 var(--coral) !important;
 }
 
 @keyframes shakeInput {
@@ -1079,9 +1070,10 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  padding: 4px 8px;
+  padding: 6px 8px 0;
   color: var(--dim);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .hidden { display: none !important; }
@@ -1095,9 +1087,9 @@ footer {
   display: grid;
   place-items: center;
   padding: 16px;
-  background: rgba(3, 7, 18, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(34, 28, 16, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 
 .modal {
@@ -1107,28 +1099,40 @@ footer {
   overflow-y: auto;
   overscroll-behavior: contain;
   padding: 32px 24px;
-  border-radius: 24px;
+  border-radius: 18px;
   text-align: center;
-  background: rgba(17, 24, 39, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
-  animation: modalIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--panel);
+  border: 2px solid var(--line);
+  box-shadow: 6px 6px 0 0 var(--line);
+  animation: modalIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes modalIn {
-  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
   to { opacity: 1; transform: none; }
 }
 
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 18px;
-  color: var(--muted);
-  font-size: 1.8rem;
-  transition: color 0.2s ease;
+  top: 12px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  color: var(--ink);
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  font-size: 1.4rem;
+  line-height: 1;
+  box-shadow: 2px 2px 0 0 var(--line);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
 }
-.modal-close:hover { color: var(--ink); }
+.modal-close:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--line);
+}
 
 .result-icon {
   margin-bottom: 8px;
@@ -1142,20 +1146,20 @@ footer {
   100% { transform: scale(1) rotate(0); }
 }
 
-.modal h2 { 
-  margin-top: 4px; 
-  font-size: 1.8rem; 
-  font-weight: 800; 
+.modal h2 {
+  margin-top: 4px;
+  font-size: 1.8rem;
+  font-weight: 800;
 }
-.modal > p { 
-  margin: 4px 0 20px; 
-  color: var(--muted); 
-  font-size: 0.88rem; 
+.modal > p {
+  margin: 4px 0 20px;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
 .result-grid span {
   font-size: 0.65rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--dim);
   letter-spacing: 0.1em;
 }
@@ -1169,9 +1173,10 @@ footer {
 
 .result-grid > div {
   padding: 12px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--line);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 
 .result-grid strong {
@@ -1188,9 +1193,9 @@ footer {
 }
 
 .daily-message {
-  color: var(--lime) !important;
+  color: var(--indigo) !important;
   margin: 0 0 16px !important;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .daily-countdown {
@@ -1198,9 +1203,9 @@ footer {
   justify-items: center;
   gap: 6px;
   padding: 18px 16px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: #efe6d2;
   text-align: center;
 }
 
@@ -1210,20 +1215,21 @@ footer {
   font-size: 0.95rem;
 }
 
-.daily-countdown-result.victory { color: #a7f3d0; }
-.daily-countdown-result.defeat { color: #fca5a5; }
+.daily-countdown-result.victory { color: var(--emerald); }
+.daily-countdown-result.defeat { color: var(--coral); }
 
 .daily-countdown-label {
   color: var(--dim);
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 1.5px;
+  font-weight: 600;
 }
 
 .daily-countdown-timer {
   font-size: 1.7rem;
   font-weight: 800;
-  color: var(--lime);
+  color: var(--ink);
   letter-spacing: 2px;
   font-variant-numeric: tabular-nums;
 }
@@ -1244,13 +1250,14 @@ footer {
 .summary-subject-emblem {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 46px;
+  height: 46px;
   margin-bottom: 4px;
   font-size: 1.4rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--lime), var(--lime-dark));
-  box-shadow: 0 8px 24px rgba(216, 243, 106, 0.3);
+  background: var(--lime);
+  border: 2px solid var(--line);
+  box-shadow: 3px 3px 0 0 var(--line);
 }
 
 .summary-subject-name {
@@ -1290,19 +1297,19 @@ footer {
 .summary-clues-toggle {
   padding: 6px 12px;
   min-height: 32px;
-  border: 1px solid var(--line);
+  border: 2px solid var(--line);
   border-radius: 20px;
-  color: var(--muted);
+  color: var(--ink);
   font-size: 0.72rem;
   font-weight: 700;
-  background: rgba(255, 255, 255, 0.03);
-  transition: all 0.2s ease;
+  background: var(--panel);
+  box-shadow: 2px 2px 0 0 var(--line);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
 }
 
 .summary-clues-toggle:hover {
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--line);
 }
 
 .summary-clue-list {
@@ -1317,26 +1324,26 @@ footer {
   align-items: start;
   gap: 10px 12px;
   padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.02);
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
   font-size: 0.86rem;
   line-height: 1.5;
   color: var(--ink);
 }
 
 .summary-clue-item.used {
-  background: rgba(16, 185, 129, 0.06);
-  border-color: rgba(16, 185, 129, 0.25);
+  background: color-mix(in srgb, var(--emerald) 16%, white);
 }
 
 .summary-clue-item.used .clue-badge {
-  color: #052e21;
+  color: var(--panel);
   background: var(--emerald);
 }
 
 .summary-clue-item.unused {
   color: var(--muted);
+  border-style: dashed;
   animation: slideDown 0.25s ease-out forwards;
 }
 
@@ -1356,11 +1363,13 @@ footer {
 
 .share {
   color: var(--ink);
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid var(--line);
+  background: var(--panel);
+  box-shadow: 2px 2px 0 0 var(--line);
 }
 .share:hover {
-  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 0 var(--line);
 }
 
 .rules-content {
@@ -1385,11 +1394,11 @@ footer {
   right: 24px;
   bottom: 24px;
   padding: 12px 20px;
-  border: 1px solid rgba(216, 243, 106, 0.4);
-  border-radius: 12px;
-  color: #070a13;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  color: var(--ink);
   background: var(--lime);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 4px 4px 0 0 var(--line);
   font-size: 0.88rem;
   font-weight: 700;
   animation: toastIn 0.25s ease;
@@ -1444,9 +1453,37 @@ footer {
 
   .category-panel { padding: 14px 16px; }
 
+  .filter-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .filter-col:not(:last-child) {
+    padding-right: 0;
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-right: 0;
+    border-bottom: 2px dashed var(--line);
+  }
+
+  .category-list-wrap,
+  .difficulty-list-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+  }
+
+  .category-list,
+  .difficulty-list {
+    max-height: none;
+    background: #efe6d2;
+  }
+
   .game-card {
+    margin-top: 18px;
     padding: 22px 16px 18px;
-    border-radius: 16px;
+    border-radius: 14px;
     gap: 14px;
   }
   .category-emblem { width: 42px; height: 42px; font-size: 1.3rem; top: -18px; }
@@ -1492,10 +1529,10 @@ footer {
     z-index: 5;
     margin: 0 -16px;
     padding: 8px 16px calc(10px + env(safe-area-inset-bottom));
-    background: rgba(7, 10, 19, 0.92);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-top: 1px solid var(--line);
+    background: color-mix(in srgb, var(--base) 92%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 2px solid var(--line);
   }
   .input-row .button span { display: none; }
   .input-row .button { padding: 0 16px; min-height: var(--touch-min); }
@@ -1506,4 +1543,13 @@ footer {
   .score-strip { grid-template-columns: repeat(2, 1fr); }
   .score-item { min-height: 56px; }
   .brand small { display: none; }
+}
+
+/* Desktop: sadržaj se prirodno širi po visini; ako ne stane u jedan
+   ekran, skrola se cijela stranica umjesto da se tragovi sabijaju
+   ili sijeku unutar kartice. */
+@media (min-width: 769px) {
+  .game-card .clue-text {
+    line-height: 1.4;
+  }
 }

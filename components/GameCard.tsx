@@ -9,7 +9,6 @@ interface GameCardProps {
   question: Question | null;
   unlocked: number;
   points: number;
-  questionNumber: number;
   result: RoundResult | null;
   feedback: Feedback | null;
   solved: boolean;
@@ -25,7 +24,6 @@ export function GameCard({
   question,
   unlocked,
   points,
-  questionNumber,
   result,
   feedback,
   solved,
@@ -81,7 +79,7 @@ export function GameCard({
       <div className="game-heading">
         <div>
           <span className="eyebrow">
-            PITANJE <span>{String(questionNumber).padStart(2, "0")}</span>
+            PITANJE <span>{String(question.id).padStart(4, "0")}</span>
           </span>
           <h1>{question.kategorija || "Ko sam ja?"}</h1>
           {difficultyLabel && (

@@ -80,7 +80,6 @@ export default function HomePage() {
             question={state.question}
             unlocked={state.unlocked}
             points={state.points}
-            questionNumber={state.questionNumber}
             result={state.result}
             feedback={state.feedback}
             solved={state.solved}

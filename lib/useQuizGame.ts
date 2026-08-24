@@ -35,7 +35,6 @@ export function useQuizGame(questions: Question[]) {
   const [question, setQuestion] = useState<Question | null>(null);
   const [unlocked, setUnlocked] = useState(1);
   const [points, setPoints] = useState(5);
-  const [questionNumber, setQuestionNumber] = useState(1);
   const [result, setResult] = useState<RoundResult | null>(null);
   const [total, setTotal] = useState(0);
   const [streak, setStreak] = useState(0);
@@ -69,11 +68,10 @@ export function useQuizGame(questions: Question[]) {
     localStorage.setItem("ko_sam_ja_streak", String(nextStreak));
   }, []);
 
-  const resetQuestion = useCallback((nextQuestion: Question, number = 1) => {
+  const resetQuestion = useCallback((nextQuestion: Question) => {
     setQuestion(nextQuestion);
     setUnlocked(1);
     setPoints(5);
-    setQuestionNumber(number);
     setResult(null);
     setFeedback(null);
     setSolved(false);
@@ -85,7 +83,7 @@ export function useQuizGame(questions: Question[]) {
     setDailyCountdownActive(false);
     const { question: dailyQuestion } = getDailyQuestion(questions);
     const saved = readDailyResult();
-    resetQuestion(dailyQuestion, 1);
+    resetQuestion(dailyQuestion);
 
     if (saved?.completed) {
       setUnlocked(saved.unlocked || 5);
@@ -126,7 +124,7 @@ export function useQuizGame(questions: Question[]) {
       }
 
       const nextQuestion = freeOrderRef.current[freePositionRef.current++];
-      resetQuestion(nextQuestion, freePositionRef.current);
+      resetQuestion(nextQuestion);
     },
     [questions, category, difficulty, resetQuestion, showToast]
   );
@@ -298,7 +296,6 @@ export function useQuizGame(questions: Question[]) {
       question,
       unlocked,
       points,
-      questionNumber,
       result,
       total,
       streak,
