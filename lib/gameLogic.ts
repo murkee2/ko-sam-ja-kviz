@@ -215,6 +215,9 @@ export const CATEGORY_ICONS: Record<string, string> = {
   Tehnologija: "💻",
   Nauka: "🔬",
   "Književnost i umjetnost": "📖",
+  "Bosna i Hercegovina": "🇧🇦",
+  "Hrana i piće": "🍽️",
+  "Životinje i priroda": "🌿",
 };
 
 export const DIFFICULTY_LABELS: Record<string, string> = {
@@ -232,4 +235,7 @@ export const CATEGORIES = [
   "Tehnologija",
   "Nauka",
   "Književnost i umjetnost",
+  "Bosna i Hercegovina",
+  "Hrana i piće",
+  "Životinje i priroda",
 ];

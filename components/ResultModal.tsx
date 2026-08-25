@@ -81,7 +81,7 @@ export function ResultModal({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="modal modal-summary glass-panel">
+      <div className="modal modal-summary glass-panel items-center">
         <button className="modal-close" type="button" aria-label="Zatvori" onClick={onClose}>
           ×
         </button>

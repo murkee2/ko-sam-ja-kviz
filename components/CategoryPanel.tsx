@@ -20,6 +20,9 @@ const CATEGORY_EMOJI: Record<string, string> = {
   Tehnologija: "💻",
   Nauka: "🔬",
   "Književnost i umjetnost": "📖",
+  "Bosna i Hercegovina": "🇧🇦",
+  "Hrana i piće": "🍽️",
+  "Životinje i priroda": "🌿",
 };
 
 const DIFFICULTIES: { value: string; label: string }[] = [
