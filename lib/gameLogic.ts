@@ -9,6 +9,7 @@ const DIACRITIC_MAP: Record<string, string> = {
   č: "c",
   ć: "c",
   đ: "dj",
+  ð: "dj", // eth (U+00F0) — vizuelno gotovo identično sa đ, čest slučajan unos
   š: "s",
   ž: "z",
   dž: "dz",
@@ -51,7 +52,8 @@ export function getAcceptedAnswers(question: Question): string[] {
 }
 
 // Svodi strane pravopisne obrasce na približan bosanski fonetski zapis,
-// tako da npr. "Thierry Henry" i "Tijeri Enri" postanu uporedivi.
+// tako da npr. "Thierry Henry" i "Tijeri Enri" postanu uporedivi, kao i
+// englesko "j" (Jones, Jackson) sa bosanskim fonetskim "dž" (Džons, Džekson).
 export function phoneticKey(normalized: string): string {
   return normalized
     .replace(/tch/g, "č")
@@ -71,6 +73,7 @@ export function phoneticKey(normalized: string): string {
     .replace(/ai/g, "aj")
     .replace(/ey/g, "i")
     .replace(/ay/g, "aj")
+    .replace(/j/g, "dz")
     .replace(/y/g, "i")
     .replace(/w/g, "v")
     .replace(/c(?=[eiy])/g, "s")
