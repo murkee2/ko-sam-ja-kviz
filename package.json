@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/murkee2/ko-sam-ja-kviz#readme",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "canvas-confetti": "^1.9.3",
     "next": "^15.1.0",
     "react": "^19.0.0",
